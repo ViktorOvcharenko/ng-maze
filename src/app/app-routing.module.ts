@@ -8,12 +8,8 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    pathMatch: 'full',
     children: [
-      {
-        path: '',
-        redirectTo: 'maze',
-        pathMatch: 'full'
-      },
       {
         path: 'maze',
         loadChildren: () => import('./modules/maze/maze.module').then(m => m.MazeModule)
