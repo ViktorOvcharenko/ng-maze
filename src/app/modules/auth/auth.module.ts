@@ -13,10 +13,10 @@ import * as fromComponents from './components';
     fromComponents.AuthLayoutComponent,
     fromComponents.LoginComponent
   ],
-    imports: [
-      CommonModule,
-      AuthRoutingModule,
-      SharedModule
-    ]
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    SharedModule
+  ]
 })
 export class AuthModule { }
