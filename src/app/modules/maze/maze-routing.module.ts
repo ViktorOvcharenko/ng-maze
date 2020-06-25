@@ -6,7 +6,7 @@ import { MazeComponent } from "./containers/maze/maze.component";
 const routes: Routes = [
   {
     path: '',
-    component: MazeComponent,
+    component: MazeComponent
   }
 ];
 

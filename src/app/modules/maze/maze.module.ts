@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MazeRoutingModule } from "./maze-routing.module";
 
-import { MazeComponent } from './containers/maze/maze.component';
-
-
+import * as fromServices from './services';
+import * as fromContainers from './containers';
 
 @NgModule({
-  declarations: [MazeComponent],
+  declarations: [
+    fromContainers.MazeComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    MazeRoutingModule
+  ],
+  providers: [
+    fromServices.MazeService
   ]
 })
 export class MazeModule { }
