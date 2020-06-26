@@ -1,0 +1,22 @@
+mat-toolbar {
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.header-title-container {
+  display: flex;
+  align-items: center;
+}
+
+mat-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav {
+  a {
+    padding-left: 20px;
+  }
+}

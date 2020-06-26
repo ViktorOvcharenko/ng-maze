@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from "./core/components/main-layout/main-layout.component";
 
-
 const routes: Routes = [
   {
     path: '',
@@ -17,12 +16,12 @@ const routes: Routes = [
       {
         path: 'maze',
         loadChildren: () => import('./modules/maze/maze.module').then(m => m.MazeModule)
-      }
+      },
+      {
+        path: 'auth',
+        loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+      },
     ]
-  },
-  {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: '**',
@@ -34,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

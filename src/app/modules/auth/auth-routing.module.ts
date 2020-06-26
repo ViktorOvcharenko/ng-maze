@@ -7,22 +7,16 @@ import * as fromContainers from './containers';
 const routes: Routes = [
   {
     path: '',
-    component: fromComponents.AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-      },
-      {
-        path: 'login',
-        component: fromContainers.LoginComponent
-      },
-      {
-        path: 'sign-up',
-        component: fromContainers.RegistrationComponent
-      },
-    ]
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: fromContainers.LoginComponent
+  },
+  {
+    path: 'sign-up',
+    component: fromContainers.RegistrationComponent
   }
 ];
 
