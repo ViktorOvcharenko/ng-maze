@@ -11,7 +11,8 @@ import * as fromComponents from './components';
     fromContainers.LoginComponent,
     fromContainers.RegistrationComponent,
     fromComponents.AuthLayoutComponent,
-    fromComponents.LoginComponent
+    fromComponents.LoginComponent,
+    fromComponents.RegistrationComponent
   ],
   imports: [
     CommonModule,
