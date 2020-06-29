@@ -1,3 +1,7 @@
+.mat-toolbar {
+  height: 70px;
+}
+
 .header-title-container {
   display: flex;
   align-items: center;
@@ -15,6 +19,7 @@
 mat-toolbar-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .drawer-menu {
