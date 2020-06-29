@@ -1,1 +1,4 @@
-<app-registration></app-registration>
+<app-registration
+  [loadingAuth]="loadingAuth"
+  (onSubmit)="submit($event)"
+></app-registration>

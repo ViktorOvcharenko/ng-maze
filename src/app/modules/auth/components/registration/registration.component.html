@@ -1,15 +1,29 @@
 <div class="login-page">
   <h3 class="login-title">Sign up to Maze</h3>
   <div class="login-container">
-    <form [formGroup]="loginForm" (ngSubmit)="submit()">
-      <mat-form-field appearance="outline">
-        <mat-label>Enter your email</mat-label>
-        <input matInput type="text" placeholder="email" formControlName="email">
-        <mat-error *ngIf="emailInvalid">
-          <span *ngIf="emailRequired">Email is required</span>
-          <span *ngIf="emailIsError">Email is not valid</span>
-        </mat-error>
-      </mat-form-field>
+    <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your name</mat-label>
+          <input matInput type="text" placeholder="name" formControlName="displayName">
+          <mat-error *ngIf="displayNameInvalid">
+            <span *ngIf="displayNameRequired">Name is required</span>
+            <span *ngIf="displayNameWrongLength">
+              The min length is 2 char, and the max length is 10 char
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <input matInput type="text" placeholder="email" formControlName="email">
+          <mat-error *ngIf="emailInvalid">
+            <span *ngIf="emailRequired">Email is required</span>
+            <span *ngIf="emailIsError">Email is not valid</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
       <div class="form-group">
         <mat-form-field appearance="outline">
           <mat-label>Enter your password</mat-label>
@@ -37,7 +51,7 @@
           mat-flat-button
           color="primary"
           type="submit"
-          [disabled]="loginForm.invalid"
+          [disabled]="signUpForm.invalid || loadingAuth"
         >
           Submit
         </button>

@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   @Input() loadingAuth: boolean;
   @Output() onSubmit: EventEmitter<IUser> = new EventEmitter<IUser>();
   public loginForm: FormGroup;
-  public isHidedPassword = false;
+  public isHidedPassword = true;
 
   get emailInvalid(): boolean {
     return this.loginForm.get('email').invalid && this.loginForm.get('email').touched;
