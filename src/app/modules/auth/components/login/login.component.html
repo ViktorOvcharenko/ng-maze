@@ -37,7 +37,7 @@
           mat-flat-button
           color="primary"
           type="submit"
-          [disabled]="loginForm.invalid"
+          [disabled]="loginForm.invalid || loadingAuth"
         >
           Submit
         </button>

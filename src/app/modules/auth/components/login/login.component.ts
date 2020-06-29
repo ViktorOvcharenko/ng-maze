@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { PasswordValidators } from "../../validators";
 import { IUser } from "../../../../core/models/IUser.interface";
@@ -9,6 +9,7 @@ import { IUser } from "../../../../core/models/IUser.interface";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Input() loadingAuth: boolean;
   @Output() onSubmit: EventEmitter<IUser> = new EventEmitter<IUser>();
   public loginForm: FormGroup;
   public isHidedPassword = false;
