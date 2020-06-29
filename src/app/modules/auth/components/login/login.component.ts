@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { PasswordValidators } from "../../validators";
+import { IUser } from "../../../../core/models/IUser.interface";
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,7 @@ import { PasswordValidators } from "../../validators";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Output() onSubmit: EventEmitter<IUser> = new EventEmitter<IUser>();
   public loginForm: FormGroup;
   public isHidedPassword = false;
 
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   public submit(): void {
     const loginFormData = { ...this.loginForm.value };
-    console.log(loginFormData);
+    this.onSubmit.emit(loginFormData);
   }
 
   public toggleHidePassword(): void {
