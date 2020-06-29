@@ -1,0 +1,23 @@
+.mat-drawer-container {
+  height: 100%;
+  position: relative;
+  top: -2px;
+}
+
+.sidenav-container {
+  padding: 20px;
+  background-color: #3f51b5;
+  color: #fff;
+  transition: all .3s;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      padding-bottom: 10px;
+    }
+  }
+}

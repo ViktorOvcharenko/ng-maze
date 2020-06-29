@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import * as fromCoreComponents from './core/components';
 
@@ -13,7 +13,8 @@ import * as fromCoreComponents from './core/components';
   declarations: [
     fromCoreComponents.AppComponent,
     fromCoreComponents.MainLayoutComponent,
-    fromCoreComponents.HeaderComponent
+    fromCoreComponents.HeaderComponent,
+    fromCoreComponents.NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +22,8 @@ import * as fromCoreComponents from './core/components';
     NoopAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [fromCoreComponents.AppComponent]

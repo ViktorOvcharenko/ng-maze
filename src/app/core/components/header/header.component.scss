@@ -1,13 +1,11 @@
-mat-toolbar {
+.header-title-container {
+  display: flex;
+  align-items: center;
+
   a {
     color: #fff;
     text-decoration: none;
   }
-}
-
-.header-title-container {
-  display: flex;
-  align-items: center;
 }
 
 mat-toolbar-row {
@@ -15,8 +13,3 @@ mat-toolbar-row {
   justify-content: space-between;
 }
 
-nav {
-  a {
-    padding-left: 20px;
-  }
-}

@@ -1,18 +1,19 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <div class="header-title-container">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        (click)="drawerToggle()" >
         <mat-icon>menu</mat-icon>
       </button>
       <h1>
         <a routerLink="/">Maze</a>
       </h1>
     </div>
-    <nav>
-      <a routerLink="/">score</a>
-      <a routerLink="/auth/login">login</a>
-      <a routerLink="/auth/sign-up">sign up</a>
-    </nav>
+    <app-navigation></app-navigation>
   </mat-toolbar-row>
 </mat-toolbar>
+
 
