@@ -13,6 +13,6 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   public submit(user: IUser): void {
-    this.authService.signIn(user).subscribe();
+    this.authService.login(user).subscribe();
   }
 }

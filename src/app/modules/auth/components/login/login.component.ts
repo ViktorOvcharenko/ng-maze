@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
-    const loginFormData = { ...this.loginForm.value };
+    const loginFormData: IUser = { ...this.loginForm.value };
+    loginFormData.returnSecureToken = true;
     this.onSubmit.emit(loginFormData);
   }
 
