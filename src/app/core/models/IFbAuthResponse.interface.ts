@@ -5,4 +5,5 @@ export interface IFbAuthResponse {
   expiresIn:	string;
   localId:	string;
   registered:	boolean;
+  displayName?: string;
 }

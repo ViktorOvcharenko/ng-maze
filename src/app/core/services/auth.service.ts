@@ -22,10 +22,19 @@ export class AuthService {
     return localStorage.getItem('fb-token');
   }
 
+  get username(): string {
+    const expDate = new Date(localStorage.getItem('fb-token-exp'));
+    if (new Date() > expDate) {
+      this.logout();
+      return null;
+    }
+    return localStorage.getItem('fb-username');
+  }
+
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   public isAuthenticated(): boolean {
     return !!this.token;
@@ -56,9 +65,11 @@ export class AuthService {
       const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000);
       localStorage.setItem('fb-token', response.idToken);
       localStorage.setItem('fb-token-exp', expDate.toString());
+      localStorage.setItem('fb-username', response.displayName);
     } else {
       localStorage.setItem('fb-token', '');
       localStorage.setItem('fb-token-exp', '');
+      localStorage.setItem('fb-username', '');
     }
   }
 

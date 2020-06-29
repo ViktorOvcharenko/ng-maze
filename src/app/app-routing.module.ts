@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from "./core/components/main-layout/main-layout.component";
+import {AuthGuard} from "./core/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'maze',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./modules/maze/maze.module').then(m => m.MazeModule)
       },
       {

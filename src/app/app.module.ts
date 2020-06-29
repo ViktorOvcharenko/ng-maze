@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import * as fromCoreComponents from './core/components';
 
@@ -27,7 +28,8 @@ import * as fromCoreComponents from './core/components';
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [fromCoreComponents.AppComponent]

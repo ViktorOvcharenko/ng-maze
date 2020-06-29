@@ -11,8 +11,22 @@
         <a routerLink="/">Maze</a>
       </h1>
     </div>
-    <div class="nav-container">
-      <app-navigation></app-navigation>
+    <div class="header-content-container">
+      <app-navigation class="nav-container"></app-navigation>
+      <div class="username-container">
+        <span *ngIf="displayName; else defaultUserName">{{ displayName }}</span>
+        <ng-template #defaultUserName>
+          <span>guest</span>
+        </ng-template>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <div class="logout-btn" (click)="logout()">logout</div>
+          </button>
+        </mat-menu>
+      </div>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
