@@ -2,6 +2,10 @@
   display: flex;
   align-items: center;
 
+  h1 {
+    padding-left: 10px;
+  }
+
   a {
     color: #fff;
     text-decoration: none;
@@ -11,5 +15,21 @@
 mat-toolbar-row {
   display: flex;
   justify-content: space-between;
+}
+
+.drawer-menu {
+  display: none;
+}
+
+@media only screen and (max-width:767px) {
+  .drawer-menu {
+    display: block;
+  }
+}
+
+@media only screen and (max-width:767px) {
+  .nav-container {
+    display: none;
+  }
 }
 

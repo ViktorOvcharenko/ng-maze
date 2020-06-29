@@ -1,7 +1,7 @@
 <app-header [drawer]="drawer"></app-header>
 <mat-drawer-container autosize>
   <mat-drawer #drawer class="sidenav-container" mode="side">
-    <app-navigation></app-navigation>
+    <app-navigation [drawerLocation]="true"></app-navigation>
   </mat-drawer>
   <router-outlet></router-outlet>
 </mat-drawer-container>

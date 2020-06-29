@@ -3,8 +3,7 @@
     <div class="header-title-container">
       <button
         mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
+        class="drawer-menu"
         (click)="drawerToggle()" >
         <mat-icon>menu</mat-icon>
       </button>
@@ -12,7 +11,9 @@
         <a routerLink="/">Maze</a>
       </h1>
     </div>
-    <app-navigation></app-navigation>
+    <div class="nav-container">
+      <app-navigation></app-navigation>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
