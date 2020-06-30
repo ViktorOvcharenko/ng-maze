@@ -6,16 +6,7 @@ import * as fromContainers from './containers';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: fromContainers.LoginComponent
-  },
-  {
-    path: 'sign-up',
-    component: fromContainers.RegistrationComponent
+    component: fromContainers.SettingsMainComponent
   }
 ];
 
@@ -23,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule {}
+export class SettingsRoutingModule {}

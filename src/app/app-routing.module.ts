@@ -23,6 +23,15 @@ const routes: Routes = [
         path: 'auth',
         loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
       },
+      {
+        path: 'score',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./modules/maze/maze.module').then(m => m.MazeModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule)
+      }
     ]
   },
   {

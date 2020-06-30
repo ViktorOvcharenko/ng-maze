@@ -22,9 +22,8 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <span class="logout-btn" (click)="logout()">logout</span>
-          </button>
+          <button mat-menu-item routerLink="/settings">settings</button>
+          <button mat-menu-item (click)="logout()">logout</button>
         </mat-menu>
       </div>
     </div>
