@@ -1,5 +1,5 @@
 <nav [ngClass]="{'drawer-nav-container': drawerLocation}">
-  <a routerLink="/score" routerLinkActive="active">score</a>
+  <a routerLink="/score" routerLinkActive="active">{{ 'core.best-scores' | translate }}</a>
   <a routerLink="/auth/login" routerLinkActive="active">login</a>
   <a routerLink="/auth/sign-up" routerLinkActive="active">sign up</a>
 </nav>

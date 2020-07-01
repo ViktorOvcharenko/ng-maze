@@ -8,7 +8,7 @@
         <mat-icon>menu</mat-icon>
       </button>
       <h1>
-        <a routerLink="/">Maze</a>
+        <a routerLink="/">{{ 'core.maze' | translate }}</a>
       </h1>
     </div>
     <div class="header-content-container">
@@ -22,7 +22,7 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/settings">settings</button>
+          <button mat-menu-item routerLink="/settings">{{ 'core.settings' | translate }}</button>
           <button mat-menu-item (click)="logout()">logout</button>
         </mat-menu>
       </div>
