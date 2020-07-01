@@ -1,1 +1,9 @@
-<p>settings-main works!</p>
+<div class="settings-page">
+  <div class="settings-languages-container">
+    <mat-select #langSelect (selectionChange)="x(langSelect.value)" [value]="currentLang">
+      <mat-select-trigger>{{ langSelect.value }}</mat-select-trigger>
+      <mat-option *ngFor="let lang of languages" [value]="lang.value">{{ lang.viewValue }}</mat-option>
+    </mat-select>
+  </div>
+</div>
+

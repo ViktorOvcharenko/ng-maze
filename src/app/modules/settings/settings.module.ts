@@ -5,6 +5,8 @@ import { SharedModule } from "../../shared/shared.module";
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import * as fromComponents from './components';
   imports: [
     CommonModule,
     SharedModule,
-    SettingsRoutingModule
+    SettingsRoutingModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ]
 })
 export class SettingsModule { }
