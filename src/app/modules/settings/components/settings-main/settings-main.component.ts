@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { ILanguage } from "../../../../core/models/ILanguage";
 
 @Component({
@@ -8,14 +7,11 @@ import { ILanguage } from "../../../../core/models/ILanguage";
   styleUrls: ['./settings-main.component.scss']
 })
 export class SettingsMainComponent  {
-  languages: ILanguage[] = [
-    { value: 'en', viewValue: 'EN' },
-    { value: 'ru', viewValue: 'RU' },
-  ]
+  @Input() languages: ILanguage[];
+  @Input() defaultLang: string;
+  @Output() onSelectLanguage: EventEmitter<string> = new EventEmitter<string>();
 
-  currentLang = 'steak-0';
-
-  x(value: any) {
-    console.log(value)
+  public selectLanguage(value: any): void {
+    this.onSelectLanguage.emit(value);
   }
 }

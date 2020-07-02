@@ -1,10 +1,10 @@
 <div class="login-page">
-  <h3 class="login-title">Sign in to Maze</h3>
+  <h3 class="login-title">{{ 'auth.sign-in-to-maze' | translate }}</h3>
   <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
       <div class="form-group">
         <mat-form-field appearance="outline">
-          <mat-label>Enter your email</mat-label>
+          <mat-label>{{ 'auth.enter-your-email' | translate }}</mat-label>
           <input matInput type="text" placeholder="email" formControlName="email">
           <mat-error *ngIf="emailInvalid">
             <span *ngIf="emailRequired">Email is required</span>
@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <mat-form-field appearance="outline">
-          <mat-label>Enter your password</mat-label>
+          <mat-label>{{ 'auth.enter-your-password' | translate }}</mat-label>
           <input matInput [type]="isHidedPassword ? 'password' : 'text'" formControlName="password">
           <button
             mat-icon-button
@@ -41,7 +41,7 @@
           type="submit"
           [disabled]="loginForm.invalid || loadingAuth"
         >
-          Submit
+          {{ 'auth.submit' | translate }}
         </button>
         <button
           mat-raised-button
@@ -49,7 +49,7 @@
           class="btn-success"
           routerLink="/auth/sign-up"
         >
-          Sign up
+          {{ 'core.sign-up' | translate }}
         </button>
       </div>
     </form>

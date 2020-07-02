@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from "../../../../core/services/auth.service";
 import { IUser } from "../../../../core/models/IUser.interface";
 import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login-container',
@@ -12,7 +13,10 @@ export class LoginComponent implements OnDestroy {
   public loadingAuth = false;
   public subLogin$: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnDestroy(): void {
     if (this.subLogin$) {
@@ -24,7 +28,8 @@ export class LoginComponent implements OnDestroy {
     this.loadingAuth = true;
     this.subLogin$ = this.authService.login(user)
       .subscribe(() => {
-        this.onLoaded()
+        this.onLoaded();
+        this.router.navigate(['/']);
       }, () => {
         this.onLoaded()
       });

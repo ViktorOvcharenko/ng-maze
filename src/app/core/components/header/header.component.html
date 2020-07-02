@@ -16,14 +16,14 @@
       <div class="username-container">
         <span *ngIf="displayName; else defaultUserName">{{ displayName }}</span>
         <ng-template #defaultUserName>
-          <span>guest</span>
+          <span>{{ 'core.guest' | translate }}</span>
         </ng-template>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="/settings">{{ 'core.settings' | translate }}</button>
-          <button mat-menu-item (click)="logout()">logout</button>
+          <button mat-menu-item (click)="logout()">{{ 'core.logout' | translate }}</button>
         </mat-menu>
       </div>
     </div>

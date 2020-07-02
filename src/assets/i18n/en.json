@@ -2,6 +2,19 @@
   "core": {
     "maze": "Maze",
     "best-scores": "best scores",
-    "settings": "settings"
+    "login": "login",
+    "sign-up": "sign up",
+    "guest": "guest",
+    "settings": "settings",
+    "logout": "logout"
+  },
+  "settings": {
+    "choose-your-language": "Choose your preferred application language:"
+  },
+  "auth": {
+    "sign-in-to-maze": "Sign in to Maze",
+    "enter-your-email": "Enter your email",
+    "enter-your-password": "Enter your password",
+    "submit": "Submit"
   }
 }
