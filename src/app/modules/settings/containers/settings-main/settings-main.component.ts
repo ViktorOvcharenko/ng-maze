@@ -12,7 +12,7 @@ export class SettingsMainComponent {
     { value: 'en', viewValue: 'EN' },
     { value: 'ru', viewValue: 'RU' },
   ];
-  public defaultLang = this.languages[0].value;
+  public defaultLang = this.translateService.defaultLang;
 
   constructor(private translateService: TranslateService) {}
 
