@@ -7,8 +7,8 @@
           <mat-label>{{ 'auth.enter-your-email' | translate }}</mat-label>
           <input matInput type="text" placeholder="email" formControlName="email">
           <mat-error *ngIf="emailInvalid">
-            <span *ngIf="emailRequired">Email is required</span>
-            <span *ngIf="emailIsError">Email is not valid</span>
+            <span *ngIf="emailRequired">{{ 'auth.email-is-required' | translate }}</span>
+            <span *ngIf="emailIsError">{{ 'auth.email-is-not-valid' | translate }}</span>
           </mat-error>
         </mat-form-field>
       </div>
@@ -27,10 +27,7 @@
             <mat-icon>{{isHidedPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="passwordInvalid">
-          <span *ngIf="passwordIsError">
-            Password is required and must contain uppercase and lowercase
-            letters and digits and must be at least eight characters
-          </span>
+          <span *ngIf="passwordIsError">{{ 'auth.password-is-required-and-must' | translate}}</span>
           </mat-error>
         </mat-form-field>
       </div>

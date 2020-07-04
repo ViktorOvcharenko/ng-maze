@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import * as fromCoreComponents from './core/components';
 import { environment } from '../environments/environment';
+import { appReducers } from "./core/store/reducers/app.reducers";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,10 +43,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: 'en'
     }),
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production === false}),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     NoopAnimationsModule,
     MatToolbarModule,
     MatIconModule,

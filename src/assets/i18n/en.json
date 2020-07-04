@@ -13,8 +13,12 @@
   },
   "auth": {
     "sign-in-to-maze": "Sign in to Maze",
+    "sign-up-to-maze": "Sign up to Maze",
     "enter-your-email": "Enter your email",
     "enter-your-password": "Enter your password",
-    "submit": "Submit"
+    "submit": "Submit",
+    "email-is-required": "Email is required",
+    "email-is-not-valid": "Email is not valid",
+    "password-is-required-and-must": "Password is required and must contain uppercase and lowercase\nletters and digits and must be at least eight characters"
   }
 }

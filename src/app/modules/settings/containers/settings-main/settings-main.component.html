@@ -1,5 +1,5 @@
 <app-settings-main
   [languages]="languages"
-  [defaultLang]="defaultLang"
+  [defaultLang]="defaultLang$ | async"
   (onSelectLanguage)="onSelectLanguage($event)"
 ></app-settings-main>
