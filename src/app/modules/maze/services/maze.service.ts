@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MazeService {
 
-  public generateMaze (height, width): void {
+  public generateMaze (height, width): number[][] {
     const maze = [], walls = [];
 
     function amaze(y, x, addBlockWalls) {
@@ -66,6 +66,7 @@ export class MazeService {
     addWalls();
     maze[1][0] = 2;
     maze[height + 1][width] = 3;
-    console.log(maze)
+
+    return maze;
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from "@ngrx/store";
+import { SetMaze } from "../../../../core/store/actions/maze.actions";
 
 import * as fromServices from "../../services";
 
@@ -9,10 +11,14 @@ import * as fromServices from "../../services";
 })
 export class MazeComponent implements OnInit {
 
-  constructor(private mazeService: fromServices.MazeService) { }
+  constructor(
+    private mazeService: fromServices.MazeService,
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
-    this.mazeService.generateMaze(20, 20);
+    const maze = this.mazeService.generateMaze(20, 20);
+    this.store.dispatch(new SetMaze(maze));
   }
 
 }

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MainLayoutComponent } from "./core/components/main-layout/main-layout.component";
-import {AuthGuard} from "./core/guards/auth.guard";
+import * as fromCoreComponents from './core/components'
+import * as fromCoreGuards from './core/guards'
 
 const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent,
+    component: fromCoreComponents.MainLayoutComponent,
     children: [
       {
         path: '',
@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'maze',
-        canActivate: [AuthGuard],
+        canActivate: [fromCoreGuards.AuthGuard],
         loadChildren: () => import('./modules/maze/maze.module').then(m => m.MazeModule)
       },
       {
@@ -25,8 +25,8 @@ const routes: Routes = [
       },
       {
         path: 'scores',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./modules/maze/maze.module').then(m => m.MazeModule)
+        canActivate: [fromCoreGuards.AuthGuard],
+        loadChildren: () => import('./modules/scores/scores.module').then(m => m.ScoresModule)
       },
       {
         path: 'settings',

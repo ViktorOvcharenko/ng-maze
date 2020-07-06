@@ -6,7 +6,7 @@ import * as fromContainers from './containers';
 const routes: Routes = [
   {
     path: '',
-    component: fromContainers.MazeComponent
+    component: fromContainers.ScoresComponent
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MazeRoutingModule {}
+export class ScoresRoutingModule {}

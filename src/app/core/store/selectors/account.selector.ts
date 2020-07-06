@@ -5,7 +5,4 @@ import { IAccountState } from "../../models/IAccountState";
 
 const selectAccount = (state: IAppState) => state.account;
 
-export const selectAccountLang = createSelector(
-  selectAccount,
-  (state: IAccountState) => state.lang
-);
+export const selectAccountLang = createSelector(selectAccount, (state: IAccountState) => state.lang);

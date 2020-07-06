@@ -4,14 +4,11 @@ import { IAccountState } from "../../models/IAccountState";
 
 export const accountReducers = (
   state: IAccountState = initialAccountState,
-    action: AccountActions
+  action: AccountActions
 ): IAccountState => {
   switch(action.type) {
     case EAccountActions.SetLanguage: {
-      return {
-        ...state,
-        lang: action.payload
-      };
+      return { ...state, lang: action.payload };
     }
     default:
       return state;

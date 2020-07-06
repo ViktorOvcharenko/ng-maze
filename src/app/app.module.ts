@@ -16,9 +16,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 
-import * as fromCoreComponents from './core/components';
+
 import { environment } from '../environments/environment';
 import { appReducers } from "./core/store/reducers/app.reducers";
+import * as fromCoreComponents from './core/components';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
