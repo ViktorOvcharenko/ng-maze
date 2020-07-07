@@ -1,1 +1,37 @@
+.maze-ceil-container {
+  width: 100%;
+  background-image: url('src/assets/images/brick.jpg');
+  color: white;
 
+  div {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+
+    div {
+      position: absolute;
+      width: 100%;
+      height: 0;
+    }
+  }
+
+  .empty {
+    background-color: #24292e;
+  }
+
+  .hero {
+    background-color: #24292e;
+    background-image: url('../../../../../assets/images/hero.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+  }
+
+  .exit {
+    background-color: #24292e;
+    background-image: url('src/assets/images/exit.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+  }
+}

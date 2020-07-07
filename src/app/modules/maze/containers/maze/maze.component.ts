@@ -23,7 +23,7 @@ export class MazeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const maze = this.mazeService.generateMaze(20, 20);
+    const maze = this.mazeService.generateMaze(30, 80);
     this.store.dispatch(new SetMaze(maze));
   }
 }
