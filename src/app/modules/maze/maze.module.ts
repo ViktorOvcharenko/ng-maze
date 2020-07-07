@@ -4,10 +4,14 @@ import { MazeRoutingModule } from "./maze-routing.module";
 
 import * as fromServices from './services';
 import * as fromContainers from './containers';
+import * as fromComponents from './components';
 
 @NgModule({
   declarations: [
-    fromContainers.MazeComponent
+    fromContainers.MazeComponent,
+    fromComponents.MazeContainerComponent,
+    fromComponents.MazeRowComponent,
+    fromComponents.MazeCeilComponent
   ],
   imports: [
     CommonModule,

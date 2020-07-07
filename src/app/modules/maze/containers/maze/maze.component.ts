@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from "@ngrx/store";
+import { select, Store } from "@ngrx/store";
 import { SetMaze } from "../../../../core/store/actions/maze.actions";
+import { Observable } from "rxjs";
+import { IMaze } from "../../../../core/models/IMaze";
+import { getMaze } from "../../../../core/store/selectors/maze.selectors";
 
 import * as fromServices from "../../services";
 
@@ -10,15 +13,17 @@ import * as fromServices from "../../services";
   styleUrls: ['./maze.component.scss']
 })
 export class MazeComponent implements OnInit {
+  public maze$: Observable<IMaze>;
 
   constructor(
     private mazeService: fromServices.MazeService,
     private store: Store
-  ) { }
+  ) {
+    this.maze$ = this.store.pipe(select(getMaze));
+  }
 
   ngOnInit(): void {
     const maze = this.mazeService.generateMaze(20, 20);
     this.store.dispatch(new SetMaze(maze));
   }
-
 }

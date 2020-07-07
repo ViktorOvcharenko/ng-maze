@@ -1,3 +1,5 @@
+import { IMaze } from "./IMaze";
+
 export interface IMazeState {
-  maze:number[][]
+  maze: IMaze
 }

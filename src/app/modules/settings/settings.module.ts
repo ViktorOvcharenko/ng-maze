@@ -14,11 +14,11 @@ import * as fromComponents from './components';
     fromComponents.SettingsMainComponent
   ],
     imports: [
-        CommonModule,
-        SharedModule,
-        SettingsRoutingModule,
-        MatFormFieldModule,
-        MatSelectModule
+      CommonModule,
+      SharedModule,
+      SettingsRoutingModule,
+      MatFormFieldModule,
+      MatSelectModule
     ]
 })
 export class SettingsModule { }
