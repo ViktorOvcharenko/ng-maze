@@ -6,9 +6,10 @@ import { SetMaze } from "../../../../core/store/actions/maze.actions";
 import { Observable } from "rxjs";
 import { getAccountLang } from "../../../../core/store/selectors/account.selector";
 import { getMode } from "../../../../core/store/selectors/maze.selectors";
+import { MazeGenerateService } from "../../../../core/services";
 
 import * as fromModels from "../../../../core/models";
-import {MazeGenerateService} from "../../../../core/services";
+import * as fromConstants from "../../../../core/constants";
 
 @Component({
   selector: 'app-settings-main-container',
@@ -16,15 +17,8 @@ import {MazeGenerateService} from "../../../../core/services";
   styleUrls: ['./settings-main.component.scss']
 })
 export class SettingsMainComponent {
-  public languages: fromModels.ILanguage[] = [
-    { value: 'en', viewValue: 'EN' },
-    { value: 'ru', viewValue: 'RU' }
-  ];
-  public modes: fromModels.IMode[] = [
-    { value: 'hard', viewValue: 'hard mode' },
-    { value: 'medium', viewValue: 'medium mode' },
-    { value: 'easy', viewValue: 'easy mode' }
-  ];
+  public languages: fromModels.ILanguage[] = fromConstants.LANGUAGES;
+  public modes: fromModels.IMode[] = fromConstants.MODES;
   public defaultLang$: Observable<string>;
   public defaultMode$: Observable<string>;
 

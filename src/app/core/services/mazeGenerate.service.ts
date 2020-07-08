@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import * as fromModels from "../models";
 
 @Injectable({providedIn: 'root'})
 export class MazeGenerateService {
 
-  public generateMaze (mode: string): number[][] {
+  public generateMaze (mode: string): fromModels.IMaze {
     let height: number;
     let width: number;
     const maze = [];
