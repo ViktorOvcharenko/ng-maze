@@ -1,5 +1,6 @@
-import { IMazeState } from "../../models/IMazeState";
+import * as fromModels from '../../models';
 
-export const initialMazeState: IMazeState = {
-  maze: []
+export const initialMazeState: fromModels.IMazeState = {
+  maze: [],
+  mode: 'medium'
 }

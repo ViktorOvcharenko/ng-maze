@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MazeRoutingModule } from "./maze-routing.module";
 
-import * as fromServices from './services';
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
 
@@ -17,8 +16,6 @@ import * as fromComponents from './components';
     CommonModule,
     MazeRoutingModule
   ],
-  providers: [
-    fromServices.MazeService
-  ]
+  providers: []
 })
 export class MazeModule { }

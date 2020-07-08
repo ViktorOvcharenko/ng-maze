@@ -1,11 +1,11 @@
 import { initialAccountState } from "../state/account.state";
 import { AccountActions, EAccountActions } from "../actions/account.actions";
-import { IAccountState } from "../../models/IAccountState";
+import * as fromModels from '../../models';
 
 export const accountReducers = (
-  state: IAccountState = initialAccountState,
+  state: fromModels.IAccountState = initialAccountState,
   action: AccountActions
-): IAccountState => {
+): fromModels.IAccountState => {
   switch(action.type) {
     case EAccountActions.SetLanguage: {
       return { ...state, lang: action.payload };

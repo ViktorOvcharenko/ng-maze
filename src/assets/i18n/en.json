@@ -9,7 +9,8 @@
     "logout": "logout"
   },
   "settings": {
-    "choose-your-language": "Choose your preferred application language:"
+    "choose-your-language": "Choose your preferred application language:",
+    "choose-your-mode": "Choose your preferred mode:"
   },
   "auth": {
     "sign-in-to-maze": "Sign in to Maze",

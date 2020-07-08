@@ -1,5 +1,8 @@
 <app-settings-main
   [languages]="languages"
+  [modes]="modes"
   [defaultLang]="defaultLang$ | async"
-  (onSelectLanguage)="onSelectLanguage($event)"
+  [defaultMode]="defaultMode$ | async"
+  (onSelectLanguage)="selectLanguage($event)"
+  (onSelectMode)="selectMode($event)"
 ></app-settings-main>

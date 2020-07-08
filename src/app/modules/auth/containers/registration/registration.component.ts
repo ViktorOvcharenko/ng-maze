@@ -1,7 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import { Subscription } from "rxjs";
 import { AuthService} from "../../../../core/services/auth.service";
-import { IUser } from "../../../../core/models/IUser.interface";
+import { IUser } from "../../../../core/models/IUser";
 import {Router} from "@angular/router";
 
 @Component({

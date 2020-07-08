@@ -1,12 +1,11 @@
 import { initialMazeState } from "../state/maze.state";
 import { EMazeActions, MazeActions } from "../actions/maze.actions";
-import { IMazeState } from "../../models/IMazeState";
-import { IMaze } from "../../models/IMaze";
+import * as fromModels from '../../models';
 
 export const mazeReducers = (
-  state: IMazeState = initialMazeState,
+  state: fromModels.IMazeState = initialMazeState,
   action: MazeActions
-): { maze: IMaze } => {
+): fromModels.IMazeState => {
   switch(action.type) {
     case EMazeActions.SetMaze: {
       return { ...state, maze: action.payload};

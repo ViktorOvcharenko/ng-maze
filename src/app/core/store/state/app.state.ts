@@ -1,8 +1,8 @@
-import { IAppState } from "../../models/IAppState";
 import { initialAccountState } from "./account.state";
 import { initialMazeState } from "./maze.state";
+import * as fromModels from '../../models';
 
-export const initialAppState: IAppState = {
+export const initialAppState: fromModels.IAppState = {
   account: initialAccountState,
   maze: initialMazeState
 }

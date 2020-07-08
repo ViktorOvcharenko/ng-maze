@@ -1,10 +1,30 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
-export class MazeService {
+@Injectable({providedIn: 'root'})
+export class MazeGenerateService {
 
-  public generateMaze (height, width): number[][] {
-    const maze = [], walls = [];
+  public generateMaze (mode: string): number[][] {
+    let height: number;
+    let width: number;
+    const maze = [];
+    const walls = [];
+
+    switch (mode) {
+      case 'hard': {
+        height = 27;
+        width = 80;
+      }
+        break;
+      case 'easy': {
+        height = 7;
+        width = 25;
+      }
+      break;
+      default: {
+        height = 13;
+        width = 40;
+      }
+    }
 
     function amaze(y, x, addBlockWalls) {
       maze[y][x] = 1;

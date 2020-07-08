@@ -1,29 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from "@ngrx/store";
 import { SetMaze } from "../../../../core/store/actions/maze.actions";
-import { Observable } from "rxjs";
-import { IMaze } from "../../../../core/models/IMaze";
+import {combineLatest, Observable, Subscription} from "rxjs";
 import { getMaze } from "../../../../core/store/selectors/maze.selectors";
-
-import * as fromServices from "../../services";
+import { MazeGenerateService } from "../../../../core/services";
+import * as fromModels from "../../../../core/models"
 
 @Component({
   selector: 'app-maze',
   templateUrl: './maze.component.html',
   styleUrls: ['./maze.component.scss']
 })
-export class MazeComponent implements OnInit {
-  public maze$: Observable<IMaze>;
+export class MazeComponent implements OnInit, OnDestroy {
+  public maze$: Observable<fromModels.IMaze>;
+  public mazeSub$: Subscription;
 
   constructor(
-    private mazeService: fromServices.MazeService,
+    private mazeGenerateService: MazeGenerateService,
     private store: Store
   ) {
     this.maze$ = this.store.pipe(select(getMaze));
   }
 
   ngOnInit(): void {
-    const maze = this.mazeService.generateMaze(30, 80);
-    this.store.dispatch(new SetMaze(maze));
+    this.mazeSub$ = this.maze$.subscribe(maze => {
+      if (!maze.length) {
+        const maze = this.mazeGenerateService.generateMaze('medium');
+        this.store.dispatch(new SetMaze(maze));
+      }
+    })
+    // combineLatest([])
+  }
+
+  ngOnDestroy(): void {
+    if (this.mazeSub$) {
+      this.mazeSub$.unsubscribe();
+    }
   }
 }

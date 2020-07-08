@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { ILanguage } from "../../../../core/models/ILanguage";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import * as fromModels from "../../../../core/models";
 
 @Component({
   selector: 'app-settings-main',
@@ -7,11 +7,18 @@ import { ILanguage } from "../../../../core/models/ILanguage";
   styleUrls: ['./settings-main.component.scss']
 })
 export class SettingsMainComponent  {
-  @Input() languages: ILanguage[];
+  @Input() languages: fromModels.ILanguage[];
+  @Input() modes: fromModels.IMode[];
   @Input() defaultLang: string;
+  @Input() defaultMode: string;
   @Output() onSelectLanguage: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSelectMode: EventEmitter<string> = new EventEmitter<string>();
 
-  public selectLanguage(value: any): void {
+  public selectLanguage(value: string): void {
     this.onSelectLanguage.emit(value);
+  }
+
+  public selectMode(value: string): void {
+    this.onSelectMode.emit(value);
   }
 }

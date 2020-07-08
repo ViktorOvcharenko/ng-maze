@@ -11,7 +11,9 @@ import * as fromComponents from './components';
 @NgModule({
   declarations: [
     fromContainers.SettingsMainComponent,
-    fromComponents.SettingsMainComponent
+    fromComponents.SettingsMainComponent,
+    fromComponents.SettingsLanguageComponent,
+    fromComponents.SettingsModeComponent
   ],
     imports: [
       CommonModule,

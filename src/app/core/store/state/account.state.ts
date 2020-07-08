@@ -1,6 +1,6 @@
-import { IAccountState } from "../../models/IAccountState";
+import * as fromModels from '../../models';
 
-export const initialAccountState: IAccountState = {
+export const initialAccountState: fromModels.IAccountState = {
   userName: null,
   lang: 'en'
 };

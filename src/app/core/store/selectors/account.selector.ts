@@ -1,8 +1,6 @@
 import { createSelector } from "@ngrx/store";
+import * as fromModels from '../../models';
 
-import { IAppState } from "../../models/IAppState";
-import { IAccountState } from "../../models/IAccountState";
+const selectAccount = (state: fromModels.IAppState) => state.account;
 
-const selectAccount = (state: IAppState) => state.account;
-
-export const selectAccountLang = createSelector(selectAccount, (state: IAccountState) => state.lang);
+export const getAccountLang = createSelector(selectAccount, (state: fromModels.IAccountState) => state.lang);

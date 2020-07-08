@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { PasswordValidators } from "../../validators";
-import { IUser } from "../../../../core/models/IUser.interface";
+import { IUser } from "../../../../core/models/IUser";
 
 @Component({
   selector: 'app-registration',

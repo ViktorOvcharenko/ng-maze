@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { IMaze } from "../../models/IMaze";
+import * as fromModels from '../../models';
 
 export enum EMazeActions {
   SetMaze = '[Maze] Set Maze'
@@ -7,7 +7,7 @@ export enum EMazeActions {
 
 export class SetMaze implements Action {
   public readonly type = EMazeActions.SetMaze
-  constructor(public payload: IMaze) {}
+  constructor(public payload: fromModels.IMaze) {}
 }
 
 export type MazeActions = SetMaze;

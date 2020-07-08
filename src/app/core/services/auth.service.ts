@@ -4,9 +4,9 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
-import { IUser } from '../models/IUser.interface'
-import { IFbAuthResponse } from "../models/IFbAuthResponse.interface";
 import { MatSnackBar } from "@angular/material/snack-bar";
+
+import * as fromModels from "../models";
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class AuthService {
     return !!this.token;
   }
 
-  public login(user: IUser): Observable<any> {
+  public login(user: fromModels.IUser): Observable<any> {
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
         tap(this.setToken),
@@ -48,7 +48,7 @@ export class AuthService {
       )
   }
 
-  public signUp(user: IUser): Observable<any> {
+  public signUp(user: fromModels.IUser): Observable<any> {
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`, user)
       .pipe(
         tap(this.setToken),
@@ -60,7 +60,7 @@ export class AuthService {
     this.setToken(null);
   }
 
-  private setToken(response: IFbAuthResponse): void {
+  private setToken(response: fromModels.IFbAuthResponse): void {
     if (response) {
       const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000);
       localStorage.setItem('fb-token', response.idToken);
