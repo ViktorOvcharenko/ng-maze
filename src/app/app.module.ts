@@ -53,7 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatMenuModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [fromCoreComponents.AppComponent]

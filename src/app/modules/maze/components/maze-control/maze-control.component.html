@@ -1,0 +1,25 @@
+<mat-card class="maze-control">
+  <div class="arrow-btn-column">
+    <div class="row up-row">
+      <button mat-mini-fab>
+        <mat-icon>keyboard_arrow_up</mat-icon>
+      </button>
+    </div>
+    <div class="row">
+      <button mat-mini-fab>
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+      <button mat-mini-fab>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <button mat-mini-fab>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="refresh-btn-column">
+    <button mat-fab (click)="refreshMaze()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+</mat-card>

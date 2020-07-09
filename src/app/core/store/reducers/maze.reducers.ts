@@ -10,6 +10,9 @@ export const mazeReducers = (
     case EMazeActions.SetMaze: {
       return { ...state, maze: action.payload};
     }
+    case EMazeActions.SetMode: {
+      return { ...state, mode: action.payload};
+    }
     default:
       return state;
   }

@@ -1,0 +1,47 @@
+.maze-control {
+  display: flex;
+
+  button {
+    background-color: #3f51b5;
+  }
+}
+
+.arrow-btn-column {
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .up-row {
+    padding-bottom: 2px;
+  }
+
+  .mat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+  }
+
+  .mat-mini-fab {
+    margin: 0 1px;
+  }
+}
+
+.refresh-btn-column {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 10px 0 40px;
+
+  .mat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+  }
+}

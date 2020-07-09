@@ -2,5 +2,8 @@
   <app-maze-container
     [maze]="maze$ | async"
   ></app-maze-container>
+  <app-maze-control
+    (onRefreshMaze)="refreshMaze()"
+  ></app-maze-control>
 </div>
 
