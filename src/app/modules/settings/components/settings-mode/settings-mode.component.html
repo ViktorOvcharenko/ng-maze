@@ -5,7 +5,7 @@
     [value]="defaultMode"
     (selectionChange)="selectMode(modeSelect.value)"
   >
-    <mat-select-trigger>{{ modeSelect.value }}</mat-select-trigger>
-    <mat-option *ngFor="let mode of modes" [value]="mode.value">{{ mode.viewValue }}</mat-option>
+    <mat-select-trigger>{{ modeSelect.value | translate}}</mat-select-trigger>
+    <mat-option *ngFor="let mode of modes" [value]="mode.value">{{ mode.viewValue | translate}}</mat-option>
   </mat-select>
 </div>

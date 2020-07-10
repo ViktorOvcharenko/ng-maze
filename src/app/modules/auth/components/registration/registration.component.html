@@ -4,29 +4,27 @@
     <form [formGroup]="signUpForm" (ngSubmit)="submit()">
       <div class="form-group">
         <mat-form-field appearance="outline">
-          <mat-label>Enter your name</mat-label>
+          <mat-label>{{ 'auth.enter-your-name' | translate }}</mat-label>
           <input matInput type="text" placeholder="name" formControlName="displayName">
           <mat-error *ngIf="displayNameInvalid">
-            <span *ngIf="displayNameRequired">Name is required</span>
-            <span *ngIf="displayNameWrongLength">
-              The min length is 2 char, and the max length is 10 char
-            </span>
+            <span *ngIf="displayNameRequired">{{ 'auth.name-is-required' | translate }}</span>
+            <span *ngIf="displayNameWrongLength">{{ 'auth.min-length-is-2-char' | translate }}</span>
           </mat-error>
         </mat-form-field>
       </div>
       <div class="form-group">
         <mat-form-field appearance="outline">
-          <mat-label>Enter your email</mat-label>
+          <mat-label>{{ 'auth.enter-your-email' | translate }}</mat-label>
           <input matInput type="text" placeholder="email" formControlName="email">
           <mat-error *ngIf="emailInvalid">
-            <span *ngIf="emailRequired">Email is required</span>
-            <span *ngIf="emailIsError">Email is not valid</span>
+            <span *ngIf="emailRequired">{{ 'auth.email-is-required' | translate }}</span>
+            <span *ngIf="emailIsError">{{ 'auth.email-is-not-valid' | translate }}</span>
           </mat-error>
         </mat-form-field>
       </div>
       <div class="form-group">
         <mat-form-field appearance="outline">
-          <mat-label>Enter your password</mat-label>
+          <mat-label>{{ 'auth.enter-your-password' | translate }}</mat-label>
           <input matInput [type]="isHidedPassword ? 'password' : 'text'" formControlName="password">
           <button
             mat-icon-button
@@ -39,10 +37,7 @@
             <mat-icon>{{isHidedPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="passwordInvalid">
-          <span *ngIf="passwordIsError">
-            Password is required and must contain uppercase and lowercase
-            letters and digits and must be at least eight characters
-          </span>
+          <span *ngIf="passwordIsError">{{ 'auth.password-is-required-and-must' | translate}}</span>
           </mat-error>
         </mat-form-field>
       </div>
@@ -53,7 +48,7 @@
           type="submit"
           [disabled]="signUpForm.invalid || loadingAuth"
         >
-          Submit
+          {{ 'auth.submit' | translate }}
         </button>
       </div>
     </form>

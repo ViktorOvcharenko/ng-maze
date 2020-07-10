@@ -2,7 +2,7 @@ import * as fromModels from '../../models';
 
 export const initialMazeState: fromModels.IMazeState = {
   maze: [],
-  mode: 'medium',
+  mode: 'settings.medium',
   win: false,
   heroLocation: {
     x: 0,

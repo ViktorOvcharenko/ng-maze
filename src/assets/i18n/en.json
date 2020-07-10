@@ -10,16 +10,25 @@
   },
   "settings": {
     "choose-your-language": "Choose your preferred application language:",
-    "choose-your-mode": "Choose your preferred mode:"
+    "choose-your-mode": "Choose your preferred mode:",
+    "hard": "hard",
+    "hard-mode": "hard mode",
+    "medium": "medium",
+    "medium-mode": "medium mode",
+    "easy": "easy",
+    "easy-mode": "easy mode"
   },
   "auth": {
     "sign-in-to-maze": "Sign in to Maze",
     "sign-up-to-maze": "Sign up to Maze",
     "enter-your-email": "Enter your email",
     "enter-your-password": "Enter your password",
+    "enter-your-name": "Enter your name",
     "submit": "Submit",
     "email-is-required": "Email is required",
+    "name-is-required": "Name is required",
     "email-is-not-valid": "Email is not valid",
-    "password-is-required-and-must": "Password is required and must contain uppercase and lowercase\nletters and digits and must be at least eight characters"
+    "password-is-required-and-must": "Password is required and must contain uppercase and lowercase\nletters and digits and must be at least eight characters",
+    "min-length-is-2-char": "The min length is 2 char, and the max length is 10 char"
   }
 }
