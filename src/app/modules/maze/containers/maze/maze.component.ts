@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from "@ngrx/store";
-import { SetMaze } from "../../../../core/store/actions/maze.actions";
+import {HeroStep, SetMaze} from "../../../../core/store/actions/maze.actions";
 import { combineLatest, Observable, Subscription } from "rxjs";
 import { getMaze, getMode } from "../../../../core/store/selectors/maze.selectors";
 import { MazeGenerateService } from "../../../../core/services";
@@ -50,5 +50,9 @@ export class MazeComponent implements OnInit, OnDestroy {
         const newMaze = this.mazeGenerateService.generateMaze(mode);
         this.store.dispatch(new SetMaze(newMaze));
       })
+  }
+
+  public heroStep($event: string): void {
+    this.store.dispatch(new HeroStep($event));
   }
 }

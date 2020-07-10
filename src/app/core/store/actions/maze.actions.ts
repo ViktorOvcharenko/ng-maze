@@ -3,7 +3,8 @@ import * as fromModels from '../../models';
 
 export enum EMazeActions {
   SetMaze = '[Maze] Set Maze',
-  SetMode = '[Maze] Set Mode'
+  SetMode = '[Maze] Set Mode',
+  HeroStep = '[Maze] Hero step'
 }
 
 export class SetMaze implements Action {
@@ -16,6 +17,12 @@ export class SetMode implements Action {
   constructor(public payload: string) {}
 }
 
+export class HeroStep implements Action {
+  public readonly type = EMazeActions.HeroStep;
+  constructor(public payload: string) {}
+}
+
 export type MazeActions =
   SetMaze |
-  SetMode;
+  SetMode |
+  HeroStep;
