@@ -1,6 +1,6 @@
 import * as fromModels from '../../models';
 
 export const initialAccountState: fromModels.IAccountState = {
-  userName: null,
+  userName: 'core.guest',
   lang: 'en'
 };

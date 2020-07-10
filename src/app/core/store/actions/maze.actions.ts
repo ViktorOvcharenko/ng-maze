@@ -7,12 +7,12 @@ export enum EMazeActions {
 }
 
 export class SetMaze implements Action {
-  public readonly type = EMazeActions.SetMaze
+  public readonly type = EMazeActions.SetMaze;
   constructor(public payload: fromModels.IMaze) {}
 }
 
 export class SetMode implements Action {
-  public readonly type = EMazeActions.SetMode
+  public readonly type = EMazeActions.SetMode;
   constructor(public payload: string) {}
 }
 

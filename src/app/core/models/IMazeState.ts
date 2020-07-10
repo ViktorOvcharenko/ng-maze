@@ -1,6 +1,8 @@
-import { IMaze } from "./IMaze";
+import * as fromModels from "./index";
 
 export interface IMazeState {
-  maze: IMaze,
+  maze: fromModels.IMaze,
   mode: string;
+  win: boolean;
+  heroLocation: fromModels.IHeroLocation
 }

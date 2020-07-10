@@ -1,7 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { MatDrawer } from "@angular/material/sidenav";
-import { AuthService } from "../../services/auth.service";
-import {Router} from "@angular/router";
+import { MatDrawer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import { getUserName } from '../../store/selectors/account.selector';
+import * as fromCoreServices from '../../services';
 
 @Component({
   selector: 'app-header',
@@ -10,15 +13,15 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent {
   @Input() drawer: MatDrawer;
-
-  get displayName(): string {
-    return this.authService.username;
-  }
+  public userName$: Observable<string>;
 
   constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+    private authService: fromCoreServices.AuthService,
+    private router: Router,
+    private store: Store
+  ) {
+    this.userName$ = this.store.pipe(select(getUserName));
+  }
 
   public drawerToggle(): void {
     this.drawer.toggle();

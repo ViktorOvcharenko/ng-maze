@@ -10,6 +10,12 @@ export const accountReducers = (
     case EAccountActions.SetLanguage: {
       return { ...state, lang: action.payload };
     }
+    case EAccountActions.GetUserName: {
+      return { ...state, userName: action.payload };
+    }
+    case EAccountActions.ClearUserName: {
+      return { ...state, userName: 'core.guest' };
+    }
     default:
       return state;
   }
