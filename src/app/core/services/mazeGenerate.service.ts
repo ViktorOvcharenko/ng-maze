@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as fromModels from "../models";
+import * as fromConstants from "../constants";
 
 @Injectable({providedIn: 'root'})
 export class MazeGenerateService {
@@ -11,19 +12,19 @@ export class MazeGenerateService {
     const walls = [];
 
     switch (mode) {
-      case 'hard': {
-        height = 27;
-        width = 80;
+      case fromConstants.MODES[0].value: {
+        height = 17;
+        width = 54;
       }
         break;
-      case 'easy': {
-        height = 7;
-        width = 25;
+      case fromConstants.MODES[1].value: {
+        height = 13;
+        width = 40;
       }
       break;
       default: {
-        height = 13;
-        width = 40;
+        height = 7;
+        width = 25;
       }
     }
 

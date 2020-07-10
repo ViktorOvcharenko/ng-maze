@@ -77,7 +77,6 @@ export const mazeReducers = (
         }
           break;
       }
-      console.log(mazeCloned);
       return {
         ...state,
         maze: mazeCloned,
