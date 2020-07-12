@@ -1,6 +1,7 @@
 import { initialMazeState } from "../state/maze.state";
 import { EMazeActions, MazeActions } from "../actions/maze.actions";
 import * as fromModels from '../../models';
+import * as _ from 'lodash';
 
 export const mazeReducers = (
   state: fromModels.IMazeState = initialMazeState,
@@ -34,7 +35,7 @@ export const mazeReducers = (
         x: state.heroLocation.x,
         y: state.heroLocation.y
       };
-      const mazeCloned = mazeClone(state.maze);
+      const mazeCloned = _.cloneDeep(state.maze);
       let winClone = false;
       const x = state.heroLocation.x;
       const y = state.heroLocation.y;
@@ -84,21 +85,19 @@ export const mazeReducers = (
         win: winClone
       };
     }
+    case EMazeActions.ScoreTick: {
+      return {
+        ...state,
+        score: state.score + 1
+      }
+    }
+    case EMazeActions.ClearScore: {
+      return {
+        ...state,
+        score: 0
+      }
+    }
     default:
       return state;
   }
-}
-
-function mazeClone(matrix: fromModels.IMaze): fromModels.IMaze {
-  const clone = [];
-
-  matrix.forEach(row => {
-    const rowClone = [];
-    row.forEach(ceil => {
-      rowClone.push(ceil);
-    });
-    clone.push(rowClone);
-  })
-
-  return clone;
 }

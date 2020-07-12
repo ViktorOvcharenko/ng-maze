@@ -12,7 +12,10 @@
       </h1>
     </div>
     <div class="header-content-container">
-      <div class="header-score-container">{{ score$ | async }}</div>
+      <div class="header-score-container">
+        <mat-icon>schedule</mat-icon>
+        <span>{{ score$ | async }}</span>
+      </div>
       <app-navigation class="nav-container"></app-navigation>
       <div class="username-container">
         <span>{{ (this.userName$ | async) | translate }}</span>

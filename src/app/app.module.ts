@@ -17,7 +17,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { environment } from '../environments/environment';
-import { appReducers } from "./core/store/reducers/app.reducers";
+import { appReducers } from './core/store/reducers/app.reducers';
 import * as fromCoreComponents from './core/components';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
-      defaultLanguage: 'ru'
+      defaultLanguage: 'en'
     }),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([]),
