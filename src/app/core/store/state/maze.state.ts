@@ -7,5 +7,6 @@ export const initialMazeState: fromModels.IMazeState = {
   heroLocation: {
     x: 0,
     y: 1
-  }
+  },
+  score: 0
 }

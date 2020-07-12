@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import { getUserName } from '../../store/selectors/account.selector';
+import { getScore } from '../../store/selectors/maze.selectors';
 import * as fromCoreServices from '../../services';
 
 @Component({
@@ -14,6 +15,7 @@ import * as fromCoreServices from '../../services';
 export class HeaderComponent {
   @Input() drawer: MatDrawer;
   public userName$: Observable<string>;
+  public score$: Observable<number>;
 
   constructor(
     private authService: fromCoreServices.AuthService,
@@ -21,6 +23,7 @@ export class HeaderComponent {
     private store: Store
   ) {
     this.userName$ = this.store.pipe(select(getUserName));
+    this.score$ = this.store.pipe(select(getScore));
   }
 
   public drawerToggle(): void {

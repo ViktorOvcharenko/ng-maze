@@ -1,5 +1,6 @@
 .mat-toolbar {
   height: 70px;
+  font-weight: 700;
 }
 
 .header-title-container {
@@ -36,10 +37,16 @@ mat-toolbar-row {
 
 .header-content-container {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+}
+
+.header-score-container {
+  padding-left: 20px;
 }
 
 .nav-container {
+  padding-left: 20px;
+
   @media only screen and (max-width:767px) {
     display: none;
   }
@@ -47,9 +54,8 @@ mat-toolbar-row {
 
 .username-container {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding-left: 40px;
-  font-weight: 700;
   text-transform: capitalize;
 }
 
