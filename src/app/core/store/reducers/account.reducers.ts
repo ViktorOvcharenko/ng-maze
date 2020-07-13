@@ -1,5 +1,5 @@
-import { initialAccountState } from "../state/account.state";
-import { AccountActions, EAccountActions } from "../actions/account.actions";
+import { initialAccountState } from '../state/account.state';
+import { AccountActions, EAccountActions } from '../actions/account.actions';
 import * as fromModels from '../../models';
 
 export const accountReducers = (

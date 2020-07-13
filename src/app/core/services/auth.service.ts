@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-
+import { ClearUserName } from "../store/actions/account.actions";
 import * as fromModels from '../models';
-import {ClearUserName} from "../store/actions/account.actions";
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
 export enum EAccountActions {
   SetLanguage = '[Account] Set Language',

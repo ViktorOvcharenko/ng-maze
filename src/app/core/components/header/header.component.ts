@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import {select, Store} from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { getUserName } from '../../store/selectors/account.selector';
 import { getScore } from '../../store/selectors/maze.selectors';
 import * as fromCoreServices from '../../services';

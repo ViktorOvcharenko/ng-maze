@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import * as fromModels from "../models";
-import * as fromConstants from "../constants";
+import * as fromModels from '../models';
+import * as fromConstants from '../constants';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class MazeGenerateService {
 
   public generateMaze (mode: string): fromModels.IMaze {

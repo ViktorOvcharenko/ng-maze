@@ -1,4 +1,4 @@
-import { createSelector } from "@ngrx/store";
+import { createSelector } from '@ngrx/store';
 import * as fromModels from '../../models';
 
 const selectAccount = (state: fromModels.IAppState) => state.account;

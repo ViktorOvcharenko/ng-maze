@@ -1,7 +1,7 @@
-import { initialMazeState } from "../state/maze.state";
-import { EMazeActions, MazeActions } from "../actions/maze.actions";
-import * as fromModels from '../../models';
+import { initialMazeState } from '../state/maze.state';
+import { EMazeActions, MazeActions } from '../actions/maze.actions';
 import * as _ from 'lodash';
+import * as fromModels from '../../models';
 
 export const mazeReducers = (
   state: fromModels.IMazeState = initialMazeState,

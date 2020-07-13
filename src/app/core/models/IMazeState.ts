@@ -1,4 +1,4 @@
-import * as fromModels from "./index";
+import * as fromModels from './index';
 
 export interface IMazeState {
   maze: fromModels.IMaze,

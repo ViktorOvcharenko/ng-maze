@@ -1,4 +1,4 @@
-import * as fromModels from "../models";
+import * as fromModels from '../models';
 
 export const MODES: fromModels.IMode[] = [
   { value: 'settings.hard', viewValue: 'settings.hard-mode' },
