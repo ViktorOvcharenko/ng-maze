@@ -2,9 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ClearScore, HeroStep, ScoreTick, SetMaze } from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subscription } from 'rxjs';
-import { filter, take } from 'rxjs/operators';
-import { getMaze, getMode, getWin } from '../../../../core/store/selectors/maze.selectors';
+import { take, first } from 'rxjs/operators';
+import { getMaze, getMode, getWin, getScore } from '../../../../core/store/selectors/maze.selectors';
 import { MazeGenerateService } from '../../../../core/services';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as fromModels from '../../../../core/models';
 
 @Component({
@@ -16,44 +17,60 @@ export class MazeComponent implements OnInit, OnDestroy {
   public maze$: Observable<fromModels.IMaze>;
   public mode$: Observable<string>;
   public win$: Observable<boolean>;
-  public combineSub$: Subscription;
+  public score$: Observable<number>;
+  public combineMazeModeSub$: Subscription;
+  public combineWinScoreSub$: Subscription;
   public modeSub$: Subscription;
   public scoreTickSub$: Subscription;
-  public winSub$: Subscription;
 
   constructor(
     private mazeGenerateService: MazeGenerateService,
-    private store: Store
+    private store: Store,
+    private snackBar: MatSnackBar,
   ) {
     this.maze$ = this.store.pipe(select(getMaze));
     this.mode$ = this.store.pipe(select(getMode));
     this.win$ = this.store.pipe(select(getWin));
+    this.score$ = this.store.pipe(select(getScore));
   }
 
   ngOnInit(): void {
-    this.combineSub$ = combineLatest([this.maze$, this.mode$])
+    this.combineMazeModeSub$ = combineLatest([this.maze$, this.mode$])
       .subscribe(([maze, mode]) => {
         if (!maze.length) {
           const newMaze = this.mazeGenerateService.generateMaze(mode);
           this.store.dispatch(new SetMaze(newMaze));
+        } else {
+          this.combineMazeModeSub$.unsubscribe();
         }
       });
+
+    this.combineWinScoreSub$ = combineLatest([this.win$, this.score$])
+      .subscribe(([win, score]) => {
+
+      })
+    // this.win$
+    //   .pipe(
+    //     first(Boolean)
+    //   )
+    //   .subscribe(() => {
+    //     this.snackBar.open('WIN!!', 'close',{
+    //       duration: 50000
+    //     });
+    //   });
 
     this.startScore();
   }
 
   ngOnDestroy(): void {
-    if (this.combineSub$) {
-      this.combineSub$.unsubscribe();
+    if (this.combineMazeModeSub$) {
+      this.combineMazeModeSub$.unsubscribe();
     }
     if (this.modeSub$) {
       this.modeSub$.unsubscribe();
     }
     if (this.scoreTickSub$) {
       this.scoreTickSub$.unsubscribe();
-    }
-    if (this.winSub$) {
-      this.winSub$.unsubscribe();
     }
   }
 
@@ -68,14 +85,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   public heroStep(event: string): void {
-    this.winSub$ = this.win$
-      .subscribe(win => {
-        if (!win) {
-          this.store.dispatch(new HeroStep(event));
-        } else {
-          this.scoreTickSub$.unsubscribe();
-        }
-      });
+    this.store.dispatch(new HeroStep(event));
   }
 
   private startScore(): void {

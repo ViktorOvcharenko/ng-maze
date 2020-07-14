@@ -3,6 +3,7 @@
     [maze]="maze$ | async"
   ></app-maze-container>
   <app-maze-control
+    [win]="win$ | async"
     (onRefreshMaze)="refreshMaze()"
     (onHeroStep)="heroStep($event)"
   ></app-maze-control>
