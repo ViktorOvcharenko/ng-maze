@@ -1,4 +1,4 @@
-import { FormControl, ValidationErrors } from "@angular/forms";
+import { FormControl, ValidationErrors } from '@angular/forms';
 
 export class PasswordValidators {
   static invalidPassword(control: FormControl): ValidationErrors {

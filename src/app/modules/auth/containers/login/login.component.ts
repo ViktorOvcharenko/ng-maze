@@ -1,20 +1,19 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AuthService } from "../../../../core/services/auth.service";
-import { IUser } from "../../../../core/models/IUser";
-import { Subscription } from "rxjs";
-import { Router } from "@angular/router";
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import * as fromCoreServices from '../../../../core/services';
+import * as fromCoreModels from '../../../../core/models';
 
 @Component({
   selector: 'app-login-container',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnDestroy {
   public loadingAuth = false;
   public subLogin$: Subscription;
 
   constructor(
-    private authService: AuthService,
+    private authService: fromCoreServices.AuthService,
     private router: Router
   ) {}
 
@@ -24,7 +23,7 @@ export class LoginComponent implements OnDestroy {
     }
   }
 
-  public submit(user: IUser): void {
+  public submit(user: fromCoreModels.IUser): void {
     this.loadingAuth = true;
     this.subLogin$ = this.authService.login(user)
       .subscribe(() => {

@@ -1,20 +1,19 @@
-import {Component, OnDestroy} from '@angular/core';
-import { Subscription } from "rxjs";
-import { AuthService} from "../../../../core/services/auth.service";
-import { IUser } from "../../../../core/models/IUser";
-import {Router} from "@angular/router";
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import * as fromCoreServices from '../../../../core/services';
+import * as fromCoreModels from '../../../../core/models';
 
 @Component({
   selector: 'app-registration-container',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  templateUrl: './registration.component.html'
 })
 export class RegistrationComponent implements OnDestroy {
   public loadingAuth = false;
   public subLogin$: Subscription;
 
   constructor(
-    private authService: AuthService,
+    private authService: fromCoreServices.AuthService,
     private router: Router
   ) {}
 
@@ -24,7 +23,7 @@ export class RegistrationComponent implements OnDestroy {
     }
   }
 
-  public submit(user: IUser): void {
+  public submit(user: fromCoreModels.IUser): void {
     this.loadingAuth = true;
     this.subLogin$ = this.authService.signUp(user)
       .subscribe(() => {

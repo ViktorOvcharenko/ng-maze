@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { PasswordValidators } from "../../validators";
-import { IUser } from "../../../../core/models/IUser";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PasswordValidators } from '../../validators';
+import * as fromCoreModels from '../../../../core/models';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { IUser } from "../../../../core/models/IUser";
 })
 export class LoginComponent implements OnInit {
   @Input() loadingAuth: boolean;
-  @Output() onSubmit: EventEmitter<IUser> = new EventEmitter<IUser>();
+  @Output() onSubmit: EventEmitter<fromCoreModels.IUser> = new EventEmitter<fromCoreModels.IUser>();
   public loginForm: FormGroup;
   public isHidedPassword = true;
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
-    const loginFormData: IUser = { ...this.loginForm.value };
+    const loginFormData: fromCoreModels.IUser = { ...this.loginForm.value };
     loginFormData.returnSecureToken = true;
     this.onSubmit.emit(loginFormData);
   }

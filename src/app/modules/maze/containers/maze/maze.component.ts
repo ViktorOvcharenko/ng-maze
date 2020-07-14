@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ClearScore, HeroStep, ScoreTick, SetMaze } from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { getMaze, getMode } from '../../../../core/store/selectors/maze.selectors';
+import { filter, take } from 'rxjs/operators';
+import { getMaze, getMode, getWin } from '../../../../core/store/selectors/maze.selectors';
 import { MazeGenerateService } from '../../../../core/services';
 import * as fromModels from '../../../../core/models';
 
@@ -15,9 +15,11 @@ import * as fromModels from '../../../../core/models';
 export class MazeComponent implements OnInit, OnDestroy {
   public maze$: Observable<fromModels.IMaze>;
   public mode$: Observable<string>;
+  public win$: Observable<boolean>;
   public combineSub$: Subscription;
   public modeSub$: Subscription;
   public scoreTickSub$: Subscription;
+  public winSub$: Subscription;
 
   constructor(
     private mazeGenerateService: MazeGenerateService,
@@ -25,6 +27,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   ) {
     this.maze$ = this.store.pipe(select(getMaze));
     this.mode$ = this.store.pipe(select(getMode));
+    this.win$ = this.store.pipe(select(getWin));
   }
 
   ngOnInit(): void {
@@ -34,7 +37,7 @@ export class MazeComponent implements OnInit, OnDestroy {
           const newMaze = this.mazeGenerateService.generateMaze(mode);
           this.store.dispatch(new SetMaze(newMaze));
         }
-      })
+      });
 
     this.startScore();
   }
@@ -49,6 +52,9 @@ export class MazeComponent implements OnInit, OnDestroy {
     if (this.scoreTickSub$) {
       this.scoreTickSub$.unsubscribe();
     }
+    if (this.winSub$) {
+      this.winSub$.unsubscribe();
+    }
   }
 
   public refreshMaze(): void {
@@ -62,7 +68,14 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   public heroStep(event: string): void {
-    this.store.dispatch(new HeroStep(event));
+    this.winSub$ = this.win$
+      .subscribe(win => {
+        if (!win) {
+          this.store.dispatch(new HeroStep(event));
+        } else {
+          this.scoreTickSub$.unsubscribe();
+        }
+      });
   }
 
   private startScore(): void {

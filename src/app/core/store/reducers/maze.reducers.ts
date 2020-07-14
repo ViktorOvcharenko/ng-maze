@@ -74,6 +74,7 @@ export const mazeReducers = (
           if (mazeCloned[y + 1][x] === 3) {
             mazeCloned[y][x] = 1;
             mazeCloned[y + 1][x] = 4;
+            winClone = true;
           }
         }
           break;
