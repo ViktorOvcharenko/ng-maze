@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ClearScore, ScoreTick } from '../../../../core/store/actions/maze.actions';
-import { combineLatest, interval, Observable, Subscription } from 'rxjs';
-import { take, first } from 'rxjs/operators';
+import { interval, Observable, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { getMode, getWin, getScore } from '../../../../core/store/selectors/maze.selectors';
 import * as _ from 'lodash';
-import { MazeService } from '../../../../core/services';
 import * as fromModels from '../../../../core/models';
+import * as fromServices from '../../../../core/services';
 
 @Component({
   selector: 'app-maze',
@@ -18,13 +18,11 @@ export class MazeComponent implements OnInit, OnDestroy {
   public mode$: Observable<string>;
   public win$: Observable<boolean>;
   public score$: Observable<number>;
-  public combineMazeModeSub$: Subscription;
-  public combineWinScoreSub$: Subscription;
   public modeSub$: Subscription;
   public scoreTickSub$: Subscription;
 
   constructor(
-    private mazeService: MazeService,
+    private mazeService: fromServices.MazeService,
     private store: Store,
   ) {
     this.mode$ = this.store.pipe(select(getMode));
@@ -33,38 +31,14 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.maze = this.mazeService.generateMaze('settings.medium');
-    // this.combineMazeModeSub$ = combineLatest([this.maze$, this.mode$])
-    //   .subscribe(([maze, mode]) => {
-    //     if (!maze.length) {
-    //       const newMaze = this.mazeGenerateService.generateMaze(mode);
-    //       this.store.dispatch(new SetMaze(newMaze));
-    //     } else {
-    //       this.combineMazeModeSub$.unsubscribe();
-    //     }
-    //   });
-    //
-    // this.combineWinScoreSub$ = combineLatest([this.win$, this.score$])
-    //   .subscribe(([win, score]) => {
-    //
-    //   })
-    // this.win$
-    //   .pipe(
-    //     first(Boolean)
-    //   )
-    //   .subscribe(() => {
-    //     this.snackBar.open('WIN!!', 'close',{
-    //       duration: 50000
-    //     });
-    //   });
-
+    this.mode$
+      .subscribe(mode => {
+        this.maze = this.mazeService.generateMaze(mode);
+      })
     this.startScore();
   }
 
   ngOnDestroy(): void {
-    if (this.combineMazeModeSub$) {
-      this.combineMazeModeSub$.unsubscribe();
-    }
     if (this.modeSub$) {
       this.modeSub$.unsubscribe();
     }
@@ -124,6 +98,7 @@ export class MazeComponent implements OnInit, OnDestroy {
             mazeCloned[y][x] = 1;
             mazeCloned[y + 1][x] = 4;
             winFlag = true;
+            this.store.dispatch(new ClearScore());
           }
         }
           break;

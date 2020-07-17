@@ -38,6 +38,8 @@ export class SettingsMainComponent {
   }
 
   public selectMode(mode: string): void {
+    this.mazeService.maze = this.mazeService.generateMaze(mode);
+    this.mazeService.refreshHeroLocation();
     this.store.dispatch(new SetMode(mode));
     this.store.dispatch(new ClearScore());
   }
