@@ -10,7 +10,7 @@ import * as fromComponents from './components';
 
 @NgModule({
   declarations: [
-    fromContainers.SettingsMainComponent,
+    fromContainers.SettingsComponent,
     fromComponents.SettingsMainComponent,
     fromComponents.SettingsLanguageComponent,
     fromComponents.SettingsModeComponent

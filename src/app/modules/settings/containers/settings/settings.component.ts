@@ -12,11 +12,11 @@ import * as fromConstants from '../../../../core/constants';
 import * as fromServices from '../../../../core/services';
 
 @Component({
-  selector: 'app-settings-main-container',
-  templateUrl: './settings-main.component.html',
-  styleUrls: ['./settings-main.component.scss']
+  selector: 'app-settings-container',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
-export class SettingsMainComponent {
+export class SettingsComponent {
   public languages: fromModels.ILanguage[] = fromConstants.LANGUAGES;
   public modes: fromModels.IMode[] = fromConstants.MODES;
   public defaultLang$: Observable<string>;

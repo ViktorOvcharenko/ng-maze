@@ -1,1 +1,1 @@
-export { SettingsMainComponent } from "./settings-main/settings-main.component";
+export { SettingsComponent } from "./settings/settings.component";

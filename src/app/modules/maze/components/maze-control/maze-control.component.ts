@@ -1,9 +1,10 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-maze-control',
   templateUrl: './maze-control.component.html',
-  styleUrls: ['./maze-control.component.scss']
+  styleUrls: ['./maze-control.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MazeControlComponent {
   @Input() win: boolean;

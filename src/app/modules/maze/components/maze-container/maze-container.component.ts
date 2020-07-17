@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { IMaze } from "../../../../core/models/IMaze";
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import * as fromModels from '../../../../core/models';
 
 @Component({
   selector: 'app-maze-container',
   templateUrl: './maze-container.component.html',
-  styleUrls: ['./maze-container.component.scss']
+  styleUrls: ['./maze-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MazeContainerComponent {
-  @Input() maze: IMaze;
+  @Input() maze: fromModels.IMaze;
 }

@@ -6,7 +6,7 @@ import * as fromContainers from './containers';
 const routes: Routes = [
   {
     path: '',
-    component: fromContainers.SettingsMainComponent
+    component: fromContainers.SettingsComponent
   }
 ];
 

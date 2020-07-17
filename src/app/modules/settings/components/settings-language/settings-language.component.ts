@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as fromModels from "../../../../core/models"
 
 @Component({
   selector: 'app-settings-language',
   templateUrl: './settings-language.component.html',
-  styleUrls: ['./settings-language.component.scss']
+  styleUrls: ['./settings-language.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsLanguageComponent {
   @Input() languages: fromModels.ILanguage[];
