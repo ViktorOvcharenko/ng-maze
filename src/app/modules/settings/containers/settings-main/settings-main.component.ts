@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
-import { select, Store } from "@ngrx/store";
-import { SetLanguage } from "../../../../core/store/actions/account.actions";
-import {ClearScore, SetMaze, SetMode} from "../../../../core/store/actions/maze.actions";
-import { Observable } from "rxjs";
-import { getAccountLang } from "../../../../core/store/selectors/account.selector";
-import { getMode } from "../../../../core/store/selectors/maze.selectors";
-import { MazeGenerateService } from "../../../../core/services";
+import { TranslateService } from '@ngx-translate/core';
+import { select, Store } from '@ngrx/store';
+import { SetLanguage } from '../../../../core/store/actions/account.actions';
+import { ClearScore, SetMode } from '../../../../core/store/actions/maze.actions';
+import { Observable } from 'rxjs';
+import { getAccountLang } from '../../../../core/store/selectors/account.selector';
+import { getMode } from '../../../../core/store/selectors/maze.selectors';
 
-import * as fromModels from "../../../../core/models";
-import * as fromConstants from "../../../../core/constants";
+import * as fromModels from '../../../../core/models';
+import * as fromConstants from '../../../../core/constants';
+import * as fromServices from '../../../../core/services';
 
 @Component({
   selector: 'app-settings-main-container',
@@ -24,9 +24,9 @@ export class SettingsMainComponent {
 
   constructor(
     private translateService: TranslateService,
-    private mazeService: MazeGenerateService,
+    private mazeService: fromServices.MazeService,
     private store: Store
-    )
+  )
   {
     this.defaultLang$ = this.store.pipe(select(getAccountLang));
     this.defaultMode$ = this.store.pipe(select(getMode));
@@ -38,9 +38,7 @@ export class SettingsMainComponent {
   }
 
   public selectMode(mode: string): void {
-    const maze = this.mazeService.generateMaze(mode);
     this.store.dispatch(new SetMode(mode));
-    this.store.dispatch(new SetMaze(maze));
     this.store.dispatch(new ClearScore());
   }
 }

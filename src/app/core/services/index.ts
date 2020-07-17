@@ -1,2 +1,2 @@
 export { AuthService } from './auth.service';
-export { MazeGenerateService } from './mazeGenerate.service';
+export { MazeService } from './maze.service';

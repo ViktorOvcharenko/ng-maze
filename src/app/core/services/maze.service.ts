@@ -3,7 +3,12 @@ import * as fromModels from '../models';
 import * as fromConstants from '../constants';
 
 @Injectable({ providedIn: 'root' })
-export class MazeGenerateService {
+export class MazeService {
+  public maze: fromModels.IMaze = null;
+  public heroLocation: fromModels.IHeroLocation = {
+    x: 0,
+    y: 1
+  };
 
   public generateMaze (mode: string): fromModels.IMaze {
     let height: number;
@@ -17,14 +22,14 @@ export class MazeGenerateService {
         width = 54;
       }
         break;
-      case fromConstants.MODES[1].value: {
-        height = 13;
-        width = 40;
+      case fromConstants.MODES[2].value: {
+        height = 7;
+        width = 25;
       }
       break;
       default: {
-        height = 7;
-        width = 25;
+        height = 13;
+        width = 40;
       }
     }
 
@@ -89,6 +94,17 @@ export class MazeGenerateService {
     maze[1][0] = 2;
     maze[height + 1][width] = 3;
 
-    return maze;
+    if (!this.maze) {
+      this.maze = maze;
+    }
+
+    return this.maze;
+  }
+
+  public refreshHeroLocation(): void {
+    this.heroLocation = {
+      x: 0,
+      y: 1
+    };
   }
 }

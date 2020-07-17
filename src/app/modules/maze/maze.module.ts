@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MazeRoutingModule } from "./maze-routing.module";
-import { SharedModule } from "../../shared/shared.module";
-import { MatCardModule } from "@angular/material/card";
+import { MazeRoutingModule } from './maze-routing.module';
+import { SharedModule } from '../../shared/shared.module';
+import { MatCardModule } from '@angular/material/card';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
