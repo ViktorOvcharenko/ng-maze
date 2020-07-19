@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 export enum EMazeActions {
   SetMode = '[Maze] Set Mode',
   ScoreTick = '[Maze] Score tick',
-  ClearScore = '[Maze] Clear score'
+  ClearScore = '[Maze] Clear score',
+  UpdateIsWin = '[Maze] Update isWin',
 }
 
 export class SetMode implements Action {
@@ -19,7 +20,13 @@ export class ClearScore implements Action {
   public readonly type = EMazeActions.ClearScore;
 }
 
+export class UpdateIsWinn implements Action {
+  public readonly type = EMazeActions.UpdateIsWin;
+  constructor(public payload: boolean) {}
+}
+
 export type MazeActions =
   SetMode |
   ScoreTick |
-  ClearScore;
+  ClearScore |
+  UpdateIsWinn;

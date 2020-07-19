@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { select, Store } from '@ngrx/store';
 import { SetLanguage } from '../../../../core/store/actions/account.actions';
-import { ClearScore, SetMode } from '../../../../core/store/actions/maze.actions';
+import { ClearScore, SetMode, UpdateIsWinn } from '../../../../core/store/actions/maze.actions';
 import { Observable } from 'rxjs';
 import { getAccountLang } from '../../../../core/store/selectors/account.selector';
 import { getMode } from '../../../../core/store/selectors/maze.selectors';
@@ -42,5 +42,6 @@ export class SettingsComponent {
     this.mazeService.refreshHeroLocation();
     this.store.dispatch(new SetMode(mode));
     this.store.dispatch(new ClearScore());
+    this.store.dispatch(new UpdateIsWinn(false));
   }
 }

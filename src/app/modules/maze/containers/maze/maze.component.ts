@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { ClearScore, ScoreTick } from '../../../../core/store/actions/maze.actions';
+import { ClearScore, ScoreTick, UpdateIsWinn } from '../../../../core/store/actions/maze.actions';
 import { interval, Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { getMode, getWin, getScore } from '../../../../core/store/selectors/maze.selectors';
@@ -23,6 +23,7 @@ export class MazeComponent implements OnInit, OnDestroy {
 
   constructor(
     private mazeService: fromServices.MazeService,
+    private scoresService: fromServices.ScoresService,
     private store: Store,
   ) {
     this.mode$ = this.store.pipe(select(getMode));
@@ -48,18 +49,17 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   public refreshMaze(): void {
+    this.scoresService.addScore(15).subscribe()
     this.mode$
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
         this.mazeService.refreshHeroLocation();
-        this.store.dispatch(new ClearScore());
         this.startScore();
       })
   }
 
   public heroStep(event: string): void {
     const mazeCloned = _.cloneDeep(this.maze);
-    let winFlag = false;
     const x = this.mazeService.heroLocation.x;
     const y = this.mazeService.heroLocation.y;
 
@@ -97,7 +97,7 @@ export class MazeComponent implements OnInit, OnDestroy {
           if (mazeCloned[y + 1][x] === 3) {
             mazeCloned[y][x] = 1;
             mazeCloned[y + 1][x] = 4;
-            winFlag = true;
+            this.store.dispatch(new UpdateIsWinn(true));
             this.store.dispatch(new ClearScore());
           }
         }
@@ -107,9 +107,13 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   private startScore(): void {
+    this.store.dispatch(new ClearScore());
+    this.store.dispatch(new UpdateIsWinn(false));
+
     if (this.scoreTickSub$) {
       this.scoreTickSub$.unsubscribe();
     }
+
     this.scoreTickSub$ = interval(1000)
       .pipe(take(999))
       .subscribe(() => {

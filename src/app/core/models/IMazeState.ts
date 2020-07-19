@@ -1,5 +1,5 @@
 export interface IMazeState {
   mode: string;
-  win: boolean;
+  isWin: boolean;
   score: number;
 }

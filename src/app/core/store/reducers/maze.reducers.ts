@@ -11,7 +11,7 @@ export const mazeReducers = (
       return {
         ...state,
         mode: action.payload,
-        win: false
+        isWin: false
       };
     }
     case EMazeActions.ScoreTick: {
@@ -24,6 +24,12 @@ export const mazeReducers = (
       return {
         ...state,
         score: 0
+      }
+    }
+    case EMazeActions.UpdateIsWin: {
+      return {
+        ...state,
+        isWin: action.payload
       }
     }
     default:
