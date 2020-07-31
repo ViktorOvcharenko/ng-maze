@@ -4,6 +4,7 @@ import { ClearScore, ScoreTick, UpdateIsWinn } from '../../../../core/store/acti
 import { interval, Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { getMode, getWin, getScore } from '../../../../core/store/selectors/maze.selectors';
+
 import * as _ from 'lodash';
 import * as fromModels from '../../../../core/models';
 import * as fromServices from '../../../../core/services';
@@ -18,8 +19,10 @@ export class MazeComponent implements OnInit, OnDestroy {
   public mode$: Observable<string>;
   public win$: Observable<boolean>;
   public score$: Observable<number>;
+  public debounceFlag = true;
   public modeSub$: Subscription;
   public scoreTickSub$: Subscription;
+  public debounceFlagSub$: Subscription;
 
   constructor(
     private mazeService: fromServices.MazeService,
@@ -32,11 +35,13 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.mode$
+    this.modeSub$ = this.mode$
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
       })
     this.startScore();
+    this.debounceFlagSub$ = interval(300)
+      .subscribe(() => this.debounceFlag = true);
   }
 
   ngOnDestroy(): void {
@@ -46,11 +51,14 @@ export class MazeComponent implements OnInit, OnDestroy {
     if (this.scoreTickSub$) {
       this.scoreTickSub$.unsubscribe();
     }
+    if (this.debounceFlagSub$) {
+      this.debounceFlagSub$.unsubscribe();
+    }
   }
 
   public refreshMaze(): void {
-    this.scoresService.addScore(15).subscribe()
-    this.mode$
+    this.scoresService.addScore(15).subscribe(); // test :)
+    this.modeSub$ = this.mode$
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
         this.mazeService.refreshHeroLocation();
@@ -59,6 +67,9 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   public heroStep(event: string): void {
+    if (!this.debounceFlag) {
+      return
+    }
     const mazeCloned = _.cloneDeep(this.maze);
     const x = this.mazeService.heroLocation.x;
     const y = this.mazeService.heroLocation.y;
@@ -98,12 +109,20 @@ export class MazeComponent implements OnInit, OnDestroy {
             mazeCloned[y][x] = 1;
             mazeCloned[y + 1][x] = 4;
             this.store.dispatch(new UpdateIsWinn(true));
-            this.store.dispatch(new ClearScore());
+            this.stopScore();
           }
         }
           break;
       }
+
+      this.debounceFlag = false;
       this.maze = mazeCloned;
+  }
+
+  private stopScore(): void {
+    if (this.scoreTickSub$) {
+      this.scoreTickSub$.unsubscribe();
+    }
   }
 
   private startScore(): void {

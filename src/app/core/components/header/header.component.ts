@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { getUserName } from '../../store/selectors/account.selector';
 import { getScore } from '../../store/selectors/maze.selectors';
+
 import * as fromCoreServices from '../../services';
 
 @Component({

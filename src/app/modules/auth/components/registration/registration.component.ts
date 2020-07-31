@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidators } from '../../validators';
+
 import * as fromCoreModels from '../../../../core/models';
 
 @Component({

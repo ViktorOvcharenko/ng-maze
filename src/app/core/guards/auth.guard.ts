@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { GetUserName } from '../store/actions/account.actions';
+
 import * as fromCoreServices from '../services';
 
 @Injectable({

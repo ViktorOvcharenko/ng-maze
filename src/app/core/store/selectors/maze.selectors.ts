@@ -1,4 +1,5 @@
 import { createSelector } from '@ngrx/store';
+
 import * as fromModels from '../../models';
 
 const selectMaze = (state: fromModels.IAppState) => state.maze;
