@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { ClearScore, ScoreTick, UpdateIsWinn } from '../../../../core/store/actions/maze.actions';
-import { interval, Observable, Subscription } from 'rxjs';
+import { AddRecord, ClearScore, ScoreTick, UpdateIsWinn } from '../../../../core/store/actions/maze.actions';
+import { combineLatest, interval, Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { getMode, getWin, getScore } from '../../../../core/store/selectors/maze.selectors';
+import { getUserName } from '../../../../core/store/selectors/account.selector';
 
 import * as _ from 'lodash';
 import * as fromModels from '../../../../core/models';
@@ -19,10 +20,12 @@ export class MazeComponent implements OnInit, OnDestroy {
   public mode$: Observable<string>;
   public win$: Observable<boolean>;
   public score$: Observable<number>;
+  public userName$: Observable<string>;
   public debounceFlag = true;
   public modeSub$: Subscription;
   public scoreTickSub$: Subscription;
   public debounceFlagSub$: Subscription;
+  public recordSub$: Subscription;
 
   constructor(
     private mazeService: fromServices.MazeService,
@@ -32,6 +35,7 @@ export class MazeComponent implements OnInit, OnDestroy {
     this.mode$ = this.store.pipe(select(getMode));
     this.win$ = this.store.pipe(select(getWin));
     this.score$ = this.store.pipe(select(getScore));
+    this.userName$ = this.store.pipe(select(getUserName));
   }
 
   ngOnInit(): void {
@@ -40,7 +44,7 @@ export class MazeComponent implements OnInit, OnDestroy {
         this.maze = this.mazeService.generateMaze(mode);
       })
     this.startScore();
-    this.debounceFlagSub$ = interval(300)
+    this.debounceFlagSub$ = interval(200)
       .subscribe(() => this.debounceFlag = true);
   }
 
@@ -53,6 +57,9 @@ export class MazeComponent implements OnInit, OnDestroy {
     }
     if (this.debounceFlagSub$) {
       this.debounceFlagSub$.unsubscribe();
+    }
+    if (this.recordSub$) {
+      this.recordSub$.unsubscribe();
     }
   }
 
@@ -108,8 +115,7 @@ export class MazeComponent implements OnInit, OnDestroy {
           if (mazeCloned[y + 1][x] === 3) {
             mazeCloned[y][x] = 1;
             mazeCloned[y + 1][x] = 4;
-            this.store.dispatch(new UpdateIsWinn(true));
-            this.stopScore();
+            this.win();
           }
         }
           break;
@@ -138,5 +144,14 @@ export class MazeComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.store.dispatch(new ScoreTick());
     });
+  }
+
+  private win(): void {
+    this.recordSub$ = combineLatest([this.mode$, this.score$, this.userName$])
+      .subscribe(([mode, score, username]) => {
+        this.store.dispatch(new UpdateIsWinn(true));
+        this.store.dispatch(new AddRecord({ score, username, mode, date: new Date() }));
+        this.stopScore();
+      });
   }
 }

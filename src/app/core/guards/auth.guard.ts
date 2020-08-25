@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
       this.store.dispatch(new GetUserName(userName));
       return true;
     } else {
-      this.router.navigate(['/auth', 'login'])
+      this.router.navigate(['/auth', 'login']);
     }
   }
 }

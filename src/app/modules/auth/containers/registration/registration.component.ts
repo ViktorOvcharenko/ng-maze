@@ -28,14 +28,10 @@ export class RegistrationComponent implements OnDestroy {
     this.loadingAuth = true;
     this.subLogin$ = this.authService.signUp(user)
       .subscribe(() => {
-        this.onLoaded();
+        this.loadingAuth = false;
         this.router.navigate(['/']);
       }, () => {
-        this.onLoaded()
+        this.loadingAuth = false;
       });
-  }
-
-  private onLoaded(): void {
-    this.loadingAuth = false;
   }
 }

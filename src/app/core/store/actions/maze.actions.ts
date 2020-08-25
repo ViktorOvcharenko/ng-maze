@@ -1,10 +1,15 @@
 import { Action } from '@ngrx/store';
 
+import * as fromModels from '../../models';
+
 export enum EMazeActions {
   SetMode = '[Maze] Set Mode',
   ScoreTick = '[Maze] Score tick',
   ClearScore = '[Maze] Clear score',
   UpdateIsWin = '[Maze] Update isWin',
+  AddRecord = '[Maze] Add record',
+  AddRecordSuccess = '[Maze] Add record success',
+  AddRecordFail = '[Maze] Add record fail',
 }
 
 export class SetMode implements Action {
@@ -25,8 +30,24 @@ export class UpdateIsWinn implements Action {
   constructor(public payload: boolean) {}
 }
 
+export class AddRecord implements Action {
+  public readonly type = EMazeActions.AddRecord;
+  constructor(public payload: fromModels.IRecord) {}
+}
+
+export class AddRecordSuccess implements Action {
+  public readonly type = EMazeActions.AddRecordSuccess;
+}
+
+export class AddRecordFail implements Action {
+  public readonly type = EMazeActions.AddRecordFail;
+}
+
 export type MazeActions =
   SetMode |
   ScoreTick |
   ClearScore |
-  UpdateIsWinn;
+  UpdateIsWinn |
+  AddRecord |
+  AddRecordSuccess |
+  AddRecordFail;

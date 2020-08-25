@@ -1,4 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 import * as fromModels from '../models';
 import * as fromConstants from '../constants';
@@ -11,7 +13,9 @@ export class MazeService {
     y: 1
   };
 
-  constructor(private ngZone: NgZone) {}
+  constructor(
+    private ngZone: NgZone,
+    private http: HttpClient) {}
 
   public generateMaze (mode: string): fromModels.IMaze {
     return this.ngZone.runOutsideAngular(() => {
@@ -107,5 +111,10 @@ export class MazeService {
       x: 0,
       y: 1
     };
+  }
+
+  public addRecord(record: fromModels.IRecord): any {
+    const { mode } = { ...record };
+    return this.http.post(`${environment.fbDBUrl}/${mode}.json1`, record);
   }
 }

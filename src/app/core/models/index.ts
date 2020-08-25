@@ -7,3 +7,4 @@ export { IMaze } from './IMaze';
 export { IMazeState } from './IMazeState';
 export { IMode } from './IMode';
 export { IUser } from './IUser';
+export { IRecord } from './IRecord';

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { GetUserName } from '../store/actions/account.actions';
 
 import * as fromCoreServices from '../services';
 
@@ -9,11 +8,7 @@ import * as fromCoreServices from '../services';
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
-  constructor(
-    private authService: fromCoreServices.AuthService,
-    private router: Router,
-    private store: Store
-  ) {}
+  constructor(private authService: fromCoreServices.AuthService) {}
 
   canActivate(): boolean {
     if ( !this.authService.isAuthenticated() ) {
