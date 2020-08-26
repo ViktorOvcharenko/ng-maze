@@ -9,7 +9,7 @@ import { MazeService } from '../../services';
 import * as fromActions from '../actions/maze.actions';
 
 @Injectable()
-export class MazeEffects {
+export class RecordesEffects {
   @Effect()
   addRecord$: Observable<Action> = this.actions$.pipe(
     ofType<fromActions.AddRecord>(fromActions.EMazeActions.AddRecord),

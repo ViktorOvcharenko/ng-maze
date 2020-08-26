@@ -9,7 +9,7 @@
       >
       </button>
       <h1>
-        <a routerLink="/">{{ 'core.maze' | translate }}</a>
+        <a routerLink="/">{{ 'core.maze' | translate | titlecase}}</a>
       </h1>
     </div>
     <div class="header-content-container">
@@ -17,17 +17,7 @@
         <mat-icon>schedule</mat-icon>
         <span>{{ score$ | async }}</span>
       </div>
-      <app-navigation class="nav-container"></app-navigation>
-      <div class="username-container">
-        <span>{{ (this.userName$ | async) | translate }}</span>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/settings">{{ 'core.settings' | translate }}</button>
-          <button mat-menu-item (click)="logout()">{{ 'core.logout' | translate }}</button>
-        </mat-menu>
-      </div>
+      <div class="username-container">{{ (this.userName$ | async) | translate }}</div>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

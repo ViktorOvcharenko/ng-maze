@@ -1,6 +1,6 @@
 {
   "core": {
-    "maze": "Maze",
+    "maze": "maze",
     "best-scores": "best scores",
     "login": "login",
     "sign-up": "sign up",

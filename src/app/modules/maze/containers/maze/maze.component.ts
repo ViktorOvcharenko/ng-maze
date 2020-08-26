@@ -149,6 +149,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   private win(): void {
     this.recordSub$ = combineLatest([this.mode$, this.score$, this.userName$])
       .subscribe(([mode, score, username]) => {
+        mode = mode.slice(9);
         this.store.dispatch(new UpdateIsWinn(true));
         this.store.dispatch(new AddRecord({ score, username, mode, date: new Date() }));
         this.stopScore();

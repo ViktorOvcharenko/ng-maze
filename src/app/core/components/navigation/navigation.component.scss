@@ -1,21 +1,22 @@
-a {
-  color: #fff;
-  text-decoration: none;
-  padding-left: 20px;
-  font-weight: 700;
-
-  &.active {
-    color: #2ea44f;
-  }
-}
-
 .drawer-nav-container {
   display: flex;
   flex-direction: column;
 
   a {
-    font-size: 1rem;
-    font-weight: 300;
-    padding: 0 0 10px 0;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+
+    &.active {
+      color: #2ea44f;
+      font-weight: 700;
+    }
+  }
+
+  .mat-stroked-button {
+    border: none;
+    text-align: left;
+    font-size: 1.2rem;
+    padding: 0 40px 0 20px;
   }
 }

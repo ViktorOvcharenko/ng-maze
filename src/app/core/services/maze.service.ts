@@ -7,7 +7,7 @@ import * as fromConstants from '../constants';
 
 @Injectable({ providedIn: 'root' })
 export class MazeService {
-  public maze: fromModels.IMaze = null;
+  public maze: fromModels.IMaze = [];
   public heroLocation: fromModels.IHeroLocation = {
     x: 0,
     y: 1
@@ -115,6 +115,6 @@ export class MazeService {
 
   public addRecord(record: fromModels.IRecord): any {
     const { mode } = { ...record };
-    return this.http.post(`${environment.fbDBUrl}/${mode}.json1`, record);
+    return this.http.post(`${environment.fbDBUrl}/${mode}.json`, record);
   }
 }

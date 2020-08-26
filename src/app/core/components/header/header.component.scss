@@ -8,7 +8,7 @@
   align-items: center;
 
   h1 {
-    padding-left: 10px;
+    padding-left: 30px;
     font-size: 3rem;
     font-weight: 700;
   }
@@ -25,13 +25,14 @@ mat-toolbar-row {
   align-items: center;
 }
 
-.drawer-menu {
-  display: none;
-}
+.mat-icon-button {
+  width: 50px;
+  height: 50px;
 
-@media only screen and (max-width:767px) {
-  .drawer-menu {
-    display: block;
+  mat-icon {
+    font-size: 2.2rem;
+    position: relative;
+    right: 5px;
   }
 }
 
@@ -50,25 +51,14 @@ mat-toolbar-row {
     position: relative;
     bottom: 5px;
   }
-
-  span {
-    width: 30px;
-  }
-}
-
-.nav-container {
-  padding-left: 10px;
-
-  @media only screen and (max-width:767px) {
-    display: none;
-  }
 }
 
 .username-container {
   display: flex;
   align-items: flex-end;
-  padding-left: 40px;
+  padding: 0 20px;
   text-transform: capitalize;
 }
+
 
 

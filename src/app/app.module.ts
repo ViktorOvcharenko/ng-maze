@@ -14,8 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MazeEffects } from './core/store/effects/maze.effects';
+import { RecordesEffects } from './core/store/effects/recordes.effects';
 
 import { environment } from '../environments/environment';
 import { appReducers } from './core/store/reducers/app.reducers';
@@ -46,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       defaultLanguage: 'en'
     }),
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([MazeEffects]),
+    EffectsModule.forRoot([RecordesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production === false}),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     NoopAnimationsModule,
@@ -55,7 +54,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatMenuModule
   ],
   providers: [],
   bootstrap: [fromCoreComponents.AppComponent]

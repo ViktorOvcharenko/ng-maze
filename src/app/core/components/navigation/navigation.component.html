@@ -1,5 +1,8 @@
 <nav [ngClass]="{'drawer-nav-container': drawerLocation}">
-  <a routerLink="/scores" routerLinkActive="active">{{ 'core.best-scores' | translate }}</a>
-  <a routerLink="/auth/login" routerLinkActive="active">{{ 'core.login' | translate }}</a>
-  <a routerLink="/auth/sign-up" routerLinkActive="active">{{ 'core.sign-up' | translate }}</a>
+  <a routerLink="/maze" routerLinkActive="active" mat-stroked-button>{{ 'core.maze' | translate }}</a>
+  <a routerLink="/scores" routerLinkActive="active" mat-stroked-button>{{ 'core.best-scores' | translate }}</a>
+  <a routerLink="/auth/login" routerLinkActive="active" mat-stroked-button>{{ 'core.login' | translate }}</a>
+  <a routerLink="/auth/sign-up" routerLinkActive="active" mat-stroked-button>{{ 'core.sign-up' | translate }}</a>
+  <a routerLink="/settings" routerLinkActive="active" mat-stroked-button>{{ 'core.settings' | translate }}</a>
+  <a routerLink="/auth/login" (click)="logout()" mat-stroked-button>{{ 'core.logout' | translate }}</a>
 </nav>
