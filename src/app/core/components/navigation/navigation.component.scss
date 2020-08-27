@@ -1,6 +1,7 @@
 .drawer-nav-container {
   display: flex;
   flex-direction: column;
+  padding-top: 30px;
 
   a {
     color: #fff;
@@ -18,5 +19,12 @@
     text-align: left;
     font-size: 1.2rem;
     padding: 0 40px 0 20px;
+  }
+
+  .mat-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
   }
 }

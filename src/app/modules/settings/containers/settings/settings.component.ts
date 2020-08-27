@@ -33,6 +33,7 @@ export class SettingsComponent {
   }
 
   public selectLanguage(lang: string): void {
+    window.localStorage.setItem('language', lang);
     this.translateService.setDefaultLang(lang);
     this.store.dispatch(new SetLanguage(lang));
   }

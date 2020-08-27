@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 import * as fromCoreServices from '../../services';
 
@@ -9,11 +10,16 @@ import * as fromCoreServices from '../../services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationComponent {
+  @Input() drawer: MatDrawer;
   @Input() drawerLocation: boolean;
 
   constructor(private authService: fromCoreServices.AuthService  ) {}
 
   public logout():void {
     this.authService.logout()
+  }
+
+  public drawerClose(): void {
+    this.drawer.close();
   }
 }

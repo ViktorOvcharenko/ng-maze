@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SetStorageMode } from '../../store/actions/maze.actions';
 import { Store } from '@ngrx/store';
+import { SetStorageMode } from '../../store/actions/maze.actions';
+import { SetStorageLanguage } from '../../store/actions/account.actions';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,6 +14,8 @@ export class MainLayoutComponent implements OnInit{
 
   ngOnInit() {
     const storeMode = window.localStorage.getItem('mode');
-    this.store.dispatch(new SetStorageMode(storeMode));
+    const storeLang = window.localStorage.getItem('language');
+    storeMode ? this.store.dispatch(new SetStorageMode(storeMode)): null;
+    storeLang ? this.store.dispatch(new SetStorageLanguage(storeLang)): null;
   }
 }

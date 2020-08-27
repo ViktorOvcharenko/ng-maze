@@ -1,8 +1,50 @@
 <nav [ngClass]="{'drawer-nav-container': drawerLocation}">
-  <a routerLink="/maze" routerLinkActive="active" mat-stroked-button>{{ 'core.maze' | translate }}</a>
-  <a routerLink="/scores" routerLinkActive="active" mat-stroked-button>{{ 'core.best-scores' | translate }}</a>
-  <a routerLink="/auth/login" routerLinkActive="active" mat-stroked-button>{{ 'core.login' | translate }}</a>
-  <a routerLink="/auth/sign-up" routerLinkActive="active" mat-stroked-button>{{ 'core.sign-up' | translate }}</a>
-  <a routerLink="/settings" routerLinkActive="active" mat-stroked-button>{{ 'core.settings' | translate }}</a>
-  <a routerLink="/auth/login" (click)="logout()" mat-stroked-button>{{ 'core.logout' | translate }}</a>
+  <mat-icon (click)="drawerClose()">close</mat-icon>
+  <a
+    routerLink="/maze"
+    routerLinkActive="active"
+    mat-stroked-button
+    (click)="drawerClose()"
+  >
+    {{ 'core.maze' | translate }}
+  </a>
+  <a
+    routerLink="/scores"
+    routerLinkActive="active"
+    mat-stroked-button
+    (click)="drawerClose()"
+  >
+    {{ 'core.best-scores' | translate }}
+  </a>
+  <a
+    routerLink="/auth/login"
+    routerLinkActive="active"
+    mat-stroked-button
+    (click)="drawerClose()"
+  >
+    {{ 'core.login' | translate }}
+  </a>
+  <a
+    routerLink="/auth/sign-up"
+    routerLinkActive="active"
+    mat-stroked-button
+    (click)="drawerClose()"
+  >
+    {{ 'core.sign-up' | translate }}
+  </a>
+  <a
+    routerLink="/settings"
+    routerLinkActive="active"
+    mat-stroked-button
+    (click)="drawerClose()"
+  >
+    {{ 'core.settings' | translate }}
+  </a>
+  <a
+    routerLink="/auth/login"
+    (click)="logout()"
+    mat-stroked-button
+  >
+    {{ 'core.logout' | translate }}
+  </a>
 </nav>

@@ -1,6 +1,11 @@
 .mat-toolbar {
   height: 70px;
   font-weight: 700;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 2;
 }
 
 .header-title-container {
