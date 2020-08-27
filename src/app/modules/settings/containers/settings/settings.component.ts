@@ -38,6 +38,7 @@ export class SettingsComponent {
   }
 
   public selectMode(mode: string): void {
+    window.localStorage.setItem('mode', mode);
     this.mazeService.maze = this.mazeService.generateMaze(mode);
     this.mazeService.refreshHeroLocation();
     this.store.dispatch(new SetMode(mode));

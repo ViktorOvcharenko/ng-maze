@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 import * as fromModels from '../../models';
 
 export enum EMazeActions {
-  SetMode = '[Maze] Set Mode',
+  SetMode = '[Maze] Set mode',
+  SetStorageMode = '[Maze] Set storage mode',
   ScoreTick = '[Maze] Score tick',
   ClearScore = '[Maze] Clear score',
   UpdateIsWin = '[Maze] Update isWin',
@@ -14,6 +15,11 @@ export enum EMazeActions {
 
 export class SetMode implements Action {
   public readonly type = EMazeActions.SetMode;
+  constructor(public payload: string) {}
+}
+
+export class SetStorageMode implements Action {
+  public readonly type = EMazeActions.SetStorageMode;
   constructor(public payload: string) {}
 }
 
@@ -45,6 +51,7 @@ export class AddRecordFail implements Action {
 
 export type MazeActions =
   SetMode |
+  SetStorageMode |
   ScoreTick |
   ClearScore |
   UpdateIsWinn |

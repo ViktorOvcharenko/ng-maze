@@ -39,6 +39,10 @@ mat-toolbar-row {
 .header-content-container {
   display: flex;
   align-items: flex-end;
+
+  span {
+    width: 20px;
+  }
 }
 
 .header-score-container {

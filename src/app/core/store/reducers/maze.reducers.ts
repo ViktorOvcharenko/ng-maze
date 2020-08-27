@@ -15,6 +15,13 @@ export const mazeReducers = (
         isWin: false
       };
     }
+    case EMazeActions.SetStorageMode: {
+      return {
+        ...state,
+        mode: action.payload,
+        isWin: false
+      };
+    }
     case EMazeActions.ScoreTick: {
       return {
         ...state,
