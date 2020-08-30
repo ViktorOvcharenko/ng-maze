@@ -116,8 +116,8 @@ export class MazeService {
     return this.http.get<fromModels.IRecord[]>(`${environment.fbDBUrl}/${pathMode}.json`);
   }
 
-  public addRecord(records: fromModels.IRecord[]): Observable<fromModels.IRecord[]> {
-    const pathMode = records[0].mode;
-    return this.http.put<fromModels.IRecord[]>(`${environment.fbDBUrl}/${pathMode}.json`, records);
+  public addRecord(payload: fromModels.IAddRecordRequestBody): Observable<fromModels.IRecord[]> {
+    const pathMode = payload.mode;
+    return this.http.put<fromModels.IRecord[]>(`${environment.fbDBUrl}/${pathMode}.json`, payload.records);
   }
 }

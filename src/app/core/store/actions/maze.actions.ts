@@ -41,7 +41,7 @@ export class UpdateIsWinn implements Action {
 
 export class AddRecord implements Action {
   public readonly type = EMazeActions.AddRecord;
-  constructor(public payload: fromModels.IRecord[]) {}
+  constructor(public payload: fromModels.IAddRecordRequestBody) {}
 }
 
 export class AddRecordSuccess implements Action {

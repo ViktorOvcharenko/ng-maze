@@ -1,9 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import {AddRecord, ClearScore, GetRecords, ScoreTick, UpdateIsWinn} from '../../../../core/store/actions/maze.actions';
+import {
+  AddRecord,
+  ClearScore,
+  GetRecords,
+  ScoreTick,
+  UpdateIsWinn
+} from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import {getMode, getWin, getScore, getRecords} from '../../../../core/store/selectors/maze.selectors';
+import { getMode, getWin, getScore, getRecords } from '../../../../core/store/selectors/maze.selectors';
 import { getUserName } from '../../../../core/store/selectors/account.selector';
 
 import * as _ from 'lodash';
@@ -51,9 +57,9 @@ export class MazeComponent implements OnInit, OnDestroy {
     this.debounceFlagSub$ = interval(200)
       .subscribe(() => this.debounceFlag = true);
     this.recordsSub$ = this.records$
-      .subscribe(d => {
-        if (d.length) {
-          this.recordThreshold = d[d.length - 1].score;
+      .subscribe(records => {
+        if (records && records.length) {
+          this.recordThreshold = records[records.length - 1].score;
         }
       })
   }
@@ -161,9 +167,15 @@ export class MazeComponent implements OnInit, OnDestroy {
   private win(): void {
     this.recordSub$ = combineLatest([this.mode$, this.score$, this.userName$, this.records$])
       .subscribe(([mode, score, username, records]) => {
-        if (score < this.recordThreshold || records.length < 21) {
+        if (!records || records.length < 21 || score < this.recordThreshold ) {
           mode = mode.slice(9);
-          const payload = [ ...records, { score, username, mode, date: new Date() }];
+          if(!records) {
+            records = [];
+          }
+          const payload: fromModels.IAddRecordRequestBody = {
+            mode,
+            records: [...records, { score, username, mode, date: new Date() }]
+          };
           this.store.dispatch(new UpdateIsWinn(true));
           this.store.dispatch(new AddRecord(payload));
           this.stopScore();
