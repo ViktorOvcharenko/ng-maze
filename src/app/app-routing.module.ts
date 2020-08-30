@@ -25,9 +25,9 @@ const routes: Routes = [
         loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
       },
       {
-        path: 'scores',
+        path: 'records',
         canActivate: [fromCoreGuards.AuthGuard],
-        loadChildren: () => import('./modules/scores/scores.module').then(m => m.ScoresModule)
+        loadChildren: () => import('./modules/records/records.module').then(m => m.RecordsModule)
       },
       {
         path: 'settings',

@@ -9,13 +9,20 @@ import { MazeService } from '../../services';
 import * as fromActions from '../actions/maze.actions';
 
 @Injectable()
-export class RecordesEffects {
+export class MazeEffects {
   @Effect()
   addRecord$: Observable<Action> = this.actions$.pipe(
     ofType<fromActions.AddRecord>(fromActions.EMazeActions.AddRecord),
     switchMap(({ payload }) => this.mazeService.addRecord(payload)),
     switchMap(() => of( new fromActions.AddRecordSuccess() )),
     catchError(() => of( new fromActions.AddRecordFail() ))
+  );
+
+  @Effect()
+  getRecords$: Observable<any> = this.actions$.pipe(
+    ofType<fromActions.GetRecords>(fromActions.EMazeActions.GetRecords),
+    switchMap(({ payload }) => this.mazeService.getRecord(payload) ),
+    switchMap(() => of( {} ))
   );
 
   constructor(

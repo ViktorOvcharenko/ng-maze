@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScoresRoutingModule } from "./scores-routing.module";
+import { RecordsRoutingModule } from "./records-routing.module";
 
 import * as fromContainers from './containers';
 
 @NgModule({
   declarations: [
-    fromContainers.ScoresComponent
+    fromContainers.RecordsComponent
   ],
   imports: [
     CommonModule,
-    ScoresRoutingModule
+    RecordsRoutingModule
   ],
   providers: []
 })
-export class ScoresModule { }
+export class RecordsModule { }

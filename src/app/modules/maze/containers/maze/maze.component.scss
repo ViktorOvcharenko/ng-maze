@@ -1,6 +1,6 @@
 .maze-page {
   padding: 0 20px;
-  height: 100%;
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
   justify-content: space-around;

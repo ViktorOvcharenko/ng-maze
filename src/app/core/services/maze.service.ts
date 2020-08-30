@@ -107,14 +107,16 @@ export class MazeService {
   }
 
   public refreshHeroLocation(): void {
-    this.heroLocation = {
-      x: 0,
-      y: 1
-    };
+    this.heroLocation = { x: 0, y: 1 };
+  }
+
+  public getRecord(mode: string): any {
+    const pathMode = mode.slice(9);
+    return this.http.get(`${environment.fbDBUrl}/${pathMode}.json`);
   }
 
   public addRecord(record: fromModels.IRecord): any {
-    const { mode } = { ...record };
-    return this.http.post(`${environment.fbDBUrl}/${mode}.json`, record);
+    const pathMode = record.mode;
+    return this.http.put(`${environment.fbDBUrl}/${pathMode}.json`, [record]);
   }
 }

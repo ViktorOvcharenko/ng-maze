@@ -1,7 +1,7 @@
 {
   "core": {
     "maze": "maze",
-    "best-scores": "best scores",
+    "records": "records",
     "login": "login",
     "sign-up": "sign up",
     "guest": "guest",

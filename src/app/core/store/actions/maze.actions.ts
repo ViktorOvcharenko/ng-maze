@@ -11,6 +11,7 @@ export enum EMazeActions {
   AddRecord = '[Maze] Add record',
   AddRecordSuccess = '[Maze] Add record success',
   AddRecordFail = '[Maze] Add record fail',
+  GetRecords = '[Maze] Get records'
 }
 
 export class SetMode implements Action {
@@ -49,6 +50,11 @@ export class AddRecordFail implements Action {
   public readonly type = EMazeActions.AddRecordFail;
 }
 
+export class GetRecords implements Action {
+  public readonly type = EMazeActions.GetRecords;
+  constructor(public payload: string) {}
+}
+
 export type MazeActions =
   SetMode |
   SetStorageMode |
@@ -57,4 +63,5 @@ export type MazeActions =
   UpdateIsWinn |
   AddRecord |
   AddRecordSuccess |
-  AddRecordFail;
+  AddRecordFail |
+  GetRecords;

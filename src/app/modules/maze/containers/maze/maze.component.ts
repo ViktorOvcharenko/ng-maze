@@ -29,7 +29,6 @@ export class MazeComponent implements OnInit, OnDestroy {
 
   constructor(
     private mazeService: fromServices.MazeService,
-    private scoresService: fromServices.ScoresService,
     private store: Store,
   ) {
     this.mode$ = this.store.pipe(select(getMode));
@@ -64,7 +63,6 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   public refreshMaze(): void {
-    this.scoresService.addScore(15).subscribe(); // test :)
     this.modeSub$ = this.mode$
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
