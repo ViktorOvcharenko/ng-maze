@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import * as fromModels from '../models';
 import * as fromConstants from '../constants';
+import {Observable} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MazeService {
@@ -110,13 +111,13 @@ export class MazeService {
     this.heroLocation = { x: 0, y: 1 };
   }
 
-  public getRecord(mode: string): any {
+  public getRecord(mode: string): Observable<fromModels.IRecord[]> {
     const pathMode = mode.slice(9);
-    return this.http.get(`${environment.fbDBUrl}/${pathMode}.json`);
+    return this.http.get<fromModels.IRecord[]>(`${environment.fbDBUrl}/${pathMode}.json`);
   }
 
-  public addRecord(record: fromModels.IRecord): any {
-    const pathMode = record.mode;
-    return this.http.put(`${environment.fbDBUrl}/${pathMode}.json`, [record]);
+  public addRecord(records: fromModels.IRecord[]): Observable<fromModels.IRecord[]> {
+    const pathMode = records[0].mode;
+    return this.http.put<fromModels.IRecord[]>(`${environment.fbDBUrl}/${pathMode}.json`, records);
   }
 }

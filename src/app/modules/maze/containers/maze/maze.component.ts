@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { AddRecord, ClearScore, ScoreTick, UpdateIsWinn } from '../../../../core/store/actions/maze.actions';
+import {AddRecord, ClearScore, GetRecords, ScoreTick, UpdateIsWinn} from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { getMode, getWin, getScore } from '../../../../core/store/selectors/maze.selectors';
+import {getMode, getWin, getScore, getRecords} from '../../../../core/store/selectors/maze.selectors';
 import { getUserName } from '../../../../core/store/selectors/account.selector';
 
 import * as _ from 'lodash';
@@ -21,11 +21,14 @@ export class MazeComponent implements OnInit, OnDestroy {
   public win$: Observable<boolean>;
   public score$: Observable<number>;
   public userName$: Observable<string>;
+  public records$: Observable<fromModels.IRecord[]>;
   public debounceFlag = true;
+  public recordThreshold: number;
   public modeSub$: Subscription;
   public scoreTickSub$: Subscription;
   public debounceFlagSub$: Subscription;
   public recordSub$: Subscription;
+  public recordsSub$: Subscription;
 
   constructor(
     private mazeService: fromServices.MazeService,
@@ -35,16 +38,24 @@ export class MazeComponent implements OnInit, OnDestroy {
     this.win$ = this.store.pipe(select(getWin));
     this.score$ = this.store.pipe(select(getScore));
     this.userName$ = this.store.pipe(select(getUserName));
+    this.records$ = this.store.pipe(select(getRecords));
   }
 
   ngOnInit(): void {
     this.modeSub$ = this.mode$
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
+        this.store.dispatch( new GetRecords(mode) );
       })
     this.startScore();
     this.debounceFlagSub$ = interval(200)
       .subscribe(() => this.debounceFlag = true);
+    this.recordsSub$ = this.records$
+      .subscribe(d => {
+        if (d.length) {
+          this.recordThreshold = d[d.length - 1].score;
+        }
+      })
   }
 
   ngOnDestroy(): void {
@@ -59,6 +70,9 @@ export class MazeComponent implements OnInit, OnDestroy {
     }
     if (this.recordSub$) {
       this.recordSub$.unsubscribe();
+    }
+    if (this.recordsSub$) {
+      this.recordsSub$.unsubscribe();
     }
   }
 
@@ -145,12 +159,15 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   private win(): void {
-    this.recordSub$ = combineLatest([this.mode$, this.score$, this.userName$])
-      .subscribe(([mode, score, username]) => {
-        mode = mode.slice(9);
-        this.store.dispatch(new UpdateIsWinn(true));
-        this.store.dispatch(new AddRecord({ score, username, mode, date: new Date() }));
-        this.stopScore();
+    this.recordSub$ = combineLatest([this.mode$, this.score$, this.userName$, this.records$])
+      .subscribe(([mode, score, username, records]) => {
+        if (score < this.recordThreshold || records.length < 21) {
+          mode = mode.slice(9);
+          const payload = [ ...records, { score, username, mode, date: new Date() }];
+          this.store.dispatch(new UpdateIsWinn(true));
+          this.store.dispatch(new AddRecord(payload));
+          this.stopScore();
+        }
       });
   }
 }

@@ -19,10 +19,11 @@ export class MazeEffects {
   );
 
   @Effect()
-  getRecords$: Observable<any> = this.actions$.pipe(
+  getRecords$: Observable<Action> = this.actions$.pipe(
     ofType<fromActions.GetRecords>(fromActions.EMazeActions.GetRecords),
     switchMap(({ payload }) => this.mazeService.getRecord(payload) ),
-    switchMap(() => of( {} ))
+    switchMap(d => of( new fromActions.GetRecordsSuccess(d) )),
+    catchError(() => of( new fromActions.GetRecordsFail() ))
   );
 
   constructor(

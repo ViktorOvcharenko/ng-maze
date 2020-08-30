@@ -1,5 +1,5 @@
-import { initialMazeState } from '../state/maze.state';
-import { EMazeActions, MazeActions } from '../actions/maze.actions';
+import {initialMazeState} from '../state/maze.state';
+import {EMazeActions, MazeActions} from '../actions/maze.actions';
 
 import * as fromModels from '../../models';
 
@@ -38,6 +38,12 @@ export const mazeReducers = (
       return {
         ...state,
         isWin: action.payload
+      }
+    }
+    case EMazeActions.GetRecordsSuccess: {
+      return {
+        ...state,
+        records: action.payload
       }
     }
     default:
