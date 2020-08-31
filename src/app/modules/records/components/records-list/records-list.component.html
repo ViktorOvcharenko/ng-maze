@@ -1,0 +1,12 @@
+<div class="records">
+  <div class="records-header">
+    <h3>{{ 'core.records' | translate | titlecase }}</h3>
+  </div>
+  <div class="records-main">
+    <app-record-item
+      *ngFor="let record of records; let index = index"
+      [record]="record"
+      [index]="index + 1"
+    ></app-record-item>
+  </div>
+</div>

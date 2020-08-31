@@ -1,10 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import {Observable} from 'rxjs';
 
 import * as fromModels from '../models';
 import * as fromConstants from '../constants';
-import {Observable} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MazeService {
