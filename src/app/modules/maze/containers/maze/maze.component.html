@@ -1,4 +1,9 @@
 <div class="maze-page">
+  <div *ngIf="orientationFlag" class="flip-msg-container">
+    <div class="flip-img-container"></div>
+    <h3>You should flip your device to play</h3>
+    <h3>Вы должны перевернуть свое устройство, чтобы играть</h3>
+  </div>
   <app-maze-container
     [maze]="maze"
   ></app-maze-container>

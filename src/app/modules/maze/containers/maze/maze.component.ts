@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
   AddRecord,
@@ -29,6 +29,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   public userName$: Observable<string>;
   public records$: Observable<fromModels.IRecord[]>;
   public debounceFlag = true;
+  public orientationFlag: boolean;
   public recordThreshold: number;
   public modeSub$: Subscription;
   public scoreTickSub$: Subscription;
@@ -52,7 +53,7 @@ export class MazeComponent implements OnInit, OnDestroy {
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
         this.store.dispatch( new GetRecords(mode) );
-      })
+      });
     this.startScore();
     this.debounceFlagSub$ = interval(200)
       .subscribe(() => this.debounceFlag = true);
@@ -61,7 +62,8 @@ export class MazeComponent implements OnInit, OnDestroy {
         if (records && records.length) {
           this.recordThreshold = records[records.length - 1].score;
         }
-      })
+      });
+    this.orientationFlag = screen.orientation.type === 'landscape-primary' && innerWidth < 1025 ? true : false;
   }
 
   ngOnDestroy(): void {
@@ -80,6 +82,11 @@ export class MazeComponent implements OnInit, OnDestroy {
     if (this.recordsSub$) {
       this.recordsSub$.unsubscribe();
     }
+  }
+
+  @HostListener('window:orientationchange', ['$event'])
+  public onOrientationChange(event): void {
+    this.orientationFlag = screen.orientation.type === 'landscape-primary' && innerWidth < 1025 ? true : false;
   }
 
   public refreshMaze(): void {
