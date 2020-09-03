@@ -10,7 +10,7 @@ import * as fromComponents from './components';
   declarations: [
     fromContainers.RecordsComponent,
     fromComponents.RecordsListComponent,
-    fromComponents.RecordItemComponent
+    fromComponents.RecordItemComponent,
   ],
   imports: [
     CommonModule,

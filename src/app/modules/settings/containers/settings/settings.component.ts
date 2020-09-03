@@ -33,13 +33,13 @@ export class SettingsComponent {
   }
 
   public selectLanguage(lang: string): void {
-    window.localStorage.setItem('language', lang);
+    localStorage.setItem('language', lang);
     this.translateService.setDefaultLang(lang);
     this.store.dispatch(new SetLanguage(lang));
   }
 
   public selectMode(mode: string): void {
-    window.localStorage.setItem('mode', mode);
+    localStorage.setItem('mode', mode);
     this.mazeService.maze = this.mazeService.generateMaze(mode);
     this.mazeService.refreshHeroLocation();
     this.store.dispatch(new SetMode(mode));

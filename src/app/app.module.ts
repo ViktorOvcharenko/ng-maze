@@ -18,8 +18,12 @@ import { MazeEffects } from './core/store/effects/maze.effects';
 
 import { environment } from '../environments/environment';
 import { appReducers } from './core/store/reducers/app.reducers';
+import localeRu from '@angular/common/locales/ru';
+import { registerLocaleData } from '@angular/common';
 
 import * as fromCoreComponents from './core/components';
+
+registerLocaleData(localeRu, 'ru');
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -45,9 +49,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       defaultLanguage: 'en'
     }),
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([MazeEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production === false}),
-    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+    EffectsModule.forRoot([ MazeEffects ]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production === false }),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     NoopAnimationsModule,
     MatToolbarModule,
     MatIconModule,

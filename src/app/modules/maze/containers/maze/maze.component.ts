@@ -63,7 +63,7 @@ export class MazeComponent implements OnInit, OnDestroy {
           this.recordThreshold = records[records.length - 1].score;
         }
       });
-    this.orientationFlag = screen.orientation.type === 'landscape-primary' && innerWidth < 1025 ? true : false;
+    this.orientationFlag = screen.orientation.type === 'portrait-primary' && innerWidth < 1025 ? true : false;
   }
 
   ngOnDestroy(): void {
@@ -86,7 +86,7 @@ export class MazeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:orientationchange', ['$event'])
   public onOrientationChange(event): void {
-    this.orientationFlag = screen.orientation.type === 'landscape-primary' && innerWidth < 1025 ? true : false;
+    this.orientationFlag = screen.orientation.type === 'portrait-primary' && innerWidth < 1025 ? true : false;
   }
 
   public refreshMaze(): void {
@@ -183,10 +183,10 @@ export class MazeComponent implements OnInit, OnDestroy {
             mode,
             records: [...records, { score, username, mode, date: new Date() }]
           };
-          this.store.dispatch(new UpdateIsWinn(true));
           this.store.dispatch(new AddRecord(payload));
-          this.stopScore();
         }
+        this.store.dispatch(new UpdateIsWinn(true));
+        this.stopScore();
       });
   }
 }

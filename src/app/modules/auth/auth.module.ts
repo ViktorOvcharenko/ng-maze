@@ -12,7 +12,7 @@ import * as fromComponents from './components';
     fromContainers.RegistrationComponent,
     fromComponents.AuthLayoutComponent,
     fromComponents.LoginComponent,
-    fromComponents.RegistrationComponent
+    fromComponents.RegistrationComponent,
   ],
   imports: [
     CommonModule,

@@ -1,16 +1,17 @@
 <div class="maze-page">
-  <div *ngIf="orientationFlag" class="flip-msg-container">
+  <div *ngIf="orientationFlag; else mazeContent" class="flip-msg-container">
     <div class="flip-img-container"></div>
-    <h3>You should flip your device to play</h3>
-    <h3>Вы должны перевернуть свое устройство, чтобы играть</h3>
+    <h3 class="flip-title">{{ 'maze.you-should-flip-your-device-to-play' | translate }}</h3>
   </div>
-  <app-maze-container
-    [maze]="maze"
-  ></app-maze-container>
-  <app-maze-control
-    [win]="win$ | async"
-    (onRefreshMaze)="refreshMaze()"
-    (onHeroStep)="heroStep($event)"
-  ></app-maze-control>
+  <ng-template #mazeContent>
+    <app-maze-container
+      [maze]="maze"
+    ></app-maze-container>
+    <app-maze-control
+      [win]="win$ | async"
+      (onRefreshMaze)="refreshMaze()"
+      (onHeroStep)="heroStep($event)"
+    ></app-maze-control>
+  </ng-template>
 </div>
 

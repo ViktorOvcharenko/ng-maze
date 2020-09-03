@@ -14,11 +14,23 @@ app-maze-container {
 .flip-msg-container{
   width: 100%;
   background-image: url('src/assets/images/flip.png');
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
 
 
   div {
     position: relative;
     width: 100%;
     padding-bottom: 100%;
+  }
+}
+
+.flip-title {
+  text-align: center;
+  font-size: 1.2rem;
+
+  @media screen and (min-width: 767px) {
+    font-size: 2rem;
   }
 }
