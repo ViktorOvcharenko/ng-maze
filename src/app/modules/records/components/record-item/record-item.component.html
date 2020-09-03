@@ -1,10 +1,10 @@
-<div class="record-container">
-  <div class="record-index">
-    {{ index }}.
+<mat-card>
+  <div class="record-container">
+    <div class="record-index">{{ index }}.</div>
+    <div class="record-content">
+      <span class="record-username">{{ record.username | titlecase}}</span>
+      <span class="record-score">{{ record.score }}</span>
+      <span class="record-date">{{ record.date |  date: 'short' : null : translateService.currentLang }}</span>
+    </div>
   </div>
-  <div class="record-content">
-    <span class="record-username">{{ record.username | titlecase}}</span>
-    <span class="record-score">{{ record.score }}</span>
-    <span class="record-date">{{ record.date |  date: 'short' : null : translateService.currentLang }}</span>
-  </div>
-</div>
+</mat-card>
