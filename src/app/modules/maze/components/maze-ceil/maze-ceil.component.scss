@@ -1,6 +1,6 @@
 .maze-ceil-container {
   width: 100%;
-  background-image: url('src/assets/images/brick.jpg');
+  background-image: url('../../../../../assets/images/wall/brick.jpg');
   background-size: 1000%;
 
   div {
@@ -64,5 +64,34 @@
 
   .george-goal {
     background-image: url('../../../../../assets/images/george/george-goal.png');
+  }
+
+  .gekko-go {
+    background-image: url('../../../../../assets/images/gekko/gekko-go.png');
+    background-size: 70%;
+  }
+
+  .gekko-win {
+    background-image: url('../../../../../assets/images/gekko/gekko-win.png');
+    background-size: 130%;
+  }
+
+  .gekko-goal {
+    background-image: url('../../../../../assets/images/gekko/gekko-goal.png');
+  }
+
+  .crumb-go {
+    background-image: url('../../../../../assets/images/crumb/crumb-go.png');
+    background-size: 80%;
+  }
+
+  .crumb-goal {
+    background-image: url('../../../../../assets/images/crumb/crumb-goal.png');
+    background-size: 90%;
+  }
+
+  .crumb-win {
+    background-image: url('../../../../../assets/images/crumb/crumb-win.png');
+    background-size: 75%;
   }
 }

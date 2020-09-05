@@ -27,8 +27,8 @@ export class MazeService {
 
       switch (mode) {
         case fromConstants.MODES[0].value: {
-          height = 20;
-          width = 64;
+          height = 14;
+          width = 44;
         }
           break;
         case fromConstants.MODES[2].value: {
@@ -37,8 +37,8 @@ export class MazeService {
         }
           break;
         default: {
-          height = 13;
-          width = 40;
+          height = 10;
+          width = 34;
         }
       }
 

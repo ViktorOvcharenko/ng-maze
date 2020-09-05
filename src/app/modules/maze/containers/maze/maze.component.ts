@@ -67,7 +67,7 @@ export class MazeComponent implements OnInit, OnDestroy {
         this.store.dispatch( new GetRecords(mode) );
       });
     this.refreshMaze();
-    this.debounceFlagSub$ = interval(200)
+    this.debounceFlagSub$ = interval(100)
       .subscribe(() => this.debounceFlag = true);
     this.recordsSub$ = this.records$
       .subscribe(records => {
@@ -96,8 +96,8 @@ export class MazeComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('window:orientationchange', ['$event'])
-  public onOrientationChange(event): void {
+  @HostListener('window:orientationchange')
+  public onOrientationChange(): void {
     this.orientationFlag = screen.orientation.type === 'portrait-primary' && innerWidth < 1025 ? true : false;
   }
 
@@ -118,48 +118,48 @@ export class MazeComponent implements OnInit, OnDestroy {
     const x = this.mazeService.heroLocation.x;
     const y = this.mazeService.heroLocation.y;
 
-      switch (event) {
-        case 'right': {
-          if (mazeCloned[y][x + 1] === 1) {
-            this.mazeService.heroLocation.x = x + 1;
-            mazeCloned[y][x] = 1;
-            mazeCloned[y][this.mazeService.heroLocation.x] = 2;
-          }
+    switch (event) {
+      case 'right': {
+        if (mazeCloned[y][x + 1] === 1) {
+          this.mazeService.heroLocation.x = x + 1;
+          mazeCloned[y][x] = 1;
+          mazeCloned[y][this.mazeService.heroLocation.x] = 2;
         }
-        break;
-        case 'up': {
-          if (mazeCloned[y - 1][x] === 1) {
-            this.mazeService.heroLocation.y = y - 1;
-            mazeCloned[y][x] = 1;
-            mazeCloned[this.mazeService.heroLocation.y][x] = 2;
-          }
-        }
-          break;
-        case 'left': {
-          if (mazeCloned[y][x - 1] === 1 && this.mazeService.heroLocation.x !== 0) {
-            this.mazeService.heroLocation.x = x - 1;
-            mazeCloned[y][x] = 1;
-            mazeCloned[y][this.mazeService.heroLocation.x] = 2;
-          }
-        }
-          break;
-        case 'down': {
-          if (mazeCloned[y + 1][x] === 1) {
-            this.mazeService.heroLocation.y = y + 1;
-            mazeCloned[y][x] = 1;
-            mazeCloned[this.mazeService.heroLocation.y][x] = 2;
-          }
-          if (mazeCloned[y + 1][x] === 3) {
-            mazeCloned[y][x] = 1;
-            mazeCloned[y + 1][x] = 4;
-            this.win();
-          }
-        }
-          break;
       }
+      break;
+      case 'up': {
+        if (mazeCloned[y - 1][x] === 1) {
+          this.mazeService.heroLocation.y = y - 1;
+          mazeCloned[y][x] = 1;
+          mazeCloned[this.mazeService.heroLocation.y][x] = 2;
+        }
+      }
+        break;
+      case 'left': {
+        if (mazeCloned[y][x - 1] === 1 && this.mazeService.heroLocation.x !== 0) {
+          this.mazeService.heroLocation.x = x - 1;
+          mazeCloned[y][x] = 1;
+          mazeCloned[y][this.mazeService.heroLocation.x] = 2;
+        }
+      }
+        break;
+      case 'down': {
+        if (mazeCloned[y + 1][x] === 1) {
+          this.mazeService.heroLocation.y = y + 1;
+          mazeCloned[y][x] = 1;
+          mazeCloned[this.mazeService.heroLocation.y][x] = 2;
+        }
+        if (mazeCloned[y + 1][x] === 3) {
+          mazeCloned[y][x] = 1;
+          mazeCloned[y + 1][x] = 4;
+          this.win();
+        }
+      }
+        break;
+    }
 
-      this.debounceFlag = false;
-      this.maze = mazeCloned;
+    this.debounceFlag = false;
+    this.maze = mazeCloned;
   }
 
   private stopScore(): void {
