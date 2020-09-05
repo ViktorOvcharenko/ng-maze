@@ -19,7 +19,8 @@
     "easy": "легкая",
     "easy-mode": "легкая сложность",
     "android": "андроид",
-    "gomer": "гомер"
+    "gomer": "гомер",
+    "george": "джордж"
   },
   "auth": {
     "sign-in-to-maze": "Войдите в лабиринт",
@@ -35,6 +36,7 @@
     "min-length-is-2-char": "Минимальная длина 2 символа, а максимальная длина 10 символов"
   },
   "maze": {
-    "you-should-flip-your-device-to-play": "Вы должны перевернуть свое устройство, чтобы играть"
+    "you-should-flip-your-device-to-play": "Вы должны перевернуть свое устройство, чтобы играть",
+    "congratulations-this-is-new-record": "Поздравляем, это новый рекорд!"
   }
 }

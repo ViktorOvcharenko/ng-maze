@@ -27,6 +27,9 @@ export class RecordsComponent implements OnInit, OnDestroy {
       this.store.dispatch( new GetRecords(mode) );
     });
     this.recordsSub$ = this.records$.subscribe(records => {
+      if (!records) {
+        records = [];
+      }
       this.recordsSorted = [...records].sort((a, b) => a.score - b.score);
     });
   }

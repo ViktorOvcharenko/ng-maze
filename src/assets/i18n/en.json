@@ -19,7 +19,8 @@
     "easy": "easy",
     "easy-mode": "easy mode",
     "android": "android",
-    "gomer": "gomer"
+    "gomer": "gomer",
+    "george": "george"
   },
   "auth": {
     "sign-in-to-maze": "Sign in to Maze",
@@ -35,6 +36,7 @@
     "min-length-is-2-char": "The min length is 2 char, and the max length is 10 char"
   },
   "maze": {
-    "you-should-flip-your-device-to-play": "You should flip your device to play"
+    "you-should-flip-your-device-to-play": "You should flip your device to play",
+    "congratulations-this-is-new-record": "Congratulations, this is a new record!"
   }
 }

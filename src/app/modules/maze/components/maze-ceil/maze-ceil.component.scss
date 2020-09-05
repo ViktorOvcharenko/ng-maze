@@ -27,26 +27,42 @@
   }
 
   .android-go {
-    background-image: url('../../../../../assets/images/android_go.png');
-  }
-
-  .gomer-go {
-    background-image: url('../../../../../assets/images/gomer_go.png');
+    background-image: url('../../../../../assets/images/android/android-go.png');
   }
 
   .android-win {
-    background-image: url('../../../../../assets/images/android_win.png');
-  }
-
-  .gomer-win {
-    background-image: url('../../../../../assets/images/gomer_win.png');
+    background-image: url('../../../../../assets/images/android/android-win.png');
   }
 
   .android-goal {
-    background-image: url('../../../../../assets/images/android_goal.png');
+    background-image: url('../../../../../assets/images/android/android-goal.png');
   }
 
+  .gomer-go {
+    background-image: url('../../../../../assets/images/gomer/gomer-go.png');
+    background-size: 90%;
+  }
+
+  .gomer-win {
+    background-image: url('../../../../../assets/images/gomer/gomer-win.png');
+    background-size: 80%;
+  }
   .gomer-goal {
-    background-image: url('../../../../../assets/images/gomer_goal.png');
+    background-image: url('../../../../../assets/images/gomer/gomer-goal.png');
+    background-size: 70%;
+  }
+
+  .george-go {
+    background-image: url('../../../../../assets/images/george/george-go.png');
+    background-size: 75%;
+  }
+
+  .george-win {
+    background-image: url('../../../../../assets/images/george/george-win.png');
+    background-size: 180%;
+  }
+
+  .george-goal {
+    background-image: url('../../../../../assets/images/george/george-goal.png');
   }
 }

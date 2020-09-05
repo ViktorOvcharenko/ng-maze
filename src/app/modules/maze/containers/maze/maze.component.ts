@@ -9,6 +9,8 @@ import {
 } from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 import {
   getMode,
   getWin,
@@ -47,6 +49,8 @@ export class MazeComponent implements OnInit, OnDestroy {
   constructor(
     private mazeService: fromServices.MazeService,
     private store: Store,
+    private snackBar: MatSnackBar,
+    private translateService: TranslateService
   ) {
     this.mode$ = this.store.pipe(select(getMode));
     this.heroMode$ = this.store.pipe(select(getHero));
@@ -62,7 +66,7 @@ export class MazeComponent implements OnInit, OnDestroy {
         this.maze = this.mazeService.generateMaze(mode);
         this.store.dispatch( new GetRecords(mode) );
       });
-    this.startScore();
+    this.refreshMaze();
     this.debounceFlagSub$ = interval(200)
       .subscribe(() => this.debounceFlag = true);
     this.recordsSub$ = this.records$
@@ -180,9 +184,12 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   private win(): void {
+    this.store.dispatch(new UpdateIsWinn(true));
+    this.stopScore();
     this.recordSub$ = combineLatest([this.mode$, this.score$, this.userName$, this.records$])
       .subscribe(([mode, score, username, records]) => {
-        if (!records || records.length < 21 || score < this.recordThreshold ) {
+        if (!records || records.length < 10 || score < this.recordThreshold ) {
+          const message = this.translateService.instant('maze.congratulations-this-is-new-record');
           mode = mode.slice(9);
           if(!records) {
             records = [];
@@ -192,9 +199,12 @@ export class MazeComponent implements OnInit, OnDestroy {
             records: [...records, { score, username, mode, date: new Date() }]
           };
           this.store.dispatch(new AddRecord(payload));
+          this.snackBar.open(message, 'close',{
+            verticalPosition: 'top',
+            duration: 5000
+          });
         }
-        this.store.dispatch(new UpdateIsWinn(true));
-        this.stopScore();
       });
+    this.recordSub$.unsubscribe();
   }
 }
