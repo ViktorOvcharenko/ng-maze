@@ -6,6 +6,7 @@
   <ng-template #mazeContent>
     <app-maze-container
       [maze]="maze"
+      [heroMode]="heroMode$ | async"
     ></app-maze-container>
     <app-maze-control
       [win]="win$ | async"

@@ -9,5 +9,10 @@
     [defaultMode]="defaultMode"
     (onSelectMode)="selectMode($event)"
   ></app-settings-mode>
+  <app-settings-hero
+    [heroes]="heroes"
+    [defaultHero]="defaultHero"
+    (onSelectHero)="selectHero($event)"
+  ></app-settings-hero>
 </div>
 

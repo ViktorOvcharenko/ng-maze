@@ -13,7 +13,8 @@ import * as fromComponents from './components';
     fromContainers.SettingsComponent,
     fromComponents.SettingsMainComponent,
     fromComponents.SettingsLanguageComponent,
-    fromComponents.SettingsModeComponent
+    fromComponents.SettingsModeComponent,
+    fromComponents.SettingsHeroComponent
   ],
     imports: [
       CommonModule,

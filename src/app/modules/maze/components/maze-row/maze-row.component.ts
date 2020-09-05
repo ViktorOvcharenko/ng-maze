@@ -8,4 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class MazeRowComponent {
   @Input() row: number[];
+  @Input() heroMode: string;
 }

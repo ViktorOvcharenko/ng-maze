@@ -1,8 +1,11 @@
 <app-settings-main
   [languages]="languages"
   [modes]="modes"
+  [heroes]="heroes"
   [defaultLang]="defaultLang$ | async"
   [defaultMode]="defaultMode$ | async"
+  [defaultHero]="defaultHero$ | async"
   (onSelectLanguage)="selectLanguage($event)"
   (onSelectMode)="selectMode($event)"
+  (onSelectHero)="selectHero($event)"
 ></app-settings-main>

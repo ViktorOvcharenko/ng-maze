@@ -11,12 +11,15 @@
   "settings": {
     "choose-your-language": "Choose your preferred application language:",
     "choose-your-mode": "Choose your preferred mode:",
+    "choose-your-hero": "Choose your preferred hero:",
     "hard": "hard",
     "hard-mode": "hard mode",
     "medium": "medium",
     "medium-mode": "medium mode",
     "easy": "easy",
-    "easy-mode": "easy mode"
+    "easy-mode": "easy mode",
+    "android": "android",
+    "gomer": "gomer"
   },
   "auth": {
     "sign-in-to-maze": "Sign in to Maze",

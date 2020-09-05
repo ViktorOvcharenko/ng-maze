@@ -15,31 +15,38 @@
     }
   }
 
+  .ceil {
+    background-color: #24292e;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+  }
+
   .empty {
     background-color: #24292e;
   }
 
-  .android {
-    background-color: #24292e;
-    background-image: url('src/assets/images/hero.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
+  .android-go {
+    background-image: url('../../../../../assets/images/android_go.png');
   }
 
-  .exit {
-    background-color: #24292e;
-    background-image: url('src/assets/images/goal.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
+  .gomer-go {
+    background-image: url('../../../../../assets/images/gomer_go.png');
   }
 
-  .win {
-    background-color: #24292e;
-    background-image: url('src/assets/images/win.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
+  .android-win {
+    background-image: url('../../../../../assets/images/android_win.png');
+  }
+
+  .gomer-win {
+    background-image: url('../../../../../assets/images/gomer_win.png');
+  }
+
+  .android-goal {
+    background-image: url('../../../../../assets/images/android_goal.png');
+  }
+
+  .gomer-goal {
+    background-image: url('../../../../../assets/images/gomer_goal.png');
   }
 }

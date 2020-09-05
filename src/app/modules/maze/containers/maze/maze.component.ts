@@ -9,7 +9,13 @@ import {
 } from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { getMode, getWin, getScore, getRecords } from '../../../../core/store/selectors/maze.selectors';
+import {
+  getMode,
+  getWin,
+  getScore,
+  getRecords,
+  getHero
+} from '../../../../core/store/selectors/maze.selectors';
 import { getUserName } from '../../../../core/store/selectors/account.selector';
 
 import * as _ from 'lodash';
@@ -24,6 +30,7 @@ import * as fromServices from '../../../../core/services';
 export class MazeComponent implements OnInit, OnDestroy {
   public maze: fromModels.IMaze;
   public mode$: Observable<string>;
+  public heroMode$: Observable<string>;
   public win$: Observable<boolean>;
   public score$: Observable<number>;
   public userName$: Observable<string>;
@@ -42,6 +49,7 @@ export class MazeComponent implements OnInit, OnDestroy {
     private store: Store,
   ) {
     this.mode$ = this.store.pipe(select(getMode));
+    this.heroMode$ = this.store.pipe(select(getHero));
     this.win$ = this.store.pipe(select(getWin));
     this.score$ = this.store.pipe(select(getScore));
     this.userName$ = this.store.pipe(select(getUserName));

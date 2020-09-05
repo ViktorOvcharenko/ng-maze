@@ -11,10 +11,13 @@ import * as fromModels from "../../../../core/models";
 export class SettingsMainComponent  {
   @Input() languages: fromModels.ILanguage[];
   @Input() modes: fromModels.IMode[];
+  @Input() heroes: fromModels.IHero[];
   @Input() defaultLang: string;
   @Input() defaultMode: string;
+  @Input() defaultHero: string;
   @Output() onSelectLanguage: EventEmitter<string> = new EventEmitter<string>();
   @Output() onSelectMode: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSelectHero: EventEmitter<string> = new EventEmitter<string>();
 
   public selectLanguage(value: string): void {
     this.onSelectLanguage.emit(value);
@@ -22,5 +25,9 @@ export class SettingsMainComponent  {
 
   public selectMode(value: string): void {
     this.onSelectMode.emit(value);
+  }
+
+  public selectHero(value: string): void {
+    this.onSelectHero.emit(value);
   }
 }
