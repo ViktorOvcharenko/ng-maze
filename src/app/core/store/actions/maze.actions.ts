@@ -4,8 +4,9 @@ import * as fromModels from '../../models';
 
 export enum EMazeActions {
   SetMode = '[Maze] Set mode',
+  SetModeFromStorage = '[Maze] Set mode from storage',
   SetHero = '[Maze] Set hero',
-  SetStorageMode = '[Maze] Set storage mode',
+  SetHeroFromStorage = '[Maze] Set hero from storage',
   ScoreTick = '[Maze] Score tick',
   ClearScore = '[Maze] Clear score',
   UpdateIsWin = '[Maze] Update isWin',
@@ -22,13 +23,18 @@ export class SetMode implements Action {
   constructor(public payload: string) {}
 }
 
-export class SetStorageMode implements Action {
-  public readonly type = EMazeActions.SetStorageMode;
+export class SetModeFromStorage implements Action {
+  public readonly type = EMazeActions.SetModeFromStorage;
   constructor(public payload: string) {}
 }
 
 export class SetHero implements Action {
   public readonly type = EMazeActions.SetHero;
+  constructor(public payload: string) {}
+}
+
+export class SetHeroFromStorage implements Action {
+  public readonly type = EMazeActions.SetHeroFromStorage;
   constructor(public payload: string) {}
 }
 
@@ -74,8 +80,9 @@ export class GetRecordsFail implements Action {
 
 export type MazeActions =
   SetMode |
-  SetStorageMode |
+  SetModeFromStorage |
   SetHero |
+  SetHeroFromStorage |
   ScoreTick |
   ClearScore |
   UpdateIsWinn |

@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum EAccountActions {
   SetLanguage = '[Account] Set language',
-  SetStorageLanguage = '[Account] Set storage language',
+  SetLanguageFromStorage = '[Account] Set language from storage',
   GetUserName = '[Account] Get User name',
   ClearUserName = '[Account] Clear User name',
 }
@@ -12,8 +12,8 @@ export class SetLanguage implements Action {
   constructor(public payload: string) {}
 }
 
-export class SetStorageLanguage implements Action {
-  public readonly type = EAccountActions.SetStorageLanguage;
+export class SetLanguageFromStorage implements Action {
+  public readonly type = EAccountActions.SetLanguageFromStorage;
   constructor(public payload: string) {}
 }
 
@@ -28,6 +28,6 @@ export class ClearUserName implements Action {
 
 export type AccountActions =
   SetLanguage |
-  SetStorageLanguage |
+  SetLanguageFromStorage |
   GetUserName |
   ClearUserName;

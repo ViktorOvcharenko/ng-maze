@@ -51,6 +51,7 @@ export class SettingsComponent {
   }
 
   public selectHero(hero: string): void {
+    localStorage.setItem('hero', hero);
     this.store.dispatch(new SetHero(hero));
   }
 }

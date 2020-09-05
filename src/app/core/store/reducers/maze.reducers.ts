@@ -11,10 +11,13 @@ export const mazeReducers = (
     case EMazeActions.SetMode: {
       return { ...state, mode: action.payload, isWin: false };
     }
-    case EMazeActions.SetStorageMode: {
+    case EMazeActions.SetModeFromStorage: {
       return { ...state, mode: action.payload, isWin: false };
     }
     case EMazeActions.SetHero: {
+      return { ...state, hero: action.payload };
+    }
+    case EMazeActions.SetHeroFromStorage: {
       return { ...state, hero: action.payload };
     }
     case EMazeActions.ScoreTick: {
