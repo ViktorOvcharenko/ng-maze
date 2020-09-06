@@ -7,6 +7,7 @@
     <app-maze-container
       [maze]="maze"
       [heroMode]="heroMode$ | async"
+      [wallMode]="wallMode$ | async"
     ></app-maze-container>
     <app-maze-control
       [win]="win$ | async"

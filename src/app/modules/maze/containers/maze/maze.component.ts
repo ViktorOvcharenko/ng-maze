@@ -16,7 +16,8 @@ import {
   getWin,
   getScore,
   getRecords,
-  getHeroMode
+  getHeroMode,
+  getWallMode
 } from '../../../../core/store/selectors/maze.selectors';
 import { getUserName } from '../../../../core/store/selectors/account.selector';
 
@@ -33,6 +34,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   public maze: fromModels.IMaze;
   public levelMode$: Observable<string>;
   public heroMode$: Observable<string>;
+  public wallMode$: Observable<string>;
   public win$: Observable<boolean>;
   public score$: Observable<number>;
   public userName$: Observable<string>;
@@ -54,6 +56,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   ) {
     this.levelMode$ = this.store.pipe(select(getLevelMode));
     this.heroMode$ = this.store.pipe(select(getHeroMode));
+    this.wallMode$ = this.store.pipe(select(getWallMode));
     this.win$ = this.store.pipe(select(getWin));
     this.score$ = this.store.pipe(select(getScore));
     this.userName$ = this.store.pipe(select(getUserName));

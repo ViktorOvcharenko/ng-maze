@@ -1,4 +1,4 @@
-<div class="maze-ceil-container">
+<div class="maze-ceil-container" [ngClass]="wallMode.slice(9)">
   <div [ngSwitch]="ceil">
     <div *ngSwitchCase="1" class="empty"></div>
     <div *ngSwitchCase="2" class="ceil" [ngClass]="heroMode.slice(9) + '-go'"></div>

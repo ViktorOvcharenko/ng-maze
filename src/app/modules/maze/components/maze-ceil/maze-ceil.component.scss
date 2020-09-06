@@ -1,7 +1,5 @@
 .maze-ceil-container {
   width: 100%;
-  background-image: url('../../../../../assets/images/wall/bricks.jpg');
-  background-size: 1000%;
 
   div {
     position: relative;
@@ -94,4 +92,24 @@
     background-image: url('../../../../../assets/images/crumb/crumb-win.png');
     background-size: 75%;
   }
+}
+
+.bricks {
+  background-image: url('../../../../../assets/images/wall/bricks.jpg');
+  background-size: 1000%;
+}
+
+.ice {
+  background-image: url('../../../../../assets/images/wall/ice.jpg');
+  background-size: 300%;
+}
+
+.leaves {
+  background-image: url('../../../../../assets/images/wall/leaves.jpg');
+  background-size: 150%;
+}
+
+.sand {
+  background-image: url('../../../../../assets/images/wall/sand.jpg');
+  background-size: 300%;
 }

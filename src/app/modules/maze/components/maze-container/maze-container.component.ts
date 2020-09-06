@@ -11,4 +11,5 @@ import * as fromModels from '../../../../core/models';
 export class MazeContainerComponent {
   @Input() maze: fromModels.IMaze;
   @Input() heroMode: string;
+  @Input() wallMode: string;
 }

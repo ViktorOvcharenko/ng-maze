@@ -24,7 +24,9 @@
     "gekko": "gekko",
     "crumb": "crumb",
     "bricks": "bricks",
-    "ice": "ice"
+    "ice": "ice",
+    "leaves": "leaves",
+    "sand": "sand"
   },
   "auth": {
     "sign-in-to-maze": "Sign in to Maze",
