@@ -9,7 +9,7 @@ import * as fromModels from "../../../../core/models"
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsHeroComponent {
-  @Input() heroes: fromModels.IHero[];
+  @Input() heroes: fromModels.IMode[];
   @Input() defaultHero: string;
   @Output() onSelectHero: EventEmitter<string> = new EventEmitter<string>();
 

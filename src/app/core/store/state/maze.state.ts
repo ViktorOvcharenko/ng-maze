@@ -1,8 +1,9 @@
 import * as fromModels from '../../models';
 
 export const initialMazeState: fromModels.IMazeState = {
-  mode: 'settings.medium',
-  hero: 'settings.android',
+  levelMode: 'settings.medium',
+  heroMode: 'settings.android',
+  wallMode: 'settings.brick',
   isWin: false,
   score: 0,
   records: [],

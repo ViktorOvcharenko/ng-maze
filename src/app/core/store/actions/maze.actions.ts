@@ -3,10 +3,10 @@ import { Action } from '@ngrx/store';
 import * as fromModels from '../../models';
 
 export enum EMazeActions {
-  SetMode = '[Maze] Set mode',
-  SetModeFromStorage = '[Maze] Set mode from storage',
-  SetHero = '[Maze] Set hero',
-  SetHeroFromStorage = '[Maze] Set hero from storage',
+  SetLevelMode = '[Maze] Set level mode',
+  SetLevelModeFromStorage = '[Maze] Set level mode from storage',
+  SetHeroMode = '[Maze] Set hero mode',
+  SetHeroModeFromStorage = '[Maze] Set hero mode from storage',
   ScoreTick = '[Maze] Score tick',
   ClearScore = '[Maze] Clear score',
   UpdateIsWin = '[Maze] Update isWin',
@@ -18,23 +18,23 @@ export enum EMazeActions {
   GetRecordsFail = '[Maze] Get records fail'
 }
 
-export class SetMode implements Action {
-  public readonly type = EMazeActions.SetMode;
+export class SetLevelMode implements Action {
+  public readonly type = EMazeActions.SetLevelMode;
   constructor(public payload: string) {}
 }
 
-export class SetModeFromStorage implements Action {
-  public readonly type = EMazeActions.SetModeFromStorage;
+export class SetLevelModeFromStorage implements Action {
+  public readonly type = EMazeActions.SetLevelModeFromStorage;
   constructor(public payload: string) {}
 }
 
-export class SetHero implements Action {
-  public readonly type = EMazeActions.SetHero;
+export class SetHeroMode implements Action {
+  public readonly type = EMazeActions.SetHeroMode;
   constructor(public payload: string) {}
 }
 
-export class SetHeroFromStorage implements Action {
-  public readonly type = EMazeActions.SetHeroFromStorage;
+export class SetHeroModeFromStorage implements Action {
+  public readonly type = EMazeActions.SetHeroModeFromStorage;
   constructor(public payload: string) {}
 }
 
@@ -79,10 +79,10 @@ export class GetRecordsFail implements Action {
 }
 
 export type MazeActions =
-  SetMode |
-  SetModeFromStorage |
-  SetHero |
-  SetHeroFromStorage |
+  SetLevelMode |
+  SetLevelModeFromStorage |
+  SetHeroMode |
+  SetHeroModeFromStorage |
   ScoreTick |
   ClearScore |
   UpdateIsWinn |

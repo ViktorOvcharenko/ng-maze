@@ -3,12 +3,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import * as fromModels from "../../../../core/models"
 
 @Component({
-  selector: 'app-settings-mode',
-  templateUrl: './settings-mode.component.html',
-  styleUrls: ['./settings-mode.component.scss'],
+  selector: 'app-settings-level-mode',
+  templateUrl: './settings-level-mode.component.html',
+  styleUrls: ['./settings-level-mode.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SettingsModeComponent {
+export class SettingsLevelModeComponent {
   @Input() modes: fromModels.IMode[];
   @Input() defaultMode: string;
   @Output() onSelectMode: EventEmitter<string> = new EventEmitter<string>();

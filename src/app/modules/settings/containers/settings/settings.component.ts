@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { select, Store } from '@ngrx/store';
 import { SetLanguage } from '../../../../core/store/actions/account.actions';
-import { ClearScore, SetHero, SetMode, UpdateIsWinn } from '../../../../core/store/actions/maze.actions';
+import { ClearScore, SetHeroMode, SetLevelMode, UpdateIsWinn } from '../../../../core/store/actions/maze.actions';
 import { Observable } from 'rxjs';
 import { getAccountLang } from '../../../../core/store/selectors/account.selector';
-import { getHero, getMode } from '../../../../core/store/selectors/maze.selectors';
+import { getHeroMode, getLevelMode } from '../../../../core/store/selectors/maze.selectors';
 
 import * as fromModels from '../../../../core/models';
 import * as fromConstants from '../../../../core/constants';
@@ -19,7 +19,7 @@ import * as fromServices from '../../../../core/services';
 export class SettingsComponent {
   public languages: fromModels.ILanguage[] = fromConstants.LANGUAGES;
   public modes: fromModels.IMode[] = fromConstants.MODES;
-  public heroes: fromModels.IHero[] = fromConstants.HEROES;
+  public heroes: fromModels.IMode[] = fromConstants.HEROES;
   public defaultLang$: Observable<string>;
   public defaultMode$: Observable<string>;
   public defaultHero$: Observable<string>;
@@ -31,8 +31,8 @@ export class SettingsComponent {
   )
   {
     this.defaultLang$ = this.store.pipe(select(getAccountLang));
-    this.defaultMode$ = this.store.pipe(select(getMode));
-    this.defaultHero$ = this.store.pipe(select(getHero));
+    this.defaultMode$ = this.store.pipe(select(getLevelMode));
+    this.defaultHero$ = this.store.pipe(select(getHeroMode));
   }
 
   public selectLanguage(lang: string): void {
@@ -42,16 +42,16 @@ export class SettingsComponent {
   }
 
   public selectMode(mode: string): void {
-    localStorage.setItem('mode', mode);
+    localStorage.setItem('level-mode', mode);
     this.mazeService.maze = this.mazeService.generateMaze(mode);
     this.mazeService.refreshHeroLocation();
-    this.store.dispatch(new SetMode(mode));
+    this.store.dispatch(new SetLevelMode(mode));
     this.store.dispatch(new ClearScore());
     this.store.dispatch(new UpdateIsWinn(false));
   }
 
   public selectHero(hero: string): void {
-    localStorage.setItem('hero', hero);
-    this.store.dispatch(new SetHero(hero));
+    localStorage.setItem('hero-mode', hero);
+    this.store.dispatch(new SetHeroMode(hero));
   }
 }

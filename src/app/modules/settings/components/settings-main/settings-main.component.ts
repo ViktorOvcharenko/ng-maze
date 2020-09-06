@@ -11,7 +11,7 @@ import * as fromModels from "../../../../core/models";
 export class SettingsMainComponent  {
   @Input() languages: fromModels.ILanguage[];
   @Input() modes: fromModels.IMode[];
-  @Input() heroes: fromModels.IHero[];
+  @Input() heroes: fromModels.IMode[];
   @Input() defaultLang: string;
   @Input() defaultMode: string;
   @Input() defaultHero: string;

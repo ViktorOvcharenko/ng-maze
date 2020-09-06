@@ -1,8 +1,9 @@
 import { IRecord } from './IRecord';
 
 export interface IMazeState {
-  mode: string;
-  hero: string;
+  levelMode: string;
+  heroMode: string;
+  wallMode: string;
   isWin: boolean;
   score: number;
   records: IRecord[];

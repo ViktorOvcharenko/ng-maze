@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SetModeFromStorage, SetHeroFromStorage } from '../../store/actions/maze.actions';
+import { SetLevelModeFromStorage, SetHeroModeFromStorage } from '../../store/actions/maze.actions';
 import { SetLanguageFromStorage } from '../../store/actions/account.actions';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -17,18 +17,18 @@ export class MainLayoutComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    const storeMode = window.localStorage.getItem('mode');
+    const storeMode = window.localStorage.getItem('level-mode');
     const storeLang = window.localStorage.getItem('language');
-    const storeHero = window.localStorage.getItem('hero');
+    const storeHero = window.localStorage.getItem('hero-mode');
     if (storeMode) {
-      this.store.dispatch( new SetModeFromStorage(storeMode) );
+      this.store.dispatch( new SetLevelModeFromStorage(storeMode) );
     }
     if (storeMode) {
       this.store.dispatch( new SetLanguageFromStorage(storeLang) );
       this.translateService.setDefaultLang(storeLang);
     }
     if (storeHero) {
-      this.store.dispatch( new SetHeroFromStorage(storeHero) );
+      this.store.dispatch( new SetHeroModeFromStorage(storeHero) );
     }
   }
 }

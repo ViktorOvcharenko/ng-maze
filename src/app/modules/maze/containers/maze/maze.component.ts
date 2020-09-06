@@ -12,11 +12,11 @@ import { take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  getMode,
+  getLevelMode,
   getWin,
   getScore,
   getRecords,
-  getHero
+  getHeroMode
 } from '../../../../core/store/selectors/maze.selectors';
 import { getUserName } from '../../../../core/store/selectors/account.selector';
 
@@ -31,7 +31,7 @@ import * as fromServices from '../../../../core/services';
 })
 export class MazeComponent implements OnInit, OnDestroy {
   public maze: fromModels.IMaze;
-  public mode$: Observable<string>;
+  public levelMode$: Observable<string>;
   public heroMode$: Observable<string>;
   public win$: Observable<boolean>;
   public score$: Observable<number>;
@@ -40,7 +40,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   public debounceFlag = true;
   public orientationFlag: boolean;
   public recordThreshold: number;
-  public modeSub$: Subscription;
+  public levelModeSub$: Subscription;
   public scoreTickSub$: Subscription;
   public debounceFlagSub$: Subscription;
   public recordSub$: Subscription;
@@ -52,8 +52,8 @@ export class MazeComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private translateService: TranslateService
   ) {
-    this.mode$ = this.store.pipe(select(getMode));
-    this.heroMode$ = this.store.pipe(select(getHero));
+    this.levelMode$ = this.store.pipe(select(getLevelMode));
+    this.heroMode$ = this.store.pipe(select(getHeroMode));
     this.win$ = this.store.pipe(select(getWin));
     this.score$ = this.store.pipe(select(getScore));
     this.userName$ = this.store.pipe(select(getUserName));
@@ -61,7 +61,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.modeSub$ = this.mode$
+    this.levelModeSub$ = this.levelMode$
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
         this.store.dispatch( new GetRecords(mode) );
@@ -79,8 +79,8 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.modeSub$) {
-      this.modeSub$.unsubscribe();
+    if (this.levelModeSub$) {
+      this.levelModeSub$.unsubscribe();
     }
     if (this.scoreTickSub$) {
       this.scoreTickSub$.unsubscribe();
@@ -102,7 +102,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   public refreshMaze(): void {
-    this.modeSub$ = this.mode$
+    this.levelModeSub$ = this.levelMode$
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
         this.mazeService.refreshHeroLocation();
@@ -186,7 +186,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   private win(): void {
     this.store.dispatch(new UpdateIsWinn(true));
     this.stopScore();
-    this.recordSub$ = combineLatest([this.mode$, this.score$, this.userName$, this.records$])
+    this.recordSub$ = combineLatest([this.levelMode$, this.score$, this.userName$, this.records$])
       .subscribe(([mode, score, username, records]) => {
         if (!records || records.length < 10 || score < this.recordThreshold ) {
           const message = this.translateService.instant('maze.congratulations-this-is-new-record');

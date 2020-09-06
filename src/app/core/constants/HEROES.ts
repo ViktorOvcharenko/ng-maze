@@ -1,6 +1,6 @@
 import * as fromModels from '../models';
 
-export const HEROES: fromModels.IHero[] = [
+export const HEROES: fromModels.IMode[] = [
   { value: 'settings.android', viewValue: 'settings.android' },
   { value: 'settings.george', viewValue: 'settings.george' },
   { value: 'settings.gekko', viewValue: 'settings.gekko' },

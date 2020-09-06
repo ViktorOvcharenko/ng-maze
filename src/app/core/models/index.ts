@@ -1,7 +1,6 @@
 export { IAccountState } from './IAccountState';
 export { IAppState } from './IAppState';
 export { IFbAuthResponse } from './IFbAuthResponse';
-export { IHero } from './IHero';
 export { IHeroLocation } from './IHeroLocation';
 export { ILanguage } from './ILanguage';
 export { IMaze } from './IMaze';

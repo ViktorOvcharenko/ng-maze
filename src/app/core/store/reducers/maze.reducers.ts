@@ -8,17 +8,17 @@ export const mazeReducers = (
   action: MazeActions
 ): fromModels.IMazeState => {
   switch(action.type) {
-    case EMazeActions.SetMode: {
-      return { ...state, mode: action.payload, isWin: false };
+    case EMazeActions.SetLevelMode: {
+      return { ...state, levelMode: action.payload, isWin: false };
     }
-    case EMazeActions.SetModeFromStorage: {
-      return { ...state, mode: action.payload, isWin: false };
+    case EMazeActions.SetLevelModeFromStorage: {
+      return { ...state, levelMode: action.payload, isWin: false };
     }
-    case EMazeActions.SetHero: {
-      return { ...state, hero: action.payload };
+    case EMazeActions.SetHeroMode: {
+      return { ...state, heroMode: action.payload };
     }
-    case EMazeActions.SetHeroFromStorage: {
-      return { ...state, hero: action.payload };
+    case EMazeActions.SetHeroModeFromStorage: {
+      return { ...state, heroMode: action.payload };
     }
     case EMazeActions.ScoreTick: {
       return { ...state, score: state.score + 1 };
