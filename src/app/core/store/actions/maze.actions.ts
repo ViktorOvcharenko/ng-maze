@@ -7,6 +7,8 @@ export enum EMazeActions {
   SetLevelModeFromStorage = '[Maze] Set level mode from storage',
   SetHeroMode = '[Maze] Set hero mode',
   SetHeroModeFromStorage = '[Maze] Set hero mode from storage',
+  SetWallMode = '[Maze] Set wall mode',
+  SetWallModeFromStorage = '[Maze] Set wall mode from storage',
   ScoreTick = '[Maze] Score tick',
   ClearScore = '[Maze] Clear score',
   UpdateIsWin = '[Maze] Update isWin',
@@ -30,6 +32,16 @@ export class SetLevelModeFromStorage implements Action {
 
 export class SetHeroMode implements Action {
   public readonly type = EMazeActions.SetHeroMode;
+  constructor(public payload: string) {}
+}
+
+export class SetWallModeFromStorage implements Action {
+  public readonly type = EMazeActions.SetWallModeFromStorage;
+  constructor(public payload: string) {}
+}
+
+export class SetWallMode implements Action {
+  public readonly type = EMazeActions.SetWallMode;
   constructor(public payload: string) {}
 }
 
@@ -83,6 +95,8 @@ export type MazeActions =
   SetLevelModeFromStorage |
   SetHeroMode |
   SetHeroModeFromStorage |
+  SetWallMode |
+  SetWallModeFromStorage |
   ScoreTick |
   ClearScore |
   UpdateIsWinn |

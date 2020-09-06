@@ -20,6 +20,12 @@ export const mazeReducers = (
     case EMazeActions.SetHeroModeFromStorage: {
       return { ...state, heroMode: action.payload };
     }
+    case EMazeActions.SetWallMode: {
+      return { ...state, wallMode: action.payload };
+    }
+    case EMazeActions.SetWallModeFromStorage: {
+      return { ...state, wallMode: action.payload };
+    }
     case EMazeActions.ScoreTick: {
       return { ...state, score: state.score + 1 };
     }

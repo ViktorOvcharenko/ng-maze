@@ -22,7 +22,9 @@
     "gomer": "gomer",
     "george": "george",
     "gekko": "gekko",
-    "crumb": "crumb"
+    "crumb": "crumb",
+    "bricks": "bricks",
+    "ice": "ice"
   },
   "auth": {
     "sign-in-to-maze": "Sign in to Maze",
