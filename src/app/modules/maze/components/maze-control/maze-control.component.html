@@ -1,18 +1,18 @@
 <mat-card class="maze-control">
   <div class="arrow-btn-column">
-    <div class="row up-row" (click)="heroStep('up')">
+    <div class="row up-row" (click)="heroStep('ArrowUp')">
       <button mat-mini-fab>
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </div>
     <div class="row">
-      <button mat-mini-fab (click)="heroStep('left')">
+      <button mat-mini-fab (click)="heroStep('ArrowLeft')">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
-      <button mat-mini-fab (click)="heroStep('down')">
+      <button mat-mini-fab (click)="heroStep('ArrowDown')">
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
-      <button mat-mini-fab (click)="heroStep('right')">
+      <button mat-mini-fab (click)="heroStep('ArrowRight')">
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </div>
