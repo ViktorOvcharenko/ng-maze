@@ -13,7 +13,7 @@ export class RegistrationComponent implements OnInit {
   @Input() loadingAuth: boolean;
   @Output() onSubmit: EventEmitter<fromCoreModels.IUser> = new EventEmitter<fromCoreModels.IUser>();
   public signUpForm: FormGroup;
-  public isHidedPassword = true;
+  public isHiddenPassword = true;
 
   get displayNameInvalid(): boolean {
     return this.signUpForm.get('displayName').invalid && this.signUpForm.get('displayName').touched;
@@ -63,6 +63,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   public toggleHidePassword(): void {
-    this.isHidedPassword = !this.isHidedPassword;
+    this.isHiddenPassword = !this.isHiddenPassword;
   }
 }

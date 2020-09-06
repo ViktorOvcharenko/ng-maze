@@ -25,16 +25,16 @@
       <div class="form-group">
         <mat-form-field appearance="outline">
           <mat-label>{{ 'auth.enter-your-password' | translate }}</mat-label>
-          <input matInput [type]="isHidedPassword ? 'password' : 'text'" formControlName="password">
+          <input matInput [type]="isHiddenPassword ? 'password' : 'text'" formControlName="password">
           <button
             mat-icon-button
             matSuffix
             (click)="toggleHidePassword()"
             [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="isHidedPassword"
+            [attr.aria-pressed]="isHiddenPassword"
             type="button"
           >
-            <mat-icon>{{isHidedPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon>{{ isHiddenPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
           <mat-error *ngIf="passwordInvalid">
           <span *ngIf="passwordIsError">{{ 'auth.password-is-required-and-must' | translate}}</span>

@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import * as fromCoreServices from '../../../../core/services';
@@ -11,7 +12,7 @@ import * as fromCoreModels from '../../../../core/models';
 })
 export class LoginComponent implements OnDestroy {
   public loadingAuth = false;
-  public subLogin$: Subscription;
+  private destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private authService: fromCoreServices.AuthService,
@@ -19,14 +20,14 @@ export class LoginComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    if (this.subLogin$) {
-      this.subLogin$.unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   public submit(user: fromCoreModels.IUser): void {
     this.loadingAuth = true;
-    this.subLogin$ = this.authService.login(user)
+    this.authService.login(user)
+      .pipe( takeUntil(this.destroy$) )
       .subscribe(() => {
         this.loadingAuth = false;
         this.router.navigate(['/']);

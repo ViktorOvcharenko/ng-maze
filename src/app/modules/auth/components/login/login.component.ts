@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   @Input() loadingAuth: boolean;
   @Output() onSubmit: EventEmitter<fromCoreModels.IUser> = new EventEmitter<fromCoreModels.IUser>();
   public loginForm: FormGroup;
-  public isHidedPassword = true;
+  public isHiddenPassword = true;
 
   get emailInvalid(): boolean {
     return this.loginForm.get('email').invalid && this.loginForm.get('email').touched;
@@ -49,6 +49,6 @@ export class LoginComponent implements OnInit {
   }
 
   public toggleHidePassword(): void {
-    this.isHidedPassword = !this.isHidedPassword;
+    this.isHiddenPassword = !this.isHiddenPassword;
   }
 }

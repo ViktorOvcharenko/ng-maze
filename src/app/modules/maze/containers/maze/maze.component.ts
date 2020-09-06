@@ -32,16 +32,16 @@ import * as fromServices from '../../../../core/services';
 })
 export class MazeComponent implements OnInit, OnDestroy {
   public maze: fromModels.IMaze;
-  public levelMode$: Observable<string>;
+  private levelMode$: Observable<string>;
   public heroMode$: Observable<string>;
   public wallMode$: Observable<string>;
   public win$: Observable<boolean>;
-  public score$: Observable<number>;
-  public userName$: Observable<string>;
-  public records$: Observable<fromModels.IRecord[]>;
-  public debounceFlag = true;
+  private score$: Observable<number>;
+  private userName$: Observable<string>;
+  private records$: Observable<fromModels.IRecord[]>;
+  private debounceFlag = true;
   public orientationFlag: boolean;
-  public recordThreshold: number;
+  private recordThreshold: number;
   public levelModeSub$: Subscription;
   public scoreTickSub$: Subscription;
   public debounceFlagSub$: Subscription;
@@ -70,7 +70,7 @@ export class MazeComponent implements OnInit, OnDestroy {
         this.store.dispatch( new GetRecords(mode) );
       });
     this.refreshMaze();
-    this.debounceFlagSub$ = interval(100)
+    this.debounceFlagSub$ = interval(50)
       .subscribe(() => this.debounceFlag = true);
     this.recordsSub$ = this.records$
       .subscribe(records => {
@@ -104,9 +104,9 @@ export class MazeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:orientationchange')
   public onOrientationChange(): void {
-    this.orientationFlag = screen.orientation.type === 'portrait-primary' && innerWidth < 1025 ? true : false;
+    this.orientationFlag = screen.orientation.type === 'portrait-primary' && innerWidth < 1025;
     if (innerWidth === 1366) {
-      this.orientationFlag = screen.orientation.type === 'portrait-primary' ? true : false;
+      this.orientationFlag = screen.orientation.type === 'portrait-primary';
     }
   }
 
