@@ -79,6 +79,9 @@ export class MazeComponent implements OnInit, OnDestroy {
         }
       });
     this.orientationFlag = screen.orientation.type === 'portrait-primary' && innerWidth < 1025 ? true : false;
+    if (innerWidth === 1366) {
+      this.orientationFlag = screen.orientation.type === 'portrait-primary' ? true : false;
+    }
   }
 
   ngOnDestroy(): void {
@@ -102,6 +105,9 @@ export class MazeComponent implements OnInit, OnDestroy {
   @HostListener('window:orientationchange')
   public onOrientationChange(): void {
     this.orientationFlag = screen.orientation.type === 'portrait-primary' && innerWidth < 1025 ? true : false;
+    if (innerWidth === 1366) {
+      this.orientationFlag = screen.orientation.type === 'portrait-primary' ? true : false;
+    }
   }
 
   public refreshMaze(): void {
