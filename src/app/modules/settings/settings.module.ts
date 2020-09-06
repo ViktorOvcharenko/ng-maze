@@ -14,7 +14,8 @@ import * as fromComponents from './components';
     fromComponents.SettingsMainComponent,
     fromComponents.SettingsLanguageComponent,
     fromComponents.SettingsLevelModeComponent,
-    fromComponents.SettingsHeroComponent
+    fromComponents.SettingsHeroModeComponent,
+    fromComponents.SettingsWallModeComponent
   ],
     imports: [
       CommonModule,

@@ -1,0 +1,11 @@
+<div class="settings-mode-title">{{ 'settings.choose-your-hero' | translate }}</div>
+<div class="settings-mode-container">
+  <mat-select
+    #wallSelect
+    [value]="defaultWallMode"
+    (selectionChange)="selectWallMode(wallSelect.value)"
+  >
+    <mat-select-trigger>{{ wallSelect.value | translate}}</mat-select-trigger>
+    <mat-option *ngFor="let wall of walls" [value]="wall.value">{{ wall.viewValue | translate}}</mat-option>
+  </mat-select>
+</div>

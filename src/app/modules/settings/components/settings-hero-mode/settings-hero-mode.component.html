@@ -2,10 +2,10 @@
 <div class="settings-mode-container">
   <mat-select
     #heroSelect
-    [value]="defaultHero"
-    (selectionChange)="selectHero(heroSelect.value)"
+    [value]="defaultHeroMode"
+    (selectionChange)="selectHeroMode(heroSelect.value)"
   >
     <mat-select-trigger>{{ heroSelect.value | translate}}</mat-select-trigger>
-    <mat-option *ngFor="let here of heroes" [value]="here.value">{{ here.viewValue | translate}}</mat-option>
+    <mat-option *ngFor="let hero of heroes" [value]="hero.value">{{ hero.viewValue | translate}}</mat-option>
   </mat-select>
 </div>

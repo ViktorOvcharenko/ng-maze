@@ -10,24 +10,31 @@ import * as fromModels from "../../../../core/models";
 })
 export class SettingsMainComponent  {
   @Input() languages: fromModels.ILanguage[];
-  @Input() modes: fromModels.IMode[];
+  @Input() levels: fromModels.IMode[];
   @Input() heroes: fromModels.IMode[];
+  @Input() walls: fromModels.IMode[];
   @Input() defaultLang: string;
-  @Input() defaultMode: string;
-  @Input() defaultHero: string;
+  @Input() defaultLevelMode: string;
+  @Input() defaultHeroMode: string;
+  @Input() defaultWallMode: string;
   @Output() onSelectLanguage: EventEmitter<string> = new EventEmitter<string>();
-  @Output() onSelectMode: EventEmitter<string> = new EventEmitter<string>();
-  @Output() onSelectHero: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSelectLevelMode: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSelectHeroMode: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSelectWallMode: EventEmitter<string> = new EventEmitter<string>();
 
   public selectLanguage(value: string): void {
     this.onSelectLanguage.emit(value);
   }
 
-  public selectMode(value: string): void {
-    this.onSelectMode.emit(value);
+  public selectLevelMode(levelMode: string): void {
+    this.onSelectLevelMode.emit(levelMode);
   }
 
-  public selectHero(value: string): void {
-    this.onSelectHero.emit(value);
+  public selectHeroMode(heroMode: string): void {
+    this.onSelectHeroMode.emit(heroMode);
+  }
+
+  public selectWallMode(wallMode: string): void {
+    this.onSelectWallMode.emit(wallMode);
   }
 }

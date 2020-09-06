@@ -5,14 +5,19 @@
     (onSelectLanguage)="selectLanguage($event)"
   ></app-settings-language>
   <app-settings-level-mode
-    [modes]="modes"
-    [defaultMode]="defaultMode"
-    (onSelectMode)="selectMode($event)"
+    [levels]="levels"
+    [defaultLevelMode]="defaultLevelMode"
+    (onSelectLevelMode)="selectLevelMode($event)"
   ></app-settings-level-mode>
-  <app-settings-hero
+  <app-settings-hero-mode
     [heroes]="heroes"
-    [defaultHero]="defaultHero"
-    (onSelectHero)="selectHero($event)"
-  ></app-settings-hero>
+    [defaultHeroMode]="defaultHeroMode"
+    (onSelectHeroMode)="selectHeroMode($event)"
+  ></app-settings-hero-mode>
+  <app-settings-wall-mode
+    [walls]="walls"
+    [defaultWallMode]="defaultWallMode"
+    (onSelectWallMode)="selectWallMode($event)"
+  ></app-settings-wall-mode>
 </div>
 

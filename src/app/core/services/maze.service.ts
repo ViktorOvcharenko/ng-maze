@@ -26,12 +26,12 @@ export class MazeService {
       const walls = [];
 
       switch (mode) {
-        case fromConstants.MODES[0].value: {
+        case fromConstants.LEVELS[0].value: {
           height = 14;
           width = 44;
         }
           break;
-        case fromConstants.MODES[2].value: {
+        case fromConstants.LEVELS[2].value: {
           height = 7;
           width = 25;
         }

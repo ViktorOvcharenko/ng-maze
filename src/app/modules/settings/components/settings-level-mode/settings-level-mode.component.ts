@@ -9,11 +9,11 @@ import * as fromModels from "../../../../core/models"
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsLevelModeComponent {
-  @Input() modes: fromModels.IMode[];
-  @Input() defaultMode: string;
-  @Output() onSelectMode: EventEmitter<string> = new EventEmitter<string>();
+  @Input() levels: fromModels.IMode[];
+  @Input() defaultLevelMode: string;
+  @Output() onSelectLevelMode: EventEmitter<string> = new EventEmitter<string>();
 
-  public selectMode(value: string): void {
-    this.onSelectMode.emit(value);
+  public selectLevelMode(levelMode: string): void {
+    this.onSelectLevelMode.emit(levelMode);
   }
 }
