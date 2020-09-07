@@ -1,4 +1,4 @@
-import {Component, HostListener, NgZone, OnDestroy, OnInit} from '@angular/core';
+import { Component, HostListener, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
   AddRecord,
@@ -7,8 +7,8 @@ import {
   ScoreTick,
   UpdateIsWinn
 } from '../../../../core/store/actions/maze.actions';
-import { combineLatest, interval, Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { combineLatest, interval, Observable, Subject, Subscription } from 'rxjs';
+import {take, takeUntil} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -42,11 +42,9 @@ export class MazeComponent implements OnInit, OnDestroy {
   private debounceFlag = true;
   public orientationFlag: boolean;
   private recordThreshold: number;
-  public levelModeSub$: Subscription;
-  public scoreTickSub$: Subscription;
-  public debounceFlagSub$: Subscription;
-  public recordSub$: Subscription;
-  public recordsSub$: Subscription;
+  private scoreTickSub$: Subscription;
+  private recordSub$: Subscription;
+  private destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private mazeService: fromServices.MazeService,
@@ -65,15 +63,18 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.levelModeSub$ = this.levelMode$
+    this.levelMode$
+      .pipe( takeUntil(this.destroy$) )
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
         this.store.dispatch( new GetRecords(mode) );
       });
     this.refreshMaze();
-    this.debounceFlagSub$ = interval(50)
+    interval(50)
+      .pipe( takeUntil(this.destroy$) )
       .subscribe(() => this.debounceFlag = true);
-    this.recordsSub$ = this.records$
+    this.records$
+      .pipe( takeUntil(this.destroy$) )
       .subscribe(records => {
         if (records && records.length) {
           this.recordThreshold = records[records.length - 1].score;
@@ -86,21 +87,8 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.levelModeSub$) {
-      this.levelModeSub$.unsubscribe();
-    }
-    if (this.scoreTickSub$) {
-      this.scoreTickSub$.unsubscribe();
-    }
-    if (this.debounceFlagSub$) {
-      this.debounceFlagSub$.unsubscribe();
-    }
-    if (this.recordSub$) {
-      this.recordSub$.unsubscribe();
-    }
-    if (this.recordsSub$) {
-      this.recordsSub$.unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   @HostListener('window:orientationchange')
@@ -112,7 +100,8 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   public refreshMaze(): void {
-    this.levelModeSub$ = this.levelMode$
+    this.levelMode$
+      .pipe( takeUntil(this.destroy$) )
       .subscribe(mode => {
         this.maze = this.mazeService.generateMaze(mode);
         this.mazeService.refreshHeroLocation();
@@ -184,12 +173,13 @@ export class MazeComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ClearScore());
     this.store.dispatch(new UpdateIsWinn(false));
 
-    if (this.scoreTickSub$) {
-      this.scoreTickSub$.unsubscribe();
-    }
+    this.stopScore();
 
     this.scoreTickSub$ = interval(1000)
-      .pipe(take(999))
+      .pipe(
+        take(999),
+        takeUntil( this.destroy$ )
+        )
       .subscribe(() => {
         this.store.dispatch(new ScoreTick());
     });
@@ -199,24 +189,32 @@ export class MazeComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UpdateIsWinn(true));
     this.stopScore();
     this.recordSub$ = combineLatest([this.levelMode$, this.score$, this.userName$, this.records$])
+      .pipe( takeUntil(this.destroy$) )
       .subscribe(([mode, score, username, records]) => {
-        if (!records || records.length < 10 || score < this.recordThreshold ) {
-          const message = this.translateService.instant('maze.congratulations-this-is-new-record');
-          mode = mode.slice(9);
-          if(!records) {
-            records = [];
-          }
-          const payload: fromModels.IAddRecordRequestBody = {
-            mode,
-            records: [...records, { score, username, mode, date: new Date() }]
-          };
-          this.store.dispatch(new AddRecord(payload));
-          this.snackBar.open(message, 'close',{
-            verticalPosition: 'top',
-            duration: 5000
-          });
+        if (!records ) {
+          records = [];
+          this.addRecord(mode, score, username, records);
+        } else if (records.length < 10) {
+          this.addRecord(mode, score, username, records);
+        } else if(score < this.recordThreshold) {
+          const cutRecords = records.filter((record, i) => i !== records.length - 1);
+          this.addRecord(mode, score, username, cutRecords);
         }
       });
     this.recordSub$.unsubscribe();
+  }
+
+  private addRecord(mode: string, score: number, username: string, records: fromModels.IRecord[]): void {
+    mode = mode.slice(9);
+    const payload: fromModels.IAddRecordRequestBody = {
+      mode,
+      records: [...records, { score, username, mode, date: new Date() }]
+    };
+    this.store.dispatch(new AddRecord(payload));
+    const message = this.translateService.instant('maze.congratulations-this-is-new-record');
+    this.snackBar.open(message, 'close',{
+      verticalPosition: 'top',
+      duration: 5000
+    });
   }
 }
