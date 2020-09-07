@@ -22,6 +22,7 @@ import localeRu from '@angular/common/locales/ru';
 import { registerLocaleData } from '@angular/common';
 
 import * as fromCoreComponents from './core/components';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -58,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatSidenavModule,
     MatSnackBarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [fromCoreComponents.AppComponent]
