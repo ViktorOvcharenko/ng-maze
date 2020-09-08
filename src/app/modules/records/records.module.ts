@@ -9,8 +9,7 @@ import * as fromComponents from './components';
 @NgModule({
   declarations: [
     fromContainers.RecordsComponent,
-    fromComponents.RecordsListComponent,
-    fromComponents.RecordItemComponent,
+    fromComponents.RecordsListComponent
   ],
   imports: [
     CommonModule,

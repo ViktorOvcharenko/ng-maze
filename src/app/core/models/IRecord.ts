@@ -3,4 +3,5 @@ export interface IRecord {
   username: string;
   date: Date;
   mode: string;
+  position?: number;
 }
