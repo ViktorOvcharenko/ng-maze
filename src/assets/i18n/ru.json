@@ -6,7 +6,8 @@
     "sign-up": "зарегистрироваться",
     "guest": "гость",
     "settings": "настройки",
-    "logout": "выйти"
+    "logout": "выйти",
+    "do-you-want-logout": "Вы хотите выйти?"
   },
   "settings": {
     "choose-your-language": "Выберите предпочитаемый язык приложения:",

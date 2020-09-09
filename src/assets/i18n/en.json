@@ -6,7 +6,8 @@
     "sign-up": "sign up",
     "guest": "guest",
     "settings": "settings",
-    "logout": "logout"
+    "logout": "logout",
+    "do-you-want-logout": "Do you want to logout?"
   },
   "settings": {
     "choose-your-language": "Choose your preferred application language:",
