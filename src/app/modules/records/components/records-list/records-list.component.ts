@@ -13,13 +13,14 @@ import * as fromModels from '../../../../core/models';
 export class RecordsListComponent implements OnInit {
   @Input() records: fromModels.IRecord[];
   public displayedColumns: string[] = ['position', 'username', 'score', 'date'];
-  public dataSource = new MatTableDataSource(this.records);
+  public dataSource: MatTableDataSource<fromModels.IRecord> = new MatTableDataSource(this.records);
 
   private lang = localStorage.getItem('language');
 
   constructor(public translateService: TranslateService) { }
 
   ngOnInit() {
+    console.log(this.dataSource)
     if (this.lang) {
       this.translateService.currentLang = this.lang;
     }
