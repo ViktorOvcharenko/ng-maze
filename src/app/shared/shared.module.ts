@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -16,7 +16,7 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatTableModule
   ],
   exports: [
     FormsModule,
@@ -25,7 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatTableModule
   ]
 })
 export class SharedModule { }

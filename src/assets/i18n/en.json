@@ -6,7 +6,8 @@
     "sign-up": "sign up",
     "guest": "guest",
     "settings": "settings",
-    "logout": "logout"
+    "logout": "logout",
+    "do-you-want-logout": "Do you want to logout?"
   },
   "settings": {
     "choose-your-language": "Choose your preferred application language:",
@@ -39,7 +40,9 @@
     "name-is-required": "Name is required",
     "email-is-not-valid": "Email is not valid",
     "password-is-required-and-must": "Password is required and must contain uppercase and lowercase\nletters and digits and must be at least eight characters",
-    "min-length-is-2-char": "The min length is 2 char, and the max length is 10 char"
+    "min-length-is-2-char": "The min length is 2 char, and the max length is 10 char",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
   },
   "maze": {
     "you-should-flip-your-device-to-play": "You should flip your device to play",
