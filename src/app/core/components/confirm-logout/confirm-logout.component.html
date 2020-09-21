@@ -2,6 +2,6 @@
   <p>{{ 'core.do-you-want-logout' | translate }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="confirm()">Confirm</button>
-  <button mat-button (click)="cancel()" cdkFocusInitial>No Thanks</button>
+  <button mat-button (click)="confirm()">{{ 'auth.confirm' | translate }}</button>
+  <button mat-button (click)="cancel()" cdkFocusInitial>{{ 'auth.cancel' | translate }}</button>
 </div>
