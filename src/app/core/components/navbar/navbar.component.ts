@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmLogoutComponent } from '..';
+import { ConfirmLogoutComponent } from '../confirm-logout/confirm-logout.component';
 
 import * as fromCoreServices from '../../services';
+
 
 @Component({
   selector: 'app-navigation',

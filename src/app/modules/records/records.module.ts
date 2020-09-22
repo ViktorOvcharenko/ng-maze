@@ -9,13 +9,12 @@ import * as fromComponents from './components';
 @NgModule({
   declarations: [
     fromContainers.RecordsComponent,
-    fromComponents.RecordsListComponent
+    fromComponents.RecordsListComponent,
   ],
   imports: [
     CommonModule,
     RecordsRoutingModule,
-    SharedModule
-  ],
-  providers: []
+    SharedModule,
+  ]
 })
 export class RecordsModule { }
