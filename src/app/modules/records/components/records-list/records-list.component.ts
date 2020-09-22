@@ -20,7 +20,6 @@ export class RecordsListComponent implements OnInit {
   constructor(public translateService: TranslateService) { }
 
   ngOnInit() {
-    console.log(this.dataSource)
     if (this.lang) {
       this.translateService.currentLang = this.lang;
     }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { SharedModule } from './shared/shared.module';
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -17,8 +17,10 @@ import { registerLocaleData } from '@angular/common';
 import { environment } from '../environments/environment';
 import { appReducers } from './core/store/reducers/app.reducers';
 import localeRu from '@angular/common/locales/ru';
+import { ConfirmLogoutComponent } from './core/components/confirm-logout/confirm-logout.component';
 
 import * as fromCoreComponents from './core/components';
+
 
 registerLocaleData(localeRu, 'ru');
 
@@ -32,13 +34,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     fromCoreComponents.MainLayoutComponent,
     fromCoreComponents.HeaderComponent,
     fromCoreComponents.NavbarComponent,
-    fromCoreComponents.ConfirmLogoutComponent
+    ConfirmLogoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     SharedModule,
+    NoopAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -51,10 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EffectsModule.forRoot([ MazeEffects ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production === false }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    NoopAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
-  bootstrap: [fromCoreComponents.AppComponent]
+  bootstrap: [ fromCoreComponents.AppComponent ]
 })
 export class AppModule { }
