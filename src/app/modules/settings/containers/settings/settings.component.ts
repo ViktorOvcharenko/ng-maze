@@ -10,7 +10,7 @@ import {
   UpdateIsWinn
 } from '../../../../core/store/actions/maze.actions';
 import { Observable } from 'rxjs';
-import { getAccountLang } from '../../../../core/store/selectors/account.selector';
+import { getAccountLang } from '../../../../core/store/selectors/account.selectors';
 import { getHeroMode, getLevelMode, getWallMode } from '../../../../core/store/selectors/maze.selectors';
 
 import * as fromModels from '../../../../core/models';
