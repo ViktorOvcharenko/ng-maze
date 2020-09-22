@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmLogoutComponent } from '..';
 
-import * as fromCoreComponents from '../../components';
 import * as fromCoreServices from '../../services';
 
 @Component({
@@ -21,7 +21,7 @@ export class NavbarComponent {
   ) {}
 
   public logout():void {
-    const dialogRef = this.dialog.open(fromCoreComponents.ConfirmLogoutComponent, { width: '300px' });
+    const dialogRef = this.dialog.open(ConfirmLogoutComponent, { width: '300px' });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
