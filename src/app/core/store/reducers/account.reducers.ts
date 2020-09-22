@@ -14,7 +14,7 @@ export const accountReducers = (
     case EAccountActions.SetLanguageFromStorage: {
       return { ...state, lang: action.payload };
     }
-    case EAccountActions.GetUserName: {
+    case EAccountActions.SetUserName: {
       return { ...state, userName: action.payload };
     }
     case EAccountActions.ClearUserName: {

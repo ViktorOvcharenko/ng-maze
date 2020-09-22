@@ -5,11 +5,13 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { StoreModule } from '@ngrx/store';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -22,7 +24,6 @@ import localeRu from '@angular/common/locales/ru';
 import { registerLocaleData } from '@angular/common';
 
 import * as fromCoreComponents from './core/components';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -35,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     fromCoreComponents.AppComponent,
     fromCoreComponents.MainLayoutComponent,
     fromCoreComponents.HeaderComponent,
-    fromCoreComponents.NavigationComponent
+    fromCoreComponents.NavbarComponent,
+    fromCoreComponents.ConfirmLogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatDialogModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],

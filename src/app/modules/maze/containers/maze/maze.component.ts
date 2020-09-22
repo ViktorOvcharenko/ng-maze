@@ -19,7 +19,7 @@ import {
   getHeroMode,
   getWallMode
 } from '../../../../core/store/selectors/maze.selectors';
-import { getUserName } from '../../../../core/store/selectors/account.selector';
+import { getUserName } from '../../../../core/store/selectors/account.selectors';
 
 import * as _ from 'lodash';
 import * as fromModels from '../../../../core/models';

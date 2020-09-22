@@ -14,7 +14,8 @@ import * as fromModels from '../../../../core/models';
 export class RecordsComponent implements OnInit, OnDestroy {
   private records$: Observable<fromModels.IRecord[]>;
   private levelMode$: Observable<string>;
-  public recordsSorted: fromModels.IRecord[];
+  private recordsSorted: fromModels.IRecord[];
+  public recordsSortedWithIndex: fromModels.IRecord[];
   private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private store: Store) {
@@ -35,6 +36,7 @@ export class RecordsComponent implements OnInit, OnDestroy {
         records = [];
       }
       this.recordsSorted = [...records].sort(this.compareScores);
+      this.recordsSortedWithIndex = this.addIndexRoRecords(this.recordsSorted);
     });
   }
 
@@ -45,5 +47,11 @@ export class RecordsComponent implements OnInit, OnDestroy {
 
   private compareScores(a: fromModels.IRecord, b: fromModels.IRecord): number {
     return a.score - b.score;
+  }
+
+  private addIndexRoRecords(records: fromModels.IRecord[]): fromModels.IRecord[] {
+    return records.map((record, index) => {
+      return { ...record, position: index + 1 };
+    });
   }
 }
