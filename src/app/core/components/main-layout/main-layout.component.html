@@ -1,10 +1,12 @@
 <app-header [drawer]="drawer"></app-header>
 <mat-drawer-container autosize>
   <mat-drawer #drawer class="sidenav-container" mode="over">
-    <app-navigation
-      [drawer]="drawer"
-      [drawerLocation]="true"
-    ></app-navigation>
+    <div class="mat-drawer-inner-container">
+      <app-navigation
+        [drawer]="drawer"
+        [drawerLocation]="true"
+      ></app-navigation>
+    </div>
   </mat-drawer>
   <main>
     <router-outlet></router-outlet>

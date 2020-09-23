@@ -96,24 +96,39 @@
     background-image: url('../../../../../assets/images/crumb/crumb-win.png');
     background-size: 75%;
   }
+
+  .om-nom-go {
+    background-image: url('../../../../../assets/images/om-nom/om-nom-go.png');
+    background-size: 95%;
+  }
+
+  .om-nom-goal {
+    background-image: url('../../../../../assets/images/om-nom/om-nom-goal.png');
+    background-size: 105%;
+  }
+
+  .om-nom-win {
+    background-image: url('../../../../../assets/images/om-nom/om-nom-win.png');
+    background-size: 135%;
+  }
 }
 
 .bricks {
-  background-image: url('../../../../../assets/images/wall/bricks.jpg');
+  background-image: url('../../../../../assets/images/walls/bricks.jpg');
   background-size: 1000%;
 }
 
 .ice {
-  background-image: url('../../../../../assets/images/wall/ice.jpg');
+  background-image: url('../../../../../assets/images/walls/ice.jpg');
   background-size: 300%;
 }
 
 .leaves {
-  background-image: url('../../../../../assets/images/wall/leaves.jpg');
+  background-image: url('../../../../../assets/images/walls/leaves.jpg');
   background-size: 100%;
 }
 
 .sand {
-  background-image: url('../../../../../assets/images/wall/sand.jpg');
+  background-image: url('../../../../../assets/images/walls/sand.jpg');
   background-size: 300%;
 }
