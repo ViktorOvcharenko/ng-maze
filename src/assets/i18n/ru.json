@@ -47,5 +47,11 @@
   "maze": {
     "you-should-flip-your-device-to-play": "Вы должны перевернуть свое устройство, чтобы играть",
     "congratulations-this-is-new-record": "Поздравляем, это новый рекорд!"
+  },
+  "records": {
+    "position": "Позиция",
+    "name": "Имя",
+    "score": "Счёт",
+    "date": "Дата"
   }
 }

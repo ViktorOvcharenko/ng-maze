@@ -47,5 +47,11 @@
   "maze": {
     "you-should-flip-your-device-to-play": "You should flip your device to play",
     "congratulations-this-is-new-record": "Congratulations, this is a new record!"
+  },
+  "records": {
+    "position": "Position",
+    "name": "Name",
+    "score": "Score",
+    "date": "Date"
   }
 }
