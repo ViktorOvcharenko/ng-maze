@@ -24,6 +24,7 @@
     "george": "джордж",
     "gekko": "гекко",
     "crumb": "крошик",
+    "om-nom": "ам ням",
     "bricks": "кирпичи",
     "ice": "лёд",
     "leaves": "листья",
@@ -47,5 +48,11 @@
   "maze": {
     "you-should-flip-your-device-to-play": "Вы должны перевернуть свое устройство, чтобы играть",
     "congratulations-this-is-new-record": "Поздравляем, это новый рекорд!"
+  },
+  "records": {
+    "position": "Позиция",
+    "name": "Имя",
+    "score": "Счёт",
+    "date": "Дата"
   }
 }

@@ -6,4 +6,5 @@ export const HEROES: fromModels.IMode[] = [
   { value: 'settings.gekko', viewValue: 'settings.gekko' },
   { value: 'settings.crumb', viewValue: 'settings.crumb' },
   { value: 'settings.gomer', viewValue: 'settings.gomer' },
+  { value: 'settings.om-nom', viewValue: 'settings.om-nom' },
 ];
