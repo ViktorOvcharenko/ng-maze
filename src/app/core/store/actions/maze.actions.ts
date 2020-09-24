@@ -58,7 +58,7 @@ export class ClearScore implements Action {
   public readonly type = EMazeActions.ClearScore;
 }
 
-export class UpdateIsWinn implements Action {
+export class UpdateIsWin implements Action {
   public readonly type = EMazeActions.UpdateIsWin;
   constructor(public payload: boolean) {}
 }
@@ -99,7 +99,7 @@ export type MazeActions =
   SetWallModeFromStorage |
   ScoreTick |
   ClearScore |
-  UpdateIsWinn |
+  UpdateIsWin |
   AddRecord |
   AddRecordSuccess |
   AddRecordFail |
