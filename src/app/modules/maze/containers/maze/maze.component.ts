@@ -5,7 +5,7 @@ import {
   ClearScore,
   GetRecords,
   ScoreTick,
-  UpdateIsWinn
+  UpdateIsWin
 } from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subject, Subscription } from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
@@ -171,7 +171,7 @@ export class MazeComponent implements OnInit, OnDestroy {
 
   private startScore(): void {
     this.store.dispatch(new ClearScore());
-    this.store.dispatch(new UpdateIsWinn(false));
+    this.store.dispatch(new UpdateIsWin(false));
 
     this.stopScore();
 
@@ -186,7 +186,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   }
 
   private win(): void {
-    this.store.dispatch(new UpdateIsWinn(true));
+    this.store.dispatch(new UpdateIsWin(true));
     this.stopScore();
     this.recordSub$ = combineLatest([this.levelMode$, this.score$, this.userName$, this.records$])
       .pipe( takeUntil(this.destroy$) )

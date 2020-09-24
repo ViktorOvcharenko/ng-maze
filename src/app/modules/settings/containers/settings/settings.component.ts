@@ -7,7 +7,7 @@ import {
   SetHeroMode,
   SetLevelMode,
   SetWallMode,
-  UpdateIsWinn
+  UpdateIsWin
 } from '../../../../core/store/actions/maze.actions';
 import { Observable } from 'rxjs';
 import { getAccountLang } from '../../../../core/store/selectors/account.selectors';
@@ -56,7 +56,7 @@ export class SettingsComponent {
     this.mazeService.refreshHeroLocation();
     this.store.dispatch(new SetLevelMode(levelMode));
     this.store.dispatch(new ClearScore());
-    this.store.dispatch(new UpdateIsWinn(false));
+    this.store.dispatch(new UpdateIsWin(false));
   }
 
   public selectHeroMode(heroMode: string): void {
