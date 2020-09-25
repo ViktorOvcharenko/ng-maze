@@ -1,6 +1,8 @@
+@import "src/assets/styles/variables";
+
 .maze-page {
   padding: 0 20px;
-  height: calc(100vh - 70px);
+  height: $calculated-desktop-header-height;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -8,12 +10,12 @@
 
   @media screen and (max-width: 1023px) and (orientation:landscape) {
     padding: 0 8px;
-    height: calc(100vh - 60px);
+    height: $calculated-mobile-header-height;
   }
 
   @media screen and (max-width: 767px) and (orientation:portrait) {
     padding: 0 8px;
-    height: calc(100vh - 60px);
+    height: $calculated-mobile-header-height;
   }
 }
 
