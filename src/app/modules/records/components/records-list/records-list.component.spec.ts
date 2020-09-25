@@ -1,11 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { RecordsListComponent } from '../records-list/records-list.component';
 
 describe('RecordsListComponent', () => {
   let component: RecordsListComponent;
   let fixture: ComponentFixture<RecordsListComponent>;
-  let translateService: TranslateService
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,7 +20,7 @@ describe('RecordsListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

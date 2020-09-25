@@ -12,11 +12,11 @@ import * as fromModels from '../../../../core/models';
   templateUrl: './records.component.html'
 })
 export class RecordsComponent implements OnInit, OnDestroy {
-  private records$: Observable<fromModels.IRecord[]>;
-  private levelMode$: Observable<string>;
-  private recordsSorted: fromModels.IRecord[];
+  public records$: Observable<fromModels.IRecord[]>;
+  public levelMode$: Observable<string>;
+  public recordsSorted: fromModels.IRecord[];
   public recordsSortedWithIndex: fromModels.IRecord[];
-  private destroy$: Subject<void> = new Subject<void>();
+  public destroy$: Subject<void> = new Subject<void>();
 
   constructor(private store: Store) {
     this.levelMode$ = this.store.pipe(select(getLevelMode));
