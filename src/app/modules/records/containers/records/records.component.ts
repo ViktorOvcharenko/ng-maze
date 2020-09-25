@@ -12,11 +12,11 @@ import * as fromModels from '../../../../core/models';
   templateUrl: './records.component.html'
 })
 export class RecordsComponent implements OnInit, OnDestroy {
-  private records$: Observable<fromModels.IRecord[]>;
-  private levelMode$: Observable<string>;
-  private recordsSorted: fromModels.IRecord[];
+  public records$: Observable<fromModels.IRecord[]>;
+  public levelMode$: Observable<string>;
+  public recordsSorted: fromModels.IRecord[];
   public recordsSortedWithIndex: fromModels.IRecord[];
-  private destroy$: Subject<void> = new Subject<void>();
+  public destroy$: Subject<void> = new Subject<void>();
 
   constructor(private store: Store) {
     this.levelMode$ = this.store.pipe(select(getLevelMode));
@@ -36,7 +36,7 @@ export class RecordsComponent implements OnInit, OnDestroy {
         records = [];
       }
       this.recordsSorted = [...records].sort(this.compareScores);
-      this.recordsSortedWithIndex = this.addIndexRoRecords(this.recordsSorted);
+      this.recordsSortedWithIndex = this.addPositionToRecords(this.recordsSorted);
     });
   }
 
@@ -45,11 +45,11 @@ export class RecordsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private compareScores(a: fromModels.IRecord, b: fromModels.IRecord): number {
+  public compareScores(a: fromModels.IRecord, b: fromModels.IRecord): number {
     return a.score - b.score;
   }
 
-  private addIndexRoRecords(records: fromModels.IRecord[]): fromModels.IRecord[] {
+  public addPositionToRecords(records: fromModels.IRecord[]): fromModels.IRecord[] {
     return records.map((record, index) => {
       return { ...record, position: index + 1 };
     });

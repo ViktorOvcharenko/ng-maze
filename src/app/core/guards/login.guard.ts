@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { CanActivate } from '@angular/router';
 
 import * as fromCoreServices from '../services';
 

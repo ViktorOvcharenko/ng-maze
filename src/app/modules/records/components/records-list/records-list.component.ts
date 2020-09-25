@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 
 import * as fromModels from '../../../../core/models';
+import * as fromConstants from '../../../../core/constants';
 
 @Component({
   selector: 'app-records-list',
@@ -12,9 +13,8 @@ import * as fromModels from '../../../../core/models';
 })
 export class RecordsListComponent implements OnInit {
   @Input() records: fromModels.IRecord[];
-  public displayedColumns: string[] = ['position', 'username', 'score', 'date'];
+  public displayedColumns: string[] = fromConstants.RECORDS_TABLE_HEADERS;
   public dataSource: MatTableDataSource<fromModels.IRecord> = new MatTableDataSource(this.records);
-
   private lang = localStorage.getItem('language');
 
   constructor(public translateService: TranslateService) { }
