@@ -1,5 +1,7 @@
+@import "src/assets/styles/variables";
+
 .mat-toolbar {
-  height: 70px;
+  height: $desktop-header-height;
   font-weight: 700;
   position: fixed;
   left: 0;
@@ -8,18 +10,18 @@
   z-index: 2;
 
   @media screen and (max-width: 1023px) and (orientation:landscape) {
-    height: 60px;
-    min-height: 60px;
+    height: $mobile-header-height;
+    min-height: $mobile-header-height;
   }
 
   @media screen and (max-width: 767px) and (orientation:portrait) {
-    height: 60px;
-    min-height: 60px;
+    height: $mobile-header-height;
+    min-height: $mobile-header-height;
   }
 
   .mat-toolbar-row {
     @media screen and (max-width: 767px) {
-      height: 60px;
+      height: $mobile-header-height;
       padding: 0 8px;
     }
   }

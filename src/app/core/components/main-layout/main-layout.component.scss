@@ -1,3 +1,5 @@
+@import "src/assets/styles/variables";
+
 .mat-drawer-container {
   position: absolute;
   top: 0;
@@ -18,7 +20,15 @@
 
 main {
   position: relative;
-  top: 70px;
+  top: $desktop-header-height;
+
+  @media screen and (max-width: 1023px) and (orientation:landscape) {
+    top: $mobile-header-height;
+  }
+
+  @media screen and (max-width: 767px) and (orientation:portrait) {
+    top: $mobile-header-height;
+  }
 }
 
 .sidenav-container {
