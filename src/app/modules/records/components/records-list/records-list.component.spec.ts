@@ -8,8 +8,12 @@ describe('RecordsListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecordsListComponent ],
-      imports: [ TranslateModule.forRoot() ]
+      declarations: [
+        RecordsListComponent
+      ],
+      imports: [
+        TranslateModule.forRoot()
+      ]
     })
     .compileComponents();
   }));
