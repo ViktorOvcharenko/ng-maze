@@ -5,7 +5,7 @@ import { AuthServiceMock } from '../test/services';
 
 describe('LoginGuard', () => {
   let guard: LoginGuard;
-  let authService;
+  let authService: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
