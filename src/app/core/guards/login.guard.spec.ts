@@ -18,11 +18,9 @@ describe('LoginGuard', () => {
     authService = TestBed.inject(AuthService);
   });
 
-  describe('canActivate', () => {
-    it('should return true if not isAuthenticated', () => {
-      spyOn(authService, 'isAuthenticated').and.callFake(() => false);
+  it('should return true if not isAuthenticated', () => {
+    spyOn(authService, 'isAuthenticated').and.callFake(() => false);
 
-      expect(guard.canActivate()).toBeTruthy();
-    })
+    expect(guard.canActivate()).toBeTruthy();
   });
 });
