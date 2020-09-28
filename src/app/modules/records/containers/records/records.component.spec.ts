@@ -5,6 +5,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
 import { GetRecords } from '../../../../core/store/actions/maze.actions';
 import { IRecord } from '../../../../core/models';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('RecordsComponent', () => {
   let component: RecordsComponent;
@@ -27,21 +28,16 @@ describe('RecordsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        RecordsComponent
-      ],
-      imports: [
-        TranslateModule.forRoot()
-      ],
+      declarations: [ RecordsComponent ],
+      imports: [ TranslateModule.forRoot() ],
       providers: [
         provideMockStore({
           initialState: {
-            maze: {
-              levelMode: 'test'
-            }
+            maze: { levelMode: 'test' }
           }
-        } ),
-      ]
+        }),
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
     store = TestBed.inject(Store);

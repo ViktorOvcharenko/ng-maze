@@ -16,13 +16,11 @@ describe('AuthGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [ RouterTestingModule ],
       providers: [
         AuthGuard,
-        { provide: AuthService, useClass: AuthServiceMock },
-        provideMockStore()
+        provideMockStore(),
+        { provide: AuthService, useClass: AuthServiceMock }
       ]
     });
     guard = TestBed.inject(AuthGuard);
@@ -31,32 +29,30 @@ describe('AuthGuard', () => {
     store = TestBed.inject(Store);
   });
 
-  describe('canActivate', () => {
-    it('should return true if isAuthenticated', () => {
-      spyOn(authService, 'isAuthenticated').and.callFake(() => true);
+  it('should return true if isAuthenticated', () => {
+    spyOn(authService, 'isAuthenticated').and.callFake(() => true);
 
-      expect(guard.canActivate).toBeTruthy();
-    });
+    expect(guard.canActivate).toBeTruthy();
+  });
 
-    it('should call the SetUserName if isAuthenticated', () => {
-      const action = new SetUserName('test');
-      const localStore = { 'fb-username': 'test' };
-      spyOn(authService, 'isAuthenticated').and.callFake(() => true);
-      spyOn(store, 'dispatch');
-      spyOn(localStorage, 'getItem').and.callFake(key => localStore[key]);
+  it('should call the SetUserName if isAuthenticated', () => {
+    const action = new SetUserName('test');
+    const localStore = { 'fb-username': 'test' };
+    spyOn(authService, 'isAuthenticated').and.callFake(() => true);
+    spyOn(store, 'dispatch');
+    spyOn(localStorage, 'getItem').and.callFake(key => localStore[key]);
 
-      guard.canActivate();
+    guard.canActivate();
 
-      expect(store.dispatch).toHaveBeenCalledWith(action);
-    });
+    expect(store.dispatch).toHaveBeenCalledWith(action);
+  });
 
-    it('should navigate to /auth/login if not isAuthenticated', () => {
-      spyOn(authService, 'isAuthenticated').and.callFake(() => false);
-      spyOn(router, 'navigate');
+  it('should navigate to /auth/login if not isAuthenticated', () => {
+    spyOn(authService, 'isAuthenticated').and.callFake(() => false);
+    spyOn(router, 'navigate');
 
-      guard.canActivate();
+    guard.canActivate();
 
-      expect(router.navigate).toHaveBeenCalledWith(['/auth', 'login']);
-    });
+    expect(router.navigate).toHaveBeenCalledWith(['/auth', 'login']);
   });
 });
