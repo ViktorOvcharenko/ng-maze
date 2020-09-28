@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfirmLogoutComponent } from './confirm-logout.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ConfirmLogoutComponent', () => {
   let component: ConfirmLogoutComponent;
@@ -11,21 +11,15 @@ describe('ConfirmLogoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        ConfirmLogoutComponent
-      ],
+      declarations: [ ConfirmLogoutComponent ],
       imports: [
         TranslateModule.forRoot(),
         MatDialogModule
       ],
       providers: [
-        {
-          provide : MatDialogRef,
-          useValue : {
-            close: () => null
-          }
-        }
-      ]
+        { provide : MatDialogRef, useValue : { close: () => null } }
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
       .compileComponents();
     dialogRef = TestBed.inject(MatDialogRef);

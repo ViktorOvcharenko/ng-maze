@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { RecordsListComponent } from '../records-list/records-list.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('RecordsListComponent', () => {
   let component: RecordsListComponent;
@@ -8,12 +9,9 @@ describe('RecordsListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        RecordsListComponent
-      ],
-      imports: [
-        TranslateModule.forRoot()
-      ]
+      declarations: [ RecordsListComponent ],
+      imports: [ TranslateModule.forRoot() ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

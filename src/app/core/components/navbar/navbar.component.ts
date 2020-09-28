@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { ConfirmLogoutComponent } from '../confirm-logout/confirm-logout.component';
 
 import * as fromCoreServices from '../../services';
@@ -15,6 +15,7 @@ import * as fromCoreServices from '../../services';
 export class NavbarComponent {
   @Input() drawer: MatDrawer;
   @Input() drawerLocation: boolean;
+  public dialogRef: MatDialogRef<ConfirmLogoutComponent>
 
   constructor(
     private authService: fromCoreServices.AuthService,
@@ -22,9 +23,9 @@ export class NavbarComponent {
   ) {}
 
   public logout():void {
-    const dialogRef = this.dialog.open(ConfirmLogoutComponent, { width: '300px' });
+    this.dialogRef = this.dialog.open(ConfirmLogoutComponent, { width: '300px' });
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.authService.logout();
       }
