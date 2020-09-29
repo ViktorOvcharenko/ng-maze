@@ -13,10 +13,11 @@ import * as fromModels from '../models';
   providedIn: 'root'
 })
 export class AuthService {
+  public expDate: number;
 
   get token(): string {
-    const expDate = new Date(localStorage.getItem('fb-token-exp'));
-    if (new Date() > expDate) {
+    this.expDate = new Date(localStorage.getItem('fb-token-exp')).getTime();
+    if (Date.now() > this.expDate) {
       this.logout();
       return null;
     }
@@ -34,7 +35,7 @@ export class AuthService {
   }
 
   public login(user: fromModels.IUser): Observable<any> {
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
+    return this.http.post<fromModels.IFbAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
         tap(AuthService.setResponseData),
         catchError(this.handleError.bind(this))
@@ -42,7 +43,7 @@ export class AuthService {
   }
 
   public signUp(user: fromModels.IUser): Observable<any> {
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`, user)
+    return this.http.post<fromModels.IFbAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`, user)
       .pipe(
         tap(AuthService.setResponseData),
         catchError(this.handleError.bind(this))

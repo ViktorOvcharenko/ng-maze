@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { TranslateServiceMock } from '../../test/services/translate.service.mock';
+import { TranslateServiceMock } from '../../test/services/';
 import {
   SetHeroModeFromStorage,
   SetLevelModeFromStorage,
