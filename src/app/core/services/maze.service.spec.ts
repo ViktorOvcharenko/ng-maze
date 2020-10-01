@@ -4,6 +4,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { NgZone } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
+import * as fromConstants from '../constants';
+
 describe('MazeService', () => {
   let service: MazeService;
   let backend: HttpTestingController;
@@ -14,6 +16,11 @@ describe('MazeService', () => {
     date: new Date(),
     mode: 'test'
   }];
+
+  const recordsRequestBodyResult = {
+    mode: 'medium',
+    records: recordsResult
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,9 +33,19 @@ describe('MazeService', () => {
   });
 
   describe('generateMaze', () => {
-    it('should return height 14 width 44 if hard mode', () => {
-      expect(service.generateMaze('settings.hard').length).toBeTruthy(14);
-      expect(service.generateMaze('settings.hard')[0]).toBeTruthy(44);
+    it('should return height and width for hard if hard mode', () => {
+      expect(service.generateMaze(fromConstants.LEVELS[0].value).length).toBe(fromConstants.LEVELS[0].height + 3);
+      expect(service.generateMaze(fromConstants.LEVELS[0].value)[0].length).toBe(fromConstants.LEVELS[0].width + 3);
+    });
+
+    it('should return height and width for medium if medium mode', () => {
+      expect(service.generateMaze(fromConstants.LEVELS[1].value).length).toBe(fromConstants.LEVELS[1].height + 3);
+      expect(service.generateMaze(fromConstants.LEVELS[1].value)[0].length).toBe(fromConstants.LEVELS[1].width + 3);
+    });
+
+    it('should return height and width for easy if easy mode', () => {
+      expect(service.generateMaze(fromConstants.LEVELS[2].value).length).toBe(fromConstants.LEVELS[2].height + 2);
+      expect(service.generateMaze(fromConstants.LEVELS[2].value)[0].length).toBe(fromConstants.LEVELS[2].width + 2);
     });
   });
 
@@ -55,6 +72,19 @@ describe('MazeService', () => {
         method: 'GET',
         url: `${environment.fbDBUrl}/${pathMode}.json`
       }).flush(recordsResult);
+    });
+  });
+
+  describe('addRecord', () => {
+    it('should add records', () => {
+      service.addRecord(recordsRequestBodyResult).subscribe(response => {
+        expect(response).toEqual(recordsRequestBodyResult.records);
+      });
+
+      backend.expectOne({
+        method: 'PUT',
+        url: `${environment.fbDBUrl}/${recordsRequestBodyResult.mode}.json`
+      }).flush(recordsRequestBodyResult.records);
     });
   });
 });
