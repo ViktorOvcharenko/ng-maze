@@ -1,7 +1,8 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { RecordsListComponent } from '../records-list/records-list.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 
 describe('RecordsListComponent', () => {
   let component: RecordsListComponent;
@@ -22,7 +23,7 @@ describe('RecordsListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it('should be created',  () => {
     expect(component).toBeTruthy();
   });
 });
