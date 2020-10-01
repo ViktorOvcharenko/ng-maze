@@ -8,7 +8,7 @@ import {
   UpdateIsWin
 } from '../../../../core/store/actions/maze.actions';
 import { combineLatest, interval, Observable, Subject, Subscription } from 'rxjs';
-import {take, takeUntil} from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import {

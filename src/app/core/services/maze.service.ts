@@ -9,14 +9,12 @@ import * as fromConstants from '../constants';
 @Injectable({ providedIn: 'root' })
 export class MazeService {
   public maze: fromModels.IMaze = [];
-  public heroLocation: fromModels.IHeroLocation = {
-    x: 0,
-    y: 1
-  };
+  public heroLocation: fromModels.IHeroLocation = { x: 0, y: 1 };
 
   constructor(
     private ngZone: NgZone,
-    private http: HttpClient) {}
+    private http: HttpClient
+  ) {}
 
   public generateMaze (mode: string): fromModels.IMaze {
     return this.ngZone.runOutsideAngular(() => {
@@ -27,18 +25,18 @@ export class MazeService {
 
       switch (mode) {
         case fromConstants.LEVELS[0].value: {
-          height = 14;
-          width = 44;
+          height = fromConstants.LEVELS[0].height;
+          width = fromConstants.LEVELS[0].width;
         }
           break;
         case fromConstants.LEVELS[2].value: {
-          height = 7;
-          width = 25;
+          height = fromConstants.LEVELS[2].height;
+          width = fromConstants.LEVELS[2].width;
         }
           break;
         default: {
-          height = 10;
-          width = 34;
+          height = fromConstants.LEVELS[1].height;
+          width = fromConstants.LEVELS[1].width;
         }
       }
 

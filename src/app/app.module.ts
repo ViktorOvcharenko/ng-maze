@@ -21,7 +21,6 @@ import { ConfirmLogoutComponent } from './core/components/confirm-logout/confirm
 
 import * as fromCoreComponents from './core/components';
 
-
 registerLocaleData(localeRu, 'ru');
 
 export function HttpLoaderFactory(http: HttpClient) {
