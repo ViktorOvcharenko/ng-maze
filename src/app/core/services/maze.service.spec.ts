@@ -1,7 +1,7 @@
 import { TestBed } from "@angular/core/testing";
-import { MazeService } from './maze.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NgZone } from '@angular/core';
+import { MazeService } from './maze.service';
 import { environment } from '../../../environments/environment';
 
 import * as fromConstants from '../constants';
@@ -34,18 +34,24 @@ describe('MazeService', () => {
 
   describe('generateMaze', () => {
     it('should return height and width for hard if hard mode', () => {
-      expect(service.generateMaze(fromConstants.LEVELS[0].value).length).toBe(fromConstants.LEVELS[0].height + 3);
-      expect(service.generateMaze(fromConstants.LEVELS[0].value)[0].length).toBe(fromConstants.LEVELS[0].width + 3);
+      expect(service.generateMaze(fromConstants.LEVELS[0].value).length)
+        .toBe(fromConstants.LEVELS[0].height + 3);
+      expect(service.generateMaze(fromConstants.LEVELS[0].value)[0].length)
+        .toBe(fromConstants.LEVELS[0].width + 3);
     });
 
     it('should return height and width for medium if medium mode', () => {
-      expect(service.generateMaze(fromConstants.LEVELS[1].value).length).toBe(fromConstants.LEVELS[1].height + 3);
-      expect(service.generateMaze(fromConstants.LEVELS[1].value)[0].length).toBe(fromConstants.LEVELS[1].width + 3);
+      expect(service.generateMaze(fromConstants.LEVELS[1].value).length)
+        .toBe(fromConstants.LEVELS[1].height + 3);
+      expect(service.generateMaze(fromConstants.LEVELS[1].value)[0].length)
+        .toBe(fromConstants.LEVELS[1].width + 3);
     });
 
     it('should return height and width for easy if easy mode', () => {
-      expect(service.generateMaze(fromConstants.LEVELS[2].value).length).toBe(fromConstants.LEVELS[2].height + 2);
-      expect(service.generateMaze(fromConstants.LEVELS[2].value)[0].length).toBe(fromConstants.LEVELS[2].width + 2);
+      expect(service.generateMaze(fromConstants.LEVELS[2].value).length)
+        .toBe(fromConstants.LEVELS[2].height + 2);
+      expect(service.generateMaze(fromConstants.LEVELS[2].value)[0].length)
+        .toBe(fromConstants.LEVELS[2].width + 2);
     });
   });
 
