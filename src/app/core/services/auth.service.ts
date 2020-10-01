@@ -15,6 +15,12 @@ import * as fromModels from '../models';
 export class AuthService {
   public expDate: number;
 
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
+    private store: Store
+  ) {}
+
   get token(): string {
     this.expDate = new Date(localStorage.getItem('fb-token-exp')).getTime();
     if (Date.now() > this.expDate) {
@@ -23,12 +29,6 @@ export class AuthService {
     }
     return localStorage.getItem('fb-token');
   }
-
-  constructor(
-    private http: HttpClient,
-    private snackBar: MatSnackBar,
-    private store: Store
-  ) {}
 
   public isAuthenticated(): boolean {
     return !!this.token;
@@ -68,7 +68,7 @@ export class AuthService {
     }
   }
 
-  private handleError(error: HttpErrorResponse) {
+  public handleError(error: HttpErrorResponse) {
     const { message } = error.error.error;
 
     this.snackBar.open(message, 'close',{

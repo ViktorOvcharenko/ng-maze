@@ -4,18 +4,35 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { provideMockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from '../../../environments/environment';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('AuthService', () => {
   let service: AuthService;
   let backend: HttpTestingController;
   let snackBar: MatSnackBar;
   let store: Store<any>;
-  const localStore = { 'fb-token': 'test' };
-  const user =  {
+  const localStore = {};
+  const resResult = {
+    idToken:	'test',
+    email:	'test',
+    refreshToken:	'test',
+    expiresIn:	'test',
+    localId:	'test',
+    registered:	false
+  };
+  const user = {
     email: 'test',
     password: 'test',
     returnSecureToken: false
   };
+  const error = new HttpErrorResponse({
+    error: {
+      error: {
+        message: 'test'
+      }
+    }
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,14 +52,10 @@ describe('AuthService', () => {
   });
 
   describe('token', () => {
-    it('should return the token if now more than expDate', () => {
+    it('should call logout if now less than expDate and return null', () => {
+      localStore['fb-token-exp'] = new Date(0);
       spyOn(localStorage, 'getItem').and.callFake(key => localStore[key]);
-
-      expect(service.token).toBe('test');
-    });
-
-    xit('should call logout if now less than expDate and return null', () => {
-      service.expDate = 0;
+      spyOn(service, 'logout');
 
       expect(service.token).toBeNull();
       expect(service.logout).toHaveBeenCalled();
@@ -54,6 +67,29 @@ describe('AuthService', () => {
       spyOnProperty(service, 'token').and.returnValue(() => 'test');
 
       expect(service.isAuthenticated()).toBeTruthy();
+    });
+  });
+
+  describe('login', () => {
+    it('should return IFbAuthResponse', () => {
+      service.login(user).subscribe(response => {
+        expect(response).toEqual(resResult);
+      });
+
+      backend.expectOne({
+        method: 'POST',
+        url: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,
+      }).flush(resResult);
+    });
+  });
+
+  describe('handleError', () => {
+    it('should call open from snackBar', () => {
+      spyOn(snackBar, 'open');
+
+      service.handleError(error);
+
+      expect(snackBar.open).toHaveBeenCalled();
     });
   });
 });
