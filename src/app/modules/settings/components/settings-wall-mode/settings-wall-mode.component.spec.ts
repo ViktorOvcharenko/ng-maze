@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingsWallModeComponent } from './settings-wall-mode.component';
-import {TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SettingsWallModeComponent', () => {
   let component: SettingsWallModeComponent;
@@ -23,7 +23,7 @@ describe('SettingsWallModeComponent', () => {
   });
 
   describe('selectHeroMode', () => {
-    it('should emit onSelectHeroMode', () => {
+    it('should emit onSelectWallMode', () => {
       spyOn(component.onSelectWallMode, 'emit');
       const result = 'test';
 

@@ -23,7 +23,7 @@ describe('SettingsLanguageComponent', () => {
   });
 
   describe('selectHeroMode', () => {
-    it('should emit onSelectHeroMode', () => {
+    it('should emit onSelectLanguage', () => {
       spyOn(component.onSelectLanguage, 'emit');
       const result = 'test';
 

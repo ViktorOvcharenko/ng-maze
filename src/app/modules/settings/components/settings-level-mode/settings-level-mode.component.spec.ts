@@ -23,7 +23,7 @@ describe('SettingsLevelModeComponent', () => {
   });
 
   describe('selectHeroMode', () => {
-    it('should emit onSelectHeroMode', () => {
+    it('should emit onSelectLevelMode', () => {
       spyOn(component.onSelectLevelMode, 'emit');
       const result = 'test';
 
