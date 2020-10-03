@@ -27,7 +27,10 @@ describe('LoginComponent', () => {
   describe('emailInvalid', () => {
     it('should return return invalid and touched from control email', () => {
       expect(component.emailInvalid)
-        .toBe(component.loginForm.get('email').invalid && component.loginForm.get('email').touched);
+        .toBe(
+          component.loginForm.get('email').invalid &&
+          component.loginForm.get('email').touched
+        );
     });
   });
 
@@ -48,7 +51,10 @@ describe('LoginComponent', () => {
   describe('passwordInvalid', () => {
     it('should return invalid and touched from control password', () => {
       expect(component.passwordInvalid)
-        .toBe(component.loginForm.get('password').invalid && component.loginForm.get('password').touched);
+        .toBe(
+          component.loginForm.get('password').invalid &&
+          component.loginForm.get('password').touched
+        );
     });
   });
 

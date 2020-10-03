@@ -15,7 +15,7 @@ export class RecordsListComponent implements OnInit {
   @Input() records: fromModels.IRecord[];
   public displayedColumns: string[] = fromConstants.RECORDS_TABLE_HEADERS;
   public dataSource: MatTableDataSource<fromModels.IRecord> = new MatTableDataSource(this.records);
-  public lang = localStorage.getItem('language');
+  private lang = localStorage.getItem('language');
 
   constructor(public translateService: TranslateService) { }
 

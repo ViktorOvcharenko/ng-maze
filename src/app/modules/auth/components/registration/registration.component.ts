@@ -57,8 +57,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   public submit(): void {
-    const loginFormData: fromCoreModels.IUser = { ...this.signUpForm.value };
-    loginFormData.returnSecureToken = true;
+    const loginFormData: fromCoreModels.IUser = {
+      ...this.signUpForm.value,
+      returnSecureToken: true
+    };
+
     this.onSubmit.emit(loginFormData);
   }
 
