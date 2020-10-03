@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmLogoutComponent } from '../confirm-logout/confirm-logout.component';
+import { Router } from '@angular/router';
 
 import * as fromCoreServices from '../../services';
-
 
 @Component({
   selector: 'app-navigation',
@@ -19,7 +19,8 @@ export class NavbarComponent {
 
   constructor(
     private authService: fromCoreServices.AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   public logout():void {
@@ -28,6 +29,8 @@ export class NavbarComponent {
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.authService.logout();
+        this.router.navigate(['/auth', 'login']);
+        this.drawer.close();
       }
     });
   }
