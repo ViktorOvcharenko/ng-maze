@@ -12,7 +12,7 @@ import * as fromCoreModels from '../../../../core/models';
 })
 export class RegistrationComponent implements OnDestroy {
   public loadingAuth = false;
-  private destroy$: Subject<void> = new Subject<void>();
+  public destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private authService: fromCoreServices.AuthService,
