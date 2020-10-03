@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingsLevelModeComponent } from './settings-level-mode.component';
-import {TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SettingsLevelModeComponent', () => {
   let component: SettingsLevelModeComponent;
