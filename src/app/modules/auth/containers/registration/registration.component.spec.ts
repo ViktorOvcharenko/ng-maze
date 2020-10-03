@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginComponent } from './login.component';
+import { RegistrationComponent } from './registration.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../../core/services';
 import { AuthServiceMock } from '../../../../test/services';
@@ -10,9 +10,9 @@ import { of, throwError } from 'rxjs';
 
 import * as fromCoreModels from '../../../../core/models';
 
-describe('LoginComponent from containers', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('RegistrationComponent from containers', () => {
+  let component: RegistrationComponent;
+  let fixture: ComponentFixture<RegistrationComponent>;
   let authService: AuthService;
   let router: Router;
   const resultUser: fromCoreModels.IUser = {
@@ -23,7 +23,7 @@ describe('LoginComponent from containers', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [ RegistrationComponent ],
       imports: [
         TranslateModule.forRoot(),
         RouterTestingModule
@@ -39,7 +39,7 @@ describe('LoginComponent from containers', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(RegistrationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -57,12 +57,12 @@ describe('LoginComponent from containers', () => {
   });
 
   describe('submit', () => {
-    it('should call login from authService', () => {
-      spyOn(authService, 'login').and.returnValue(of(null));
+    it('should call signUp from authService', () => {
+      spyOn(authService, 'signUp').and.returnValue(of(null));
 
       component.submit(resultUser);
 
-      expect(authService.login).toHaveBeenCalled();
+      expect(authService.signUp).toHaveBeenCalled();
     });
 
     it('should change loadingAuth to false', () => {
@@ -79,7 +79,7 @@ describe('LoginComponent from containers', () => {
     });
 
     it('should change loadingAuth to false if login login return error', () => {
-      spyOn(authService, 'login').and.returnValue(throwError('test'))
+      spyOn(authService, 'signUp').and.returnValue(throwError('test'))
 
       component.submit(resultUser);
 
