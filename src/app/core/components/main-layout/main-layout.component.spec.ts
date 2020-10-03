@@ -1,8 +1,8 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainLayoutComponent } from './main-layout.component';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceMock } from '../../test/services/';
 import {
@@ -10,7 +10,7 @@ import {
   SetLevelModeFromStorage,
   SetWallModeFromStorage
 } from '../../store/actions/maze.actions';
-import {SetLanguageFromStorage} from '../../store/actions/account.actions';
+import { SetLanguageFromStorage } from '../../store/actions/account.actions';
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent;
@@ -26,16 +26,12 @@ describe('MainLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MainLayoutComponent
-      ],
+      declarations: [ MainLayoutComponent ],
       providers: [
         provideMockStore(),
         { provide: TranslateService, useClass: TranslateServiceMock }
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
+      schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
     store = TestBed.inject(Store);
     translateService = TestBed.inject(TranslateService);

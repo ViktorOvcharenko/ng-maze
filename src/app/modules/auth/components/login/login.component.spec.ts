@@ -5,7 +5,7 @@ import { LoginComponent } from './login.component';
 
 import * as fromCoreModels from '../../../../core/models';
 
-describe('LoginComponent', () => {
+describe('LoginComponent from components', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 

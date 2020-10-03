@@ -5,7 +5,7 @@ import { RegistrationComponent } from './registration.component';
 
 import * as fromCoreModels from '../../../../core/models';
 
-describe('RegistrationComponent', () => {
+describe('RegistrationComponent from components', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
