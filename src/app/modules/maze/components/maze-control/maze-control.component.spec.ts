@@ -39,16 +39,36 @@ describe('MazeControlComponent', () => {
 
       expect(component.onHeroStep.emit).toHaveBeenCalled();
     });
+
+    it(`should doesn't emit onHeroStep if win is true`, () => {
+      spyOn(component.onHeroStep, 'emit');
+      component.win = true;
+
+      component.heroStep('test');
+
+      expect(component.onHeroStep.emit).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe('heroStepFromKeyboard', () => {
     it('should emit onHeroStep if win is false', () => {
       spyOn(component.onHeroStep, 'emit');
+      component.win = false;
       const keyEvent = new KeyboardEvent('keydown');
 
       component.heroStepFromKeyboard(keyEvent);
 
       expect(component.onHeroStep.emit).toHaveBeenCalled();
+    });
+
+    it(`should doesn't emit onHeroStep if win is true`, () => {
+      spyOn(component.onHeroStep, 'emit');
+      component.win = true;
+      const keyEvent = new KeyboardEvent('keydown');
+
+      component.heroStepFromKeyboard(keyEvent);
+
+      expect(component.onHeroStep.emit).toHaveBeenCalledTimes(0);
     });
   });
 });
