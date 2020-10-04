@@ -7,6 +7,13 @@ import { MazeServiceMock, TranslateServiceMock } from '../../../../test/services
 import { Store } from '@ngrx/store';
 import { MazeService } from '../../../../core/services';
 import { SetLanguage } from '../../../../core/store/actions/account.actions';
+import {
+  ClearScore,
+  SetHeroMode,
+  SetLevelMode,
+  SetWallMode,
+  UpdateIsWin
+} from '../../../../core/store/actions/maze.actions';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -68,6 +75,97 @@ describe('SettingsComponent', () => {
       const action  = new SetLanguage(result);
 
       component.selectLanguage(result);
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+  });
+
+  describe('selectLevelMode', () => {
+    it('should set hero-mode for localStorage', () => {
+      spyOn(localStorage, 'setItem');
+
+      component.selectLevelMode(result);
+
+      expect(localStorage.setItem).toHaveBeenCalledWith('level-mode', 'test');
+    });
+
+    it('should call generateMaze from mazeService', () => {
+      spyOn(mazeService, 'generateMaze').and.returnValue([]);
+
+      component.selectLevelMode(result);
+
+      expect(mazeService.generateMaze).toHaveBeenCalledWith(result);
+    });
+
+    it('should call refreshHeroLocation from mazeService', () => {
+      spyOn(mazeService, 'refreshHeroLocation').and.returnValue(null);
+
+      component.selectLevelMode(result);
+
+      expect(mazeService.refreshHeroLocation).toHaveBeenCalled();
+    });
+
+    it('should dispatch SetWallMode', () => {
+      spyOn(store, 'dispatch');
+      const action  = new SetLevelMode(result);
+
+      component.selectLevelMode(result);
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+
+    it('should dispatch ClearScore', () => {
+      spyOn(store, 'dispatch');
+      const action  = new ClearScore();
+
+      component.selectLevelMode(result);
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+
+    it('should dispatch UpdateIsWin', () => {
+      spyOn(store, 'dispatch');
+      const action  = new UpdateIsWin(false);
+
+      component.selectLevelMode(result);
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+  });
+
+  describe('selectHeroMode', () => {
+    it('should set hero-mode for localStorage', () => {
+      spyOn(localStorage, 'setItem');
+
+      component.selectHeroMode(result);
+
+      expect(localStorage.setItem).toHaveBeenCalledWith('hero-mode', 'test');
+    });
+
+    it('should dispatch SetHeroMode', () => {
+      spyOn(store, 'dispatch');
+      const action  = new SetHeroMode(result);
+
+      component.selectHeroMode(result);
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+  });
+
+  describe('selectWallMode', () => {
+    it('should set hero-mode for localStorage', () => {
+      spyOn(localStorage, 'setItem');
+
+      component.selectWallMode(result);
+
+      expect(localStorage.setItem).toHaveBeenCalledWith('wall-mode', 'test');
+    });
+
+    it('should dispatch SetWallMode', () => {
+      spyOn(store, 'dispatch');
+      const action  = new SetWallMode(result);
+
+      component.selectWallMode(result);
 
       expect(store.dispatch).toHaveBeenCalledWith(action);
     });
