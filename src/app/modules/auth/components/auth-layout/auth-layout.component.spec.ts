@@ -1,6 +1,6 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthLayoutComponent } from './auth-layout.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AuthLayoutComponent', () => {
   let component: AuthLayoutComponent;
