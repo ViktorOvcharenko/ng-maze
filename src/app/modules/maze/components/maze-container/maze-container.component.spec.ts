@@ -1,21 +1,21 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthLayoutComponent } from './auth-layout.component';
+import { MazeContainerComponent } from './maze-container.component';
 
-describe('AuthLayoutComponent', () => {
-  let component: AuthLayoutComponent;
-  let fixture: ComponentFixture<AuthLayoutComponent>;
+describe('MazeContainerComponent', () => {
+  let component: MazeContainerComponent;
+  let fixture: ComponentFixture<MazeContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthLayoutComponent ],
+      declarations: [ MazeContainerComponent ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthLayoutComponent);
+    fixture = TestBed.createComponent(MazeContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
