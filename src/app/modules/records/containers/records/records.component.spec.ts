@@ -33,7 +33,10 @@ describe('RecordsComponent', () => {
       providers: [
         provideMockStore({
           initialState: {
-            maze: { levelMode: 'test' }
+            maze: {
+              levelMode: 'test',
+              records: []
+            }
           }
         }),
       ],
@@ -51,8 +54,8 @@ describe('RecordsComponent', () => {
 
   describe('ngOnInit', () => {
     it('should call the GetRecords', () => {
-      spyOn(store, 'dispatch');
       const action = new GetRecords('test');
+      spyOn(store, 'dispatch');
 
       component.ngOnInit();
 
@@ -61,9 +64,16 @@ describe('RecordsComponent', () => {
 
     it('should call the addIndexRoRecords', () => {
       spyOn(component, 'addPositionToRecords');
+
       component.ngOnInit();
 
       expect(component.addPositionToRecords).toHaveBeenCalled();
+    });
+
+    it('should change the recordsSorted to empty array if records$ return false', () => {
+      component.records$.subscribe(records => {
+        expect(component.recordsSorted).toEqual([]);
+      });
     });
   });
 

@@ -12,12 +12,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MazeEffects } from './core/store/effects/maze.effects';
+import { ConfirmLogoutComponent } from './core/components/confirm-logout/confirm-logout.component';
 
 import { registerLocaleData } from '@angular/common';
 import { environment } from '../environments/environment';
 import { appReducers } from './core/store/reducers/app.reducers';
 import localeRu from '@angular/common/locales/ru';
-import { ConfirmLogoutComponent } from './core/components/confirm-logout/confirm-logout.component';
 
 import * as fromCoreComponents from './core/components';
 

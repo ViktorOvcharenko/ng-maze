@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { LoginGuard } from './login.guard';
 import { AuthService } from '../services';
-import { AuthServiceMock } from '../../test/services';
+import { AuthServiceMock } from '../test/services';
 
 describe('LoginGuard', () => {
   let guard: LoginGuard;
@@ -22,5 +22,11 @@ describe('LoginGuard', () => {
     spyOn(authService, 'isAuthenticated').and.callFake(() => false);
 
     expect(guard.canActivate()).toBeTruthy();
+  });
+
+  it('should return false if isAuthenticated', () => {
+    spyOn(authService, 'isAuthenticated').and.callFake(() => true);
+
+    expect(guard.canActivate()).toBeFalsy();
   });
 });

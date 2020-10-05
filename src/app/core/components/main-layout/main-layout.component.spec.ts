@@ -4,7 +4,7 @@ import { MainLayoutComponent } from './main-layout.component';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { TranslateServiceMock } from '../../../test/services/';
+import { TranslateServiceMock } from '../../test/services/';
 import {
   SetHeroModeFromStorage,
   SetLevelModeFromStorage,
@@ -84,6 +84,17 @@ describe('MainLayoutComponent', () => {
       component.ngOnInit();
 
       expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+
+    it(`should doesn't dispatch any action and setDefaultLang if localStorage doesn't get item`, () => {
+      spyOn(store, 'dispatch');
+      spyOn(translateService, 'setDefaultLang');
+      spyOn(localStorage, 'getItem').and.callFake(() => localStore['test']);
+
+      component.ngOnInit();
+
+      expect(store.dispatch).toHaveBeenCalledTimes(0);
+      expect(translateService.setDefaultLang).toHaveBeenCalledTimes(0);
     });
   });
 });
