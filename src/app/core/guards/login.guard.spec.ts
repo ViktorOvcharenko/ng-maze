@@ -23,4 +23,10 @@ describe('LoginGuard', () => {
 
     expect(guard.canActivate()).toBeTruthy();
   });
+
+  it('should return false if isAuthenticated', () => {
+    spyOn(authService, 'isAuthenticated').and.callFake(() => true);
+
+    expect(guard.canActivate()).toBeFalsy();
+  });
 });
