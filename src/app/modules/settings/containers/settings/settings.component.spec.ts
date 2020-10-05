@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingsComponent } from './settings.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { provideMockStore } from '@ngrx/store/testing';
-import { MazeServiceMock, TranslateServiceMock } from '../../../../test/services';
+import { MazeServiceMock, TranslateServiceMock } from '../../../../core/test/services';
 import { Store } from '@ngrx/store';
 import { MazeService } from '../../../../core/services';
 import { SetLanguage } from '../../../../core/store/actions/account.actions';
