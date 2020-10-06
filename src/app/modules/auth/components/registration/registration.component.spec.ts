@@ -61,6 +61,13 @@ describe('RegistrationComponent from components', () => {
     });
   });
 
+  describe('emailRequired', () => {
+    it('should return required from control email', () => {
+      expect(component.emailRequired)
+        .toBe(component.signUpForm.get('email').errors.required);
+    });
+  });
+
   describe('emailIsError', () => {
     it('should return emailIsError from control email', () => {
       expect(component.emailIsError)
