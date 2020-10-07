@@ -15,7 +15,7 @@ import * as fromCoreServices from '../../services';
 export class NavbarComponent {
   @Input() drawer: MatDrawer;
   @Input() drawerLocation: boolean;
-  public dialogRef: MatDialogRef<ConfirmLogoutComponent>;
+  dialogRef: MatDialogRef<ConfirmLogoutComponent>;
 
   constructor(
     private authService: fromCoreServices.AuthService,
@@ -23,7 +23,7 @@ export class NavbarComponent {
     private router: Router
   ) {}
 
-  public logout():void {
+  logout():void {
     this.dialogRef = this.dialog.open(ConfirmLogoutComponent, { width: '300px' });
 
     this.dialogRef.afterClosed().subscribe(result => {
@@ -35,7 +35,7 @@ export class NavbarComponent {
     });
   }
 
-  public drawerClose(): void {
+  drawerClose(): void {
     this.drawer.close();
   }
 }

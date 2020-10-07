@@ -30,11 +30,11 @@ export class AuthService {
     return localStorage.getItem('fb-token');
   }
 
-  public isAuthenticated(): boolean {
+  isAuthenticated(): boolean {
     return !!this.token;
   }
 
-  public login(user: fromModels.IUser): Observable<any> {
+  login(user: fromModels.IUser): Observable<any> {
     return this.http.post<fromModels.IFbAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
         tap(AuthService.setResponseData),
@@ -42,7 +42,7 @@ export class AuthService {
       )
   }
 
-  public signUp(user: fromModels.IUser): Observable<any> {
+  signUp(user: fromModels.IUser): Observable<any> {
     return this.http.post<fromModels.IFbAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`, user)
       .pipe(
         tap(AuthService.setResponseData),
@@ -50,12 +50,12 @@ export class AuthService {
       )
   }
 
-  public logout(): void {
+  logout(): void {
     AuthService.setResponseData(null);
     this.store.dispatch(new ClearUserName());
   }
 
-  private static setResponseData(response: fromModels.IFbAuthResponse): void {
+  static setResponseData(response: fromModels.IFbAuthResponse): void {
     if (response) {
       const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000);
       localStorage.setItem('fb-token', response.idToken);
@@ -68,7 +68,7 @@ export class AuthService {
     }
   }
 
-  public handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse) {
     const { message } = error.error.error;
 
     this.snackBar.open(message, 'close',{

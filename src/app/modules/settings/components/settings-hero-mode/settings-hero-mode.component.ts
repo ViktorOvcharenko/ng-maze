@@ -13,7 +13,7 @@ export class SettingsHeroModeComponent {
   @Input() defaultHeroMode: string;
   @Output() onSelectHeroMode: EventEmitter<string> = new EventEmitter<string>();
 
-  public selectHeroMode(heroMode: string): void {
+  selectHeroMode(heroMode: string): void {
     this.onSelectHeroMode.emit(heroMode);
   }
 }

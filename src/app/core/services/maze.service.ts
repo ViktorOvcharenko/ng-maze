@@ -8,15 +8,15 @@ import * as fromConstants from '../constants';
 
 @Injectable({ providedIn: 'root' })
 export class MazeService {
-  public maze: fromModels.IMaze = [];
-  public heroLocation: fromModels.IHeroLocation = { x: 0, y: 1 };
+  maze: fromModels.IMaze = [];
+  heroLocation: fromModels.IHeroLocation = { x: 0, y: 1 };
 
   constructor(
     private ngZone: NgZone,
     private http: HttpClient
   ) {}
 
-  public generateMaze (mode: string): fromModels.IMaze {
+  generateMaze (mode: string): fromModels.IMaze {
     return this.ngZone.runOutsideAngular(() => {
       let height: number;
       let width: number;
@@ -105,16 +105,16 @@ export class MazeService {
     });
   }
 
-  public refreshHeroLocation(): void {
+  refreshHeroLocation(): void {
     this.heroLocation = { x: 0, y: 1 };
   }
 
-  public getRecord(mode: string): Observable<fromModels.IRecord[]> {
+  getRecord(mode: string): Observable<fromModels.IRecord[]> {
     const pathMode = mode.slice(9);
     return this.http.get<fromModels.IRecord[]>(`${environment.fbDBUrl}/${pathMode}.json`);
   }
 
-  public addRecord(payload: fromModels.IAddRecordRequestBody): Observable<fromModels.IRecord[]> {
+  addRecord(payload: fromModels.IAddRecordRequestBody): Observable<fromModels.IRecord[]> {
     const pathMode = payload.mode;
     return this.http.put<fromModels.IRecord[]>(`${environment.fbDBUrl}/${pathMode}.json`, payload.records);
   }

@@ -13,7 +13,7 @@ export class SettingsLanguageComponent {
   @Input() defaultLang: string;
   @Output() onSelectLanguage: EventEmitter<string> = new EventEmitter<string>();
 
-  public selectLanguage(value: string): void {
+  selectLanguage(value: string): void {
     this.onSelectLanguage.emit(value);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PasswordValidators } from '../../validators';
+import { PasswordValidators } from '../../../../core/validators';
 
 import * as fromCoreModels from '../../../../core/models';
 
@@ -12,8 +12,8 @@ import * as fromCoreModels from '../../../../core/models';
 export class LoginComponent implements OnInit {
   @Input() loadingAuth: boolean;
   @Output() onSubmit: EventEmitter<fromCoreModels.IUser> = new EventEmitter<fromCoreModels.IUser>();
-  public loginForm: FormGroup;
-  public isHiddenPassword = true;
+  loginForm: FormGroup;
+  isHiddenPassword = true;
 
   get emailInvalid(): boolean {
     return this.loginForm.get('email').invalid && this.loginForm.get('email').touched;
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public submit(): void {
+  submit(): void {
     const loginFormData: fromCoreModels.IUser = {
       ...this.loginForm.value,
       returnSecureToken: true
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     this.onSubmit.emit(loginFormData);
   }
 
-  public toggleHidePassword(): void {
+  toggleHidePassword(): void {
     this.isHiddenPassword = !this.isHiddenPassword;
   }
 }

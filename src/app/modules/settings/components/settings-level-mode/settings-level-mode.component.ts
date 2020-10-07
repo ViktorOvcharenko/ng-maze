@@ -13,7 +13,7 @@ export class SettingsLevelModeComponent {
   @Input() defaultLevelMode: string;
   @Output() onSelectLevelMode: EventEmitter<string> = new EventEmitter<string>();
 
-  public selectLevelMode(levelMode: string): void {
+  selectLevelMode(levelMode: string): void {
     this.onSelectLevelMode.emit(levelMode);
   }
 }

@@ -12,11 +12,11 @@ import * as fromModels from '../../../../core/models';
   templateUrl: './records.component.html'
 })
 export class RecordsComponent implements OnInit, OnDestroy {
-  public records$: Observable<fromModels.IRecord[]>;
-  public levelMode$: Observable<string>;
-  public recordsSorted: fromModels.IRecord[];
-  public recordsSortedWithIndex: fromModels.IRecord[];
-  public destroy$: Subject<void> = new Subject<void>();
+  records$: Observable<fromModels.IRecord[]>;
+  levelMode$: Observable<string>;
+  recordsSorted: fromModels.IRecord[];
+  recordsSortedWithIndex: fromModels.IRecord[];
+  destroy$: Subject<void> = new Subject<void>();
 
   constructor(private store: Store) {
     this.levelMode$ = this.store.pipe(select(getLevelMode));
@@ -45,11 +45,11 @@ export class RecordsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public compareScores(a: fromModels.IRecord, b: fromModels.IRecord): number {
+  compareScores(a: fromModels.IRecord, b: fromModels.IRecord): number {
     return a.score - b.score;
   }
 
-  public addPositionToRecords(records: fromModels.IRecord[]): fromModels.IRecord[] {
+  addPositionToRecords(records: fromModels.IRecord[]): fromModels.IRecord[] {
     return records.map((record, index) => {
       return { ...record, position: index + 1 };
     });
