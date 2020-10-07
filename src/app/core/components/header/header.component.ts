@@ -12,15 +12,15 @@ import { getScore } from '../../store/selectors/maze.selectors';
 })
 export class HeaderComponent {
   @Input() drawer: MatDrawer;
-  public userName$: Observable<string>;
-  public score$: Observable<number>;
+  userName$: Observable<string>;
+  score$: Observable<number>;
 
   constructor(private store: Store) {
     this.userName$ = this.store.pipe(select(getUserName));
     this.score$ = this.store.pipe(select(getScore));
   }
 
-  public drawerToggle(): void {
+  drawerToggle(): void {
     this.drawer.toggle();
   }
 }

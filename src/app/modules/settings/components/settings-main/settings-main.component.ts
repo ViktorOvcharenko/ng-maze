@@ -22,19 +22,19 @@ export class SettingsMainComponent  {
   @Output() onSelectHeroMode: EventEmitter<string> = new EventEmitter<string>();
   @Output() onSelectWallMode: EventEmitter<string> = new EventEmitter<string>();
 
-  public selectLanguage(value: string): void {
+  selectLanguage(value: string): void {
     this.onSelectLanguage.emit(value);
   }
 
-  public selectLevelMode(levelMode: string): void {
+  selectLevelMode(levelMode: string): void {
     this.onSelectLevelMode.emit(levelMode);
   }
 
-  public selectHeroMode(heroMode: string): void {
+  selectHeroMode(heroMode: string): void {
     this.onSelectHeroMode.emit(heroMode);
   }
 
-  public selectWallMode(wallMode: string): void {
+  selectWallMode(wallMode: string): void {
     this.onSelectWallMode.emit(wallMode);
   }
 }

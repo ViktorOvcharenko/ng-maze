@@ -18,18 +18,18 @@ export class MazeControlComponent {
   @Output() onRefreshMaze: EventEmitter<void> = new EventEmitter<void>();
   @Output() onHeroStep: EventEmitter<string> = new EventEmitter<string>();
 
-  public refreshMaze(): void {
+  refreshMaze(): void {
     this.onRefreshMaze.emit();
   }
 
-  public heroStep(direction: string, ): void {
+  heroStep(direction: string, ): void {
     if (!this.win) {
       this.onHeroStep.emit(direction);
     }
   }
 
   @HostListener('document:keydown', ['$event'])
-  public heroStepFromKeyboard(event: KeyboardEvent): void {
+  heroStepFromKeyboard(event: KeyboardEvent): void {
     if (!this.win) {
       this.onHeroStep.emit(event.key);
     }

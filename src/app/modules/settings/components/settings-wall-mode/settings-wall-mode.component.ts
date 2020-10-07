@@ -13,7 +13,7 @@ export class SettingsWallModeComponent {
   @Input() defaultWallMode: string;
   @Output() onSelectWallMode: EventEmitter<string> = new EventEmitter<string>();
 
-  public selectWallMode(wallMode: string): void {
+  selectWallMode(wallMode: string): void {
     this.onSelectWallMode.emit(wallMode);
   }
 }

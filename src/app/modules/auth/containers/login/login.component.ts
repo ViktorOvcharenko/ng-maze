@@ -11,8 +11,8 @@ import * as fromCoreModels from '../../../../core/models';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnDestroy {
-  public loadingAuth = false;
-  public destroy$: Subject<void> = new Subject<void>();
+  loadingAuth = false;
+  destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private authService: fromCoreServices.AuthService,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnDestroy {
     this.destroy$.complete();
   }
 
-  public submit(user: fromCoreModels.IUser): void {
+  submit(user: fromCoreModels.IUser): void {
     this.loadingAuth = true;
     this.authService.login(user)
       .pipe( takeUntil(this.destroy$) )
