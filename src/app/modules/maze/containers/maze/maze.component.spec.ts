@@ -1,15 +1,14 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MazeComponent } from './maze.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MazeService } from '../../../../core/services';
 import { MazeServiceMock, TranslateServiceMock } from '../../../../core/test/services';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
   ClearScore,
   GetRecords,
-  ScoreTick,
   UpdateIsWin
 } from '../../../../core/store/actions/maze.actions';
 
@@ -24,7 +23,10 @@ describe('MazeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MazeComponent ],
-      imports: [ MatSnackBarModule ],
+      imports: [
+        MatSnackBarModule,
+        TranslateModule.forRoot()
+      ],
       providers: [
         provideMockStore({
           initialState: {
@@ -163,7 +165,7 @@ describe('MazeComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(action);
     });
 
-    it('should dispatch UpdateIsWin', () => {
+    it('should dispatch UpdateIsWin with false', () => {
       const action = new UpdateIsWin(false);
       spyOn(store, 'dispatch');
 
@@ -179,16 +181,5 @@ describe('MazeComponent', () => {
 
       expect(component.stopScore).toHaveBeenCalled();
     });
-
-    it('should dispatch ScoreTick', fakeAsync(() => {
-      const action = new ScoreTick();
-      spyOn(store, 'dispatch');
-
-      component.startScore();
-      tick(1000);
-
-      expect(store.dispatch).toHaveBeenCalledWith(action);
-      fixture.destroy();
-    }));
   });
 });
