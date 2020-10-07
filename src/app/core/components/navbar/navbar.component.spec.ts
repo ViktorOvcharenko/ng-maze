@@ -47,6 +47,7 @@ describe('NavbarComponent', () => {
       spyOn(dialog, 'open')
         .and
         .returnValue(({ afterClosed: () => of(true) } as MatDialogRef<unknown, unknown>));
+      spyOn(router, 'navigate');
 
       component.logout();
 
@@ -64,7 +65,7 @@ describe('NavbarComponent', () => {
       component.logout();
 
       expect(authService.logout).toHaveBeenCalled();
-      expect(router.navigate).toHaveBeenCalled();
+      expect(router.navigate).toHaveBeenCalledWith(['/auth', 'login']);
       expect(component.drawer.close).toHaveBeenCalled();
     });
 

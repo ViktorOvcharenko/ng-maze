@@ -20,7 +20,7 @@ export class NavbarComponent {
   constructor(
     private authService: fromCoreServices.AuthService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
   ) {}
 
   logout():void {
