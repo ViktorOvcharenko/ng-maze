@@ -1,14 +1,16 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import { MazeComponent } from './maze.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MazeService } from '../../../../core/services';
 import { MazeServiceMock, TranslateServiceMock } from '../../../../core/test/services';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  AddRecord,
   ClearScore,
-  GetRecords,
+  GetRecords, ScoreTick,
   UpdateIsWin
 } from '../../../../core/store/actions/maze.actions';
 
@@ -19,13 +21,25 @@ describe('MazeComponent', () => {
   let store: MockStore;
   let snackBar: MatSnackBar;
   let translateService: TranslateService;
+  const mazeMock = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [2, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
+    [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0],
+    [0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0]
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MazeComponent ],
       imports: [
         MatSnackBarModule,
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        BrowserAnimationsModule
       ],
       providers: [
         provideMockStore({
@@ -97,6 +111,12 @@ describe('MazeComponent', () => {
 
       expect(component.recordThreshold).toBe(1);
     });
+
+    it('should change  orientationFlag', () => {
+      component.ngOnInit();
+
+      expect(component.orientationFlag).toBeDefined();
+    });
   });
 
   describe('ngOnDestroy', () => {
@@ -112,7 +132,7 @@ describe('MazeComponent', () => {
   });
 
   describe('onOrientationChange', () => {
-    xit('should change orientationFlag', () => {
+    it('should change orientationFlag', () => {
       window.dispatchEvent(new Event('orientationchange'));
 
       expect(component.orientationFlag).toBeFalsy();
@@ -142,6 +162,48 @@ describe('MazeComponent', () => {
       component.refreshMaze();
 
       expect(component.startScore).toHaveBeenCalled();
+    });
+  });
+
+  describe('heroStep', () => {
+    it('should increase heroLocation x from mazeService', () => {
+      component.maze = mazeMock;
+      component.heroStep('ArrowRight');
+
+      expect(mazeService.heroLocation.x).toBe(1);
+    });
+
+    it('should decrease heroLocation y from mazeService', () => {
+      mazeService.heroLocation.x = 1;
+      mazeService.heroLocation.y = 3;
+      component.maze = mazeMock;
+      component.heroStep('ArrowUp');
+
+      expect(mazeService.heroLocation.y).toBe(2);
+    });
+
+    it('should decrease heroLocation x from mazeService', () => {
+      mazeService.heroLocation.x = 2;
+      mazeService.heroLocation.y = 4;
+      component.maze = mazeMock;
+      component.heroStep('ArrowLeft');
+
+      expect(mazeService.heroLocation.x).toBe(1);
+    });
+
+    it('should increase heroLocation y from mazeService', () => {
+      mazeService.heroLocation.x = 1;
+      mazeService.heroLocation.y = 3;
+      component.maze = mazeMock;
+      component.heroStep('ArrowDown');
+
+      expect(mazeService.heroLocation.y).toBe(4);
+    });
+
+    it('should change debounceFlag to false', () => {
+      component.heroStep('test');
+
+      expect(component.debounceFlag).toBeFalsy();
     });
   });
 
@@ -180,6 +242,54 @@ describe('MazeComponent', () => {
       component.startScore();
 
       expect(component.stopScore).toHaveBeenCalled();
+    });
+
+    it('should dispatch ScoreTick', fakeAsync(() => {
+      const action = new ScoreTick();
+      spyOn(store, 'dispatch');
+
+      component.startScore();
+      tick(1000);
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+      fixture.destroy();
+    }));
+  });
+
+  describe('win', () => {
+    it('should dispatch UpdateIsWin', () => {
+      const action = new UpdateIsWin(true);
+      spyOn(store, 'dispatch');
+
+      component.win();
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+
+    it('should call stopScore', () => {
+      spyOn(component, 'stopScore');
+
+      component.win();
+
+      expect(component.stopScore).toHaveBeenCalled();
+    });
+  });
+
+  describe('addRecord', () => {
+    it('should call  instant of translateService', () => {
+      spyOn(translateService, 'instant');
+
+      component.addRecord('settings.test', 0, 'test', []);
+
+      expect(translateService.instant).toHaveBeenCalled();
+    });
+
+    it('should call  open of snackBar', () => {
+      spyOn(snackBar, 'open');
+
+      component.addRecord('settings.test', 0, 'test', []);
+
+      expect(snackBar.open).toHaveBeenCalled();
     });
   });
 });
