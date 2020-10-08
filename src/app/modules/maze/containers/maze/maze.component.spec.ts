@@ -21,6 +21,17 @@ describe('MazeComponent', () => {
   let store: MockStore;
   let snackBar: MatSnackBar;
   let translateService: TranslateService;
+  const mazeMock = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [2, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
+    [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0],
+    [0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0]
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -155,6 +166,40 @@ describe('MazeComponent', () => {
   });
 
   describe('heroStep', () => {
+    it('should increase heroLocation x from mazeService', () => {
+      component.maze = mazeMock;
+      component.heroStep('ArrowRight');
+
+      expect(mazeService.heroLocation.x).toBe(1);
+    });
+
+    it('should decrease heroLocation y from mazeService', () => {
+      mazeService.heroLocation.x = 1;
+      mazeService.heroLocation.y = 3;
+      component.maze = mazeMock;
+      component.heroStep('ArrowUp');
+
+      expect(mazeService.heroLocation.y).toBe(2);
+    });
+
+    it('should decrease heroLocation x from mazeService', () => {
+      mazeService.heroLocation.x = 2;
+      mazeService.heroLocation.y = 4;
+      component.maze = mazeMock;
+      component.heroStep('ArrowLeft');
+
+      expect(mazeService.heroLocation.x).toBe(1);
+    });
+
+    it('should increase heroLocation y from mazeService', () => {
+      mazeService.heroLocation.x = 1;
+      mazeService.heroLocation.y = 3;
+      component.maze = mazeMock;
+      component.heroStep('ArrowDown');
+
+      expect(mazeService.heroLocation.y).toBe(4);
+    });
+
     it('should change debounceFlag to false', () => {
       component.heroStep('test');
 
@@ -231,26 +276,6 @@ describe('MazeComponent', () => {
   });
 
   describe('addRecord', () => {
-    it('should dispatch AddRecord', () => {
-      const payloadMock = {
-        mode: 'test',
-        records: [
-          {
-            mode: 'test',
-            score: 0,
-            username: 'test',
-            date: new Date()
-          }
-        ]
-      };
-      const action = new AddRecord(payloadMock);
-      spyOn(store, 'dispatch');
-
-      component.addRecord('settings.test', 0, 'test', []);
-
-      expect(store.dispatch).toHaveBeenCalledWith(action);
-    });
-
     it('should call  instant of translateService', () => {
       spyOn(translateService, 'instant');
 
