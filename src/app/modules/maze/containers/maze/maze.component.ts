@@ -169,9 +169,7 @@ export class MazeComponent implements OnInit, OnDestroy {
   startScore(): void {
     this.store.dispatch(new ClearScore());
     this.store.dispatch(new UpdateIsWin(false));
-
     this.stopScore();
-
     this.scoreTickSub$ = interval(1000)
       .pipe(
         take(999),
