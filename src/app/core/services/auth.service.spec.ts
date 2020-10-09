@@ -60,6 +60,15 @@ describe('AuthService', () => {
       expect(service.token).toBeNull();
       expect(service.logout).toHaveBeenCalled();
     });
+
+    it('should return token if now more than expDate', () => {
+      const result = 'test';
+      localStore['fb-token-exp'] = new Date(3000, 0, 1);
+      localStore['fb-token'] = result;
+      spyOn(localStorage, 'getItem').and.callFake(key => localStore[key]);
+
+      expect(service.token).toBe(result);
+    });
   });
 
   describe('isAuthenticated', () => {

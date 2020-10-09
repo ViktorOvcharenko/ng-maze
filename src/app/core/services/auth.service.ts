@@ -46,7 +46,7 @@ export class AuthService {
     return this.http.post<fromModels.IFbAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`, user)
       .pipe(
         tap(AuthService.setResponseData),
-       //  catchError(this.handleError.bind(this))
+        catchError(this.handleError.bind(this))
       )
   }
 
