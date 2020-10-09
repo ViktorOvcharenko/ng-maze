@@ -13,6 +13,7 @@ import {
   GetRecords, ScoreTick,
   UpdateIsWin
 } from '../../../../core/store/actions/maze.actions';
+import * as fromModels from '../../../../core/models';
 
 describe('MazeComponent', () => {
   let component: MazeComponent;
@@ -276,6 +277,25 @@ describe('MazeComponent', () => {
   });
 
   describe('addRecord', () => {
+    it('should dispatch AddRecord', () => {
+      const payload: fromModels.IAddRecordRequestBody = {
+        mode: 'test',
+        records: [
+          {
+            score: 0,
+            username: 'test',
+            mode: 'test',
+            date: new Date() }
+        ]
+      };
+      const action = new AddRecord(payload);
+      spyOn(store, 'dispatch');
+
+      component.addRecord('settings.test', 0, 'test', []);
+
+      expect(store.dispatch).toHaveBeenCalledWith(action);
+    });
+
     it('should call  instant of translateService', () => {
       spyOn(translateService, 'instant');
 

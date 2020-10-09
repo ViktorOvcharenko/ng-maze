@@ -1,16 +1,30 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { RecordsComponent } from '../records/records.component';
-import { provideMockStore } from '@ngrx/store/testing';
-import { Store } from '@ngrx/store';
+import { MockStore, provideMockStore} from '@ngrx/store/testing';
 import { GetRecords } from '../../../../core/store/actions/maze.actions';
 import { IRecord } from '../../../../core/models';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+import * as fromModels from '../../../../core/models';
 
 describe('RecordsComponent', () => {
   let component: RecordsComponent;
   let fixture: ComponentFixture<RecordsComponent>;
-  let store: Store<any>;
+  let store: MockStore<any>;
+  const recordMock1: fromModels.IRecord = {
+    score: 1,
+    username: 'test',
+    date: new Date,
+    mode: 'test'
+  };
+
+  const recordMock2: fromModels.IRecord = {
+    score: 2,
+    username: 'test',
+    date: new Date,
+    mode: 'test'
+  };
 
   const firstRecord: IRecord = {
     score: 1,
@@ -35,7 +49,7 @@ describe('RecordsComponent', () => {
           initialState: {
             maze: {
               levelMode: 'test',
-              records: []
+              records: [recordMock2, recordMock1]
             }
           }
         }),
@@ -43,7 +57,7 @@ describe('RecordsComponent', () => {
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
   }));
 
   beforeEach(() => {
@@ -70,7 +84,19 @@ describe('RecordsComponent', () => {
       expect(component.addPositionToRecords).toHaveBeenCalled();
     });
 
-    it('should change the recordsSorted to empty array if records$ return false', () => {
+    it('should be sorted records by index', () => {
+      component.records$.subscribe(records => {
+        expect(component.recordsSorted).toEqual([recordMock1, recordMock2]);
+      });
+    });
+
+    it('should change the recordsSorted to empty array if records$ return null', () => {
+      store.setState({
+        maze: {
+          levelMode: 'test',
+          records: null
+        }
+      });
       component.records$.subscribe(records => {
         expect(component.recordsSorted).toEqual([]);
       });

@@ -7,19 +7,22 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import * as fromModels from '../models';
+
 describe('AuthService', () => {
   let service: AuthService;
   let backend: HttpTestingController;
   let snackBar: MatSnackBar;
   let store: Store<any>;
   const localStore = {};
-  const resResult = {
+  const resResult: fromModels.IFbAuthResponse = {
     idToken:	'test',
     email:	'test',
     refreshToken:	'test',
     expiresIn:	'test',
     localId:	'test',
-    registered:	false
+    registered:	false,
+    displayName: 'test'
   };
   const user = {
     email: 'test',
@@ -60,6 +63,15 @@ describe('AuthService', () => {
       expect(service.token).toBeNull();
       expect(service.logout).toHaveBeenCalled();
     });
+
+    it('should return token if now more than expDate', () => {
+      const result = 'test';
+      localStore['fb-token-exp'] = new Date(3000, 0, 1);
+      localStore['fb-token'] = result;
+      spyOn(localStorage, 'getItem').and.callFake(key => localStore[key]);
+
+      expect(service.token).toBe(result);
+    });
   });
 
   describe('isAuthenticated', () => {
@@ -80,6 +92,34 @@ describe('AuthService', () => {
         method: 'POST',
         url: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,
       }).flush(resResult);
+    });
+  });
+
+  describe('setResponseData', () => {
+    it('should set fb-token, fb-token-exp and fb-username to values from response', () => {
+      const expDate = new Date(new Date().getTime() + +resResult.expiresIn * 1000);
+      localStorage.setItem('fb-token', resResult.idToken);
+      localStorage.setItem('fb-token-exp', expDate.toString());
+      localStorage.setItem('fb-username', resResult.displayName);
+
+      AuthService.setResponseData(resResult);
+
+      expect(localStorage.getItem('fb-token')).toBe(resResult.idToken);
+      expect(localStorage.getItem('fb-token-exp')).toBe(expDate.toString());
+      expect(localStorage.getItem('fb-username')).toBe(resResult.displayName);
+    });
+
+    it('should set fb-token, fb-token-exp and fb-username to empty strings', () => {
+      const expDate = new Date(new Date().getTime() + +resResult.expiresIn * 1000);
+      localStorage.setItem('fb-token', resResult.idToken);
+      localStorage.setItem('fb-token-exp', expDate.toString());
+      localStorage.setItem('fb-username', resResult.displayName);
+
+      AuthService.setResponseData(null);
+
+      expect(localStorage.getItem('fb-token')).toBe('');
+      expect(localStorage.getItem('fb-token-exp')).toBe('');
+      expect(localStorage.getItem('fb-username')).toBe('');
     });
   });
 
