@@ -7,7 +7,6 @@ import { GetRecords } from '../../../../core/store/actions/maze.actions';
 import { IRecord } from '../../../../core/models';
 
 import * as fromModels from '../../../../core/models';
-import {getRecords} from '../../../../core/store/selectors/maze.selectors';
 
 describe('RecordsComponent', () => {
   let component: RecordsComponent;
