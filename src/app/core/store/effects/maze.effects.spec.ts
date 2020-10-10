@@ -4,7 +4,7 @@ import { Store} from '@ngrx/store';
 import { Observable, of, throwError } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { MazeServiceMock } from '../../test/services';
+import { MazeServiceMock } from '../../test';
 import { MazeEffects } from './maze.effects';
 
 import * as fromModels from '../../models';

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { LoginGuard } from './login.guard';
 import { AuthService } from '../services';
-import { AuthServiceMock } from '../test/services';
+import { AuthServiceMock } from '../test';
 
 describe('LoginGuard', () => {
   let guard: LoginGuard;

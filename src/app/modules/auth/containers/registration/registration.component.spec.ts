@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegistrationComponent } from './registration.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../../core/services';
-import { AuthServiceMock } from '../../../../core/test/services';
+import { AuthServiceMock } from '../../../../core/test';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
