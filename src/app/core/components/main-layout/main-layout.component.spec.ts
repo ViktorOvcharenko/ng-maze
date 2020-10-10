@@ -4,7 +4,7 @@ import { MainLayoutComponent } from './main-layout.component';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { TranslateServiceMock } from '../../test/services/';
+import { TranslateServiceMock } from '../../test';
 import {
   SetHeroModeFromStorage,
   SetLevelModeFromStorage,

@@ -1,9 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MazeComponent } from './maze.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MazeService } from '../../../../core/services';
-import { MazeServiceMock, TranslateServiceMock } from '../../../../core/test/services';
+import { MazeServiceMock, TranslateServiceMock, createRecordMock } from '../../../../core/test';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,7 @@ import {
   GetRecords, ScoreTick,
   UpdateIsWin
 } from '../../../../core/store/actions/maze.actions';
+
 import * as fromModels from '../../../../core/models';
 
 describe('MazeComponent', () => {
@@ -33,6 +34,7 @@ describe('MazeComponent', () => {
     [0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0]
   ];
+  const recordMock1: fromModels.IRecord = createRecordMock(1);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,14 +54,7 @@ describe('MazeComponent', () => {
               wallMode: 'test',
               isWin: false,
               score: 0,
-              records: [
-                {
-                  score: 1,
-                  username: 'test',
-                  date: new Date(),
-                  mode: 'test'
-                }
-              ]
+              records: [ recordMock1 ]
             }
           }
         }),
@@ -79,6 +74,7 @@ describe('MazeComponent', () => {
     fixture = TestBed.createComponent(MazeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    store.refreshState();
   });
 
   describe('ngOnInit', () => {
@@ -273,6 +269,63 @@ describe('MazeComponent', () => {
       component.win();
 
       expect(component.stopScore).toHaveBeenCalled();
+    });
+
+    it('should call addRecord with [] if records$ is false', () => {
+      store.setState({
+        account : { userName: 'test' },
+        maze: {
+          levelMode: 'test',
+          heroMode: 'test',
+          wallMode: 'test',
+          isWin: false,
+          score: 0,
+          records: null
+        }
+      });
+      spyOn(component, 'addRecord');
+
+      component.win();
+
+      expect(component.addRecord).toHaveBeenCalledWith('test', 0, 'test', []);
+    });
+
+    it('should call addRecord with records if records$ less then 10', () => {
+      store.setState({
+        account : { userName: 'test' },
+        maze: {
+          levelMode: 'test',
+          heroMode: 'test',
+          wallMode: 'test',
+          isWin: false,
+          score: 0,
+          records: [ recordMock1 ]
+        }
+      });
+      spyOn(component, 'addRecord');
+
+      component.win();
+
+      expect(component.addRecord).toHaveBeenCalledWith('test', 0, 'test', [ recordMock1 ]);
+    });
+
+    it('33333333333333333333333', () => {
+      store.setState({
+        account : { userName: 'test' },
+        maze: {
+          levelMode: 'test',
+          heroMode: 'test',
+          wallMode: 'test',
+          isWin: false,
+          score: 0,
+          records: [ recordMock1 ]
+        }
+      });
+      spyOn(component, 'addRecord');
+
+      component.win();
+
+      expect(component.addRecord).toHaveBeenCalledWith('test', 0, 'test', [ recordMock1 ]);
     });
   });
 

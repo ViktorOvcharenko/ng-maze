@@ -2,43 +2,21 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { RecordsComponent } from '../records/records.component';
-import { MockStore, provideMockStore} from '@ngrx/store/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { GetRecords } from '../../../../core/store/actions/maze.actions';
-import { IRecord } from '../../../../core/models';
+import { createRecordMock } from '../../../../core/test';
 
 import * as fromModels from '../../../../core/models';
+
 
 describe('RecordsComponent', () => {
   let component: RecordsComponent;
   let fixture: ComponentFixture<RecordsComponent>;
   let store: MockStore<any>;
-  const recordMock1: fromModels.IRecord = {
-    score: 1,
-    username: 'test',
-    date: new Date,
-    mode: 'test'
-  };
-
-  const recordMock2: fromModels.IRecord = {
-    score: 2,
-    username: 'test',
-    date: new Date,
-    mode: 'test'
-  };
-
-  const firstRecord: IRecord = {
-    score: 1,
-    username: 'test',
-    date: new Date(),
-    mode: 'test'
-  };
-
-  const secondRecord: IRecord = {
-    score: 1,
-    username: 'test',
-    date: new Date(),
-    mode: 'test'
-  };
+  const recordMock1: fromModels.IRecord = createRecordMock(1);
+  const recordMock2: fromModels.IRecord = createRecordMock(2);
+  const firstRecord: fromModels.IRecord = createRecordMock(1);
+  const secondRecord: fromModels.IRecord = createRecordMock(2);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -140,7 +118,7 @@ describe('RecordsComponent', () => {
 
   describe('addPositionToRecords', () => {
     it('should return records with position property', () => {
-      const expected: IRecord[] = [
+      const expected: fromModels.IRecord[] = [
         { ...firstRecord, position: 1 },
         { ...secondRecord, position: 2 }
       ];
