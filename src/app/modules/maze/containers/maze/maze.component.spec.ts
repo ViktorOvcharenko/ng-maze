@@ -172,6 +172,12 @@ describe('MazeComponent', () => {
   });
 
   describe('heroStep', () => {
+    it('should return null if debounceFlag is false', () => {
+      component.debounceFlag = false;
+
+      expect(component.heroStep('test')).toBeNull();
+    });
+
     it('should increase heroLocation x from mazeService', () => {
       component.maze = mazeMock;
       component.heroStep('ArrowRight');
@@ -183,6 +189,7 @@ describe('MazeComponent', () => {
       mazeService.heroLocation.x = 1;
       mazeService.heroLocation.y = 3;
       component.maze = mazeMock;
+
       component.heroStep('ArrowUp');
 
       expect(mazeService.heroLocation.y).toBe(2);
@@ -192,6 +199,7 @@ describe('MazeComponent', () => {
       mazeService.heroLocation.x = 2;
       mazeService.heroLocation.y = 4;
       component.maze = mazeMock;
+
       component.heroStep('ArrowLeft');
 
       expect(mazeService.heroLocation.x).toBe(1);
@@ -201,9 +209,31 @@ describe('MazeComponent', () => {
       mazeService.heroLocation.x = 1;
       mazeService.heroLocation.y = 3;
       component.maze = mazeMock;
+
       component.heroStep('ArrowDown');
 
       expect(mazeService.heroLocation.y).toBe(4);
+    });
+
+    it('should change maze value 3 to 4 if after ArrowDown will be 3', () => {
+      mazeService.heroLocation.x = 25;
+      mazeService.heroLocation.y = 7;
+      component.maze = mazeMock;
+
+      component.heroStep('ArrowDown');
+
+      expect(component.maze[8][25]).toBe(4);
+    });
+
+    it('should call win if after ArrowDown will be 3', () => {
+      mazeService.heroLocation.x = 25;
+      mazeService.heroLocation.y = 7;
+      component.maze = mazeMock;
+      spyOn(component, 'win');
+
+      component.heroStep('ArrowDown');
+
+      expect(component.win).toHaveBeenCalled();
     });
 
     it('should change debounceFlag to false', () => {

@@ -110,7 +110,7 @@ export class MazeComponent implements OnInit, OnDestroy {
 
   heroStep(event: string): void {
     if (!this.debounceFlag) {
-      return
+      return null;
     }
     const mazeCloned = _.cloneDeep(this.maze);
     const x = this.mazeService.heroLocation.x;
