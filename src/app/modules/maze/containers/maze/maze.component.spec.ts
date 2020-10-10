@@ -35,6 +35,15 @@ describe('MazeComponent', () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0]
   ];
   const recordMock1: fromModels.IRecord = createRecordMock(1);
+  const recordMock2: fromModels.IRecord = createRecordMock(2);
+  const recordMock3: fromModels.IRecord = createRecordMock(3);
+  const recordMock4: fromModels.IRecord = createRecordMock(4);
+  const recordMock5: fromModels.IRecord = createRecordMock(5);
+  const recordMock6: fromModels.IRecord = createRecordMock(6);
+  const recordMock7: fromModels.IRecord = createRecordMock(7);
+  const recordMock8: fromModels.IRecord = createRecordMock(8);
+  const recordMock9: fromModels.IRecord = createRecordMock(9);
+  const recordMock10: fromModels.IRecord = createRecordMock(10);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -309,7 +318,19 @@ describe('MazeComponent', () => {
       expect(component.addRecord).toHaveBeenCalledWith('test', 0, 'test', [ recordMock1 ]);
     });
 
-    it('33333333333333333333333', () => {
+    it('should call addRecord with cutRecords if records$ more then 9', () => {
+      const records = [recordMock10,
+        recordMock1,
+        recordMock2,
+        recordMock3,
+        recordMock4,
+        recordMock5,
+        recordMock6,
+        recordMock7,
+        recordMock8,
+        recordMock9
+      ];
+      const cutRecords = records.filter((record, i) => i !== records.length - 1);
       store.setState({
         account : { userName: 'test' },
         maze: {
@@ -318,14 +339,14 @@ describe('MazeComponent', () => {
           wallMode: 'test',
           isWin: false,
           score: 0,
-          records: [ recordMock1 ]
+          records
         }
       });
       spyOn(component, 'addRecord');
 
       component.win();
 
-      expect(component.addRecord).toHaveBeenCalledWith('test', 0, 'test', [ recordMock1 ]);
+      expect(component.addRecord).toHaveBeenCalledWith('test', 0, 'test', cutRecords);
     });
   });
 
