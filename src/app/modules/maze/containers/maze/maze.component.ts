@@ -174,7 +174,7 @@ export class MazeComponent implements OnInit, OnDestroy {
       .pipe(
         take(999),
         takeUntil( this.destroy$ )
-        )
+      )
       .subscribe(() => {
         this.store.dispatch(new ScoreTick());
     });

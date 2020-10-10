@@ -215,7 +215,7 @@ describe('MazeComponent', () => {
       expect(mazeService.heroLocation.y).toBe(4);
     });
 
-    it('should change maze value 3 to 4 if after ArrowDown will be 3', () => {
+    it('should change 3 to 4 if after ArrowDown will be 3', () => {
       mazeService.heroLocation.x = 25;
       mazeService.heroLocation.y = 7;
       component.maze = mazeMock;
@@ -389,7 +389,8 @@ describe('MazeComponent', () => {
             score: 0,
             username: 'test',
             mode: 'test',
-            date: new Date() }
+            date: new Date()
+          }
         ]
       };
       const action = new AddRecord(payload);
