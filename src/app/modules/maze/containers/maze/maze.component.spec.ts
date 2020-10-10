@@ -138,10 +138,12 @@ describe('MazeComponent', () => {
   });
 
   describe('onOrientationChange', () => {
-    it('should change orientationFlag', () => {
+    it('should have been called if window:orientationchange', () => {
+      spyOn(component, 'onOrientationChange')
+
       window.dispatchEvent(new Event('orientationchange'));
 
-      expect(component.orientationFlag).toBeFalsy();
+      expect(component.onOrientationChange).toHaveBeenCalled();
     });
   });
 
